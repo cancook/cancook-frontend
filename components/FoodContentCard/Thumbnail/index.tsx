@@ -3,17 +3,18 @@ import ContentImage from './ContentImage';
 import SocialTypeBadge from './SocialTypeBage';
 import TimeStamp from './TimeStamp';
 import VideoPlayButton from './VideoPlayButton';
+import { FoodContentCardSize, SocialBadge } from '@/types/foodContentCard';
 
 type Props = {
-  socialBadges?: 'youtube' | 'naverBlog';
+  socialBadge?: SocialBadge;
   time?: string;
   isPlayButton?: boolean;
   src: string;
-  size: 'md' | 'lg';
+  size: FoodContentCardSize;
 };
 
 const FoodContentCardThumbnail: FC<Props> = ({
-  socialBadges,
+  socialBadge,
   time,
   isPlayButton = false,
   src,
@@ -23,7 +24,7 @@ const FoodContentCardThumbnail: FC<Props> = ({
     <ContentImage src={src} size={size}>
       {time && <TimeStamp time={time} size={size} />}
       {isPlayButton && <VideoPlayButton />}
-      <SocialTypeBadge types={socialBadges} />
+      <SocialTypeBadge types={socialBadge} />
     </ContentImage>
   );
 };

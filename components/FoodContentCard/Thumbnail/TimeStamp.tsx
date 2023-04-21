@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import styled from '@emotion/styled';
+import { FoodContentCardSize } from '@/types/foodContentCard';
 
 const layoutMap = {
   md: {
@@ -39,7 +40,7 @@ export const TimeStampBox = styled.div<Props>`
 
 type Props = {
   time?: string;
-  size: 'md' | 'lg';
+  size: FoodContentCardSize;
 };
 
 const TimeStamp: FC<Props> = ({ time, size }) => {

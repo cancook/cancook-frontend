@@ -3,6 +3,7 @@ import React, { FC } from 'react';
 import youtubeLogo from '@/assets/png/youtube_logo.png';
 import naverBlogLogo from '@/assets/png/naver_blog_logo.png';
 import styled from '@emotion/styled';
+import { SocialBadge } from '@/types/foodContentCard';
 
 export const SocialTypeBadgeLayout = styled.div`
   position: absolute;
@@ -11,7 +12,7 @@ export const SocialTypeBadgeLayout = styled.div`
 `;
 
 type Props = {
-  types?: 'youtube' | 'naverBlog';
+  types?: SocialBadge;
 };
 
 const badgeMap = {

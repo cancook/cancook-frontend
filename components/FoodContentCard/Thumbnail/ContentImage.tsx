@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React, { FC, ReactNode } from 'react';
 import styled from '@emotion/styled';
+import { FoodContentCardSize } from '@/types/foodContentCard';
 
 const ImageLayout = styled.div`
   display: inline-flex;
@@ -22,7 +23,7 @@ const sizeMap = {
 type Props = {
   children: ReactNode;
   src: string;
-  size: 'md' | 'lg';
+  size: FoodContentCardSize;
 };
 
 const ContentImage: FC<Props> = ({ src, size, children }) => {
