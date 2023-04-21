@@ -1,3 +1,5 @@
 import styled from '@emotion/styled';
 
-export const FoodContentCardLayout = styled.article``;
+const FoodContentCardLayout = styled.article``;
+
+export default FoodContentCardLayout;
