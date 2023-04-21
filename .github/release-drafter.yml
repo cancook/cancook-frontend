@@ -1,0 +1,12 @@
+name-template: 'v{version}'
+tag-template: 'v{version}'
+categories:
+  - title: 'Bug Fixes'
+    label: '🐛bug'
+  - title: 'New Features'
+    label: '✨feature'
+  - title: 'Documentation'
+    label: '📝documentation'
+  - title: 'Chore'
+    label: '➕chore'
+    
