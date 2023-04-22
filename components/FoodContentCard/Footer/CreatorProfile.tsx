@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import Image from 'next/image';
-import React, { FC, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 
 const ProfileImage = styled(Image)`
   border-radius: 50%;
@@ -18,11 +18,17 @@ const Layout = styled.div`
 `;
 
 type Props = {
+  /**
+   * 프로필 이미지의 경로를 나타냅니다.
+   */
   src: string;
+  /**
+   * 프로필 이름을 나타냅니다.
+   */
   children: ReactNode;
 };
 
-const CreatorProfile: FC<Props> = ({ src, children }) => {
+const CreatorProfile = ({ src, children }: Props) => {
   return (
     <Layout>
       <ProfileImage width={20} height={20} src={src} alt="userImage" />

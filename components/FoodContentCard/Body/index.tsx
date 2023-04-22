@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import React, { FC } from 'react';
+import React from 'react';
 
 const Layout = styled.div`
   padding: 1rem 0rem 0rem 0rem;
@@ -20,11 +20,17 @@ const Subtitle = styled.h5`
 `;
 
 type Props = {
+  /**
+   * 게시글의 제목을 나타냅니다.
+   */
   title: string;
+  /**
+   * 게시글의 부제목을 나타냅니다.
+   */
   subTitle: string;
 };
 
-const FoodContentCardBody: FC<Props> = ({ title, subTitle }) => {
+const FoodContentCardBody = ({ title, subTitle }: Props) => {
   return (
     <Layout>
       <Title>{title}</Title>
