@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
-import React from 'react';
+import React, { ReactNode } from 'react';
 
-const Layout = styled.div`
+const BodyLayout = styled.div`
   padding: 1rem 0rem 0rem 0rem;
   color: white;
   line-height: 1.375rem;
@@ -28,14 +28,19 @@ type Props = {
    * 게시글의 부제목을 나타냅니다.
    */
   subTitle: string;
+  /**
+   * 기본 제공되는 레이아웃 이외에 노드를 직접 넣어 사용할수 있습니다.
+   */
+  children?: ReactNode;
 };
 
-const FoodContentCardBody = ({ title, subTitle }: Props) => {
+const FoodContentCardBody = ({ title, subTitle, children }: Props) => {
   return (
-    <Layout>
+    <BodyLayout>
       <Title>{title}</Title>
       <Subtitle>{subTitle}</Subtitle>
-    </Layout>
+      {children}
+    </BodyLayout>
   );
 };
 

@@ -5,7 +5,7 @@ import naverBlogLogo from '@/assets/png/naver_blog_logo.png';
 import styled from '@emotion/styled';
 import { SocialBadge } from '@/types/foodContentCard';
 
-export const SocialTypeBadgeLayout = styled.div`
+export const BadgeLayout = styled.div`
   position: absolute;
   left: 1rem;
   top: 1rem;
@@ -23,9 +23,9 @@ const badgeMap = {
 const SocialTypeBadge: FC<Props> = ({ types }) => {
   if (types !== undefined) {
     return (
-      <SocialTypeBadgeLayout>
+      <BadgeLayout>
         <Image src={badgeMap[types]} alt={types} />
-      </SocialTypeBadgeLayout>
+      </BadgeLayout>
     );
   } else return <></>;
 };

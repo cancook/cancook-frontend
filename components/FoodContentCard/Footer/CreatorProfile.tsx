@@ -10,7 +10,7 @@ const UserName = styled.p`
   font-size: 0.875rem;
   letter-spacing: -0.0375rem;
 `;
-const Layout = styled.div`
+const ProfileLayout = styled.div`
   display: flex;
   align-items: center;
   margin-top: 0.625rem;
@@ -30,10 +30,10 @@ type Props = {
 
 const CreatorProfile = ({ src, children }: Props) => {
   return (
-    <Layout>
+    <ProfileLayout>
       <ProfileImage width={20} height={20} src={src} alt="userImage" />
       <UserName>{children}</UserName>
-    </Layout>
+    </ProfileLayout>
   );
 };
 

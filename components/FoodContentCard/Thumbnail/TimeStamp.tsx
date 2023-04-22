@@ -13,7 +13,7 @@ const layoutMap = {
   }
 };
 
-export const TimeStampLayout = styled.div<Props>`
+export const StampLayout = styled.div<Props>`
   position: absolute;
   ${({ size }) => {
     return `
@@ -45,9 +45,9 @@ type Props = {
 
 const TimeStamp: FC<Props> = ({ time, size }) => {
   return (
-    <TimeStampLayout size={size}>
+    <StampLayout size={size}>
       <TimeStampBox size={size}>{time}</TimeStampBox>
-    </TimeStampLayout>
+    </StampLayout>
   );
 };
 
