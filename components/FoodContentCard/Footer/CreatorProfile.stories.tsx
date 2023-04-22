@@ -2,11 +2,11 @@ import { StoryFn } from '@storybook/react';
 import { ComponentProps } from 'react';
 import CreatorProfile from './CreatorProfile';
 
-const FoodContentCardCreatorProfile = {
+const CreatorProfileComponent = {
   title: 'Component/FoodContentCard/CreatorProfile',
   component: CreatorProfile
 };
-export default FoodContentCardCreatorProfile;
+export default CreatorProfileComponent;
 
 type CreatorProfileProps = ComponentProps<typeof CreatorProfile>;
 

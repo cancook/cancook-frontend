@@ -6,7 +6,9 @@ import {
   SocialBadgeList
 } from '@/types/foodContentCard';
 
-const FoodContentCardThumbnailStory: Meta<typeof FoodContentCard.Thumbnail> = {
+const FoodContentCardThumbnailComponent: Meta<
+  typeof FoodContentCard.Thumbnail
+> = {
   title: 'Component/FoodContentCard/Thumbnail',
   component: FoodContentCard.Thumbnail,
   tags: ['autodocs'],
@@ -49,4 +51,4 @@ NaverVideoInCarousel.args = {
   size: 'lg'
 };
 
-export default FoodContentCardThumbnailStory;
+export default FoodContentCardThumbnailComponent;

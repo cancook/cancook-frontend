@@ -2,11 +2,11 @@ import { StoryFn } from '@storybook/react';
 import FoodContentCard from '..';
 import { ComponentProps } from 'react';
 
-const FoodContentCardBody = {
+const FoodContentCardBodyComponent = {
   title: 'Component/FoodContentCard/Body',
   component: FoodContentCard.Body
 };
-export default FoodContentCardBody;
+export default FoodContentCardBodyComponent;
 
 type BodyProps = ComponentProps<typeof FoodContentCard.Body>;
 
