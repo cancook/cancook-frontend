@@ -9,6 +9,11 @@ const FoodContentCardBody = {
 export default FoodContentCardBody;
 
 type BodyProps = ComponentProps<typeof FoodContentCard.Body>;
+
+/**
+ * 게시글의 본문을 보여주는 컴포넌트입니다.
+ * 현재 구현은 다크 모드 기준으로 되어있으니 storybook의 테마를 dark로 변경해 주세요
+ */
 export const BodyTemplate: StoryFn<BodyProps> = (args) => (
   <FoodContentCard.Body {...args} />
 );

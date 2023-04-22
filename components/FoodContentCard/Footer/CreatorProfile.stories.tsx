@@ -9,6 +9,10 @@ const FoodContentCardCreatorProfile = {
 export default FoodContentCardCreatorProfile;
 
 type CreatorProfileProps = ComponentProps<typeof CreatorProfile>;
+
+/**
+ * 게시글 작성자를 보여주는 컴포넌트입니다.
+ */
 export const CreatorProfileTemplate: StoryFn<CreatorProfileProps> = (args) => (
   <CreatorProfile {...args} />
 );

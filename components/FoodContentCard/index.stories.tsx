@@ -26,6 +26,10 @@ const CardTemplate: StoryFn<Props> = ({ Thumbnail, Body }) => (
   </FoodContentCard.Layout>
 );
 
+/**
+ * FoodContentCard 컴포넌트를 전부 사용해서 구성했을때의 컴포넌트 예제 입니다.<br />
+ * show code를 이용해 코드를 확인해보세요.
+ */
 export const FullFoodContentCard = CardTemplate.bind({});
 
 FullFoodContentCard.args = {
