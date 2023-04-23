@@ -1,9 +1,180 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import { Inter } from 'next/font/google';
-import styles from '@styles/Home.module.css';
+import BannerCarousel from '@/components/Carousel/Banner';
+import styled from '@emotion/styled';
+import Category from '@/components/Carousel/Category';
+import { CardProps } from '@/components/Carousel/Category/Card';
 
-const inter = Inter({ subsets: ['latin'] });
+// TODO: API 데이터를 불러오고 지워버리기
+const SAMPLE_CARD_DATA: CardProps[] = [
+  {
+    thumbnail: {
+      isPlayButton: true,
+      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
+      size: 'md',
+      time: '8:00'
+    },
+    body: {
+      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
+      subTitle: '조회수 26만회 • 7일전'
+    }
+  },
+  {
+    thumbnail: {
+      isPlayButton: true,
+      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
+      size: 'md',
+      time: '8:00'
+    },
+    body: {
+      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
+      subTitle: '조회수 26만회 • 7일전'
+    }
+  },
+  {
+    thumbnail: {
+      isPlayButton: true,
+      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
+      size: 'md',
+      time: '8:00'
+    },
+    body: {
+      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
+      subTitle: '조회수 26만회 • 7일전'
+    }
+  },
+  {
+    thumbnail: {
+      isPlayButton: true,
+      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
+      size: 'md',
+      time: '8:00'
+    },
+    body: {
+      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
+      subTitle: '조회수 26만회 • 7일전'
+    }
+  },
+  {
+    thumbnail: {
+      isPlayButton: true,
+      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
+      size: 'md',
+      time: '8:00'
+    },
+    body: {
+      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
+      subTitle: '조회수 26만회 • 7일전'
+    }
+  },
+  {
+    thumbnail: {
+      isPlayButton: true,
+      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
+      size: 'md',
+      time: '8:00'
+    },
+    body: {
+      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
+      subTitle: '조회수 26만회 • 7일전'
+    }
+  },
+  {
+    thumbnail: {
+      isPlayButton: true,
+      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
+      size: 'md',
+      time: '8:00'
+    },
+    body: {
+      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
+      subTitle: '조회수 26만회 • 7일전'
+    }
+  },
+  {
+    thumbnail: {
+      isPlayButton: true,
+      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
+      size: 'md',
+      time: '8:00'
+    },
+    body: {
+      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
+      subTitle: '조회수 26만회 • 7일전'
+    }
+  },
+  {
+    thumbnail: {
+      isPlayButton: true,
+      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
+      size: 'md',
+      time: '8:00'
+    },
+    body: {
+      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
+      subTitle: '조회수 26만회 • 7일전'
+    }
+  },
+  {
+    thumbnail: {
+      isPlayButton: true,
+      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
+      size: 'md',
+      time: '8:00'
+    },
+    body: {
+      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
+      subTitle: '조회수 26만회 • 7일전'
+    }
+  },
+  {
+    thumbnail: {
+      isPlayButton: true,
+      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
+      size: 'md',
+      time: '8:00'
+    },
+    body: {
+      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
+      subTitle: '조회수 26만회 • 7일전'
+    }
+  },
+  {
+    thumbnail: {
+      isPlayButton: true,
+      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
+      size: 'md',
+      time: '8:00'
+    },
+    body: {
+      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
+      subTitle: '조회수 26만회 • 7일전'
+    }
+  },
+  {
+    thumbnail: {
+      isPlayButton: true,
+      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
+      size: 'md',
+      time: '8:00'
+    },
+    body: {
+      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
+      subTitle: '조회수 26만회 • 7일전'
+    }
+  },
+  {
+    thumbnail: {
+      isPlayButton: true,
+      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
+      size: 'md',
+      time: '8:00'
+    },
+    body: {
+      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
+      subTitle: '조회수 26만회 • 7일전'
+    }
+  }
+];
 
 export default function Home() {
   return (
@@ -14,110 +185,34 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
-        </div>
-
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
-          </div>
-        </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+      {/* NOTE: 이 부분은 따로 component로 빼도 될거 같기는 한데, 우선 Server Side Props 로 받아오면 
+                어떻게 보일지를 몰라서, 나중에 변경 예정
+      */}
+      <MainContainer>
+        <BannerCarousel />
+        <Category
+          title={'헬스 하는 사람들을 위한 음식'}
+          contents={SAMPLE_CARD_DATA}
+        />
+        <Category
+          title={'헬스 하는 사람들을 위한 음식'}
+          contents={SAMPLE_CARD_DATA}
+        />
+        <Category
+          title={'헬스 하는 사람들을 위한 음식'}
+          contents={SAMPLE_CARD_DATA}
+        />
+      </MainContainer>
     </>
   );
 }
+
+const MainContainer = styled.div`
+  padding: 2rem 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+
+  background-color: #000;
+`;
