@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ComponentProps } from 'react';
 
 import FoodContentCard from '@/components/FoodContentCard';
 
@@ -7,7 +7,12 @@ import { Navigation } from 'swiper';
 import 'swiper/css/navigation';
 import styled from '@emotion/styled';
 
-const BannerCarousel = () => {
+type Props = {
+  /**Thumbnail 콘텐츠들 */
+  contents: ComponentProps<typeof FoodContentCard.Thumbnail>[];
+};
+
+const BannerCarousel = ({ contents }: Props) => {
   return (
     <div>
       <Swiper
@@ -18,38 +23,18 @@ const BannerCarousel = () => {
         centeredSlides
         loop
       >
-        <SwiperSlide>
-          <ImageContainer>Image Goes Here</ImageContainer>
-        </SwiperSlide>
-        <SwiperSlide>
-          <ImageContainer>Image Goes Here</ImageContainer>
-        </SwiperSlide>
-        <SwiperSlide>
-          <ImageContainer>
-            <FoodContentCard.Thumbnail
-              isPlayButton
-              time={'8:00'}
-              src={
-                'https://i.ytimg.com/vi/H_O3eoQD3TA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCh-w7jTBcaLPNy31EZ0ydlIOxOAQ'
-              }
-              size={'lg'}
-              socialBadge={'youtube'}
-            />
-          </ImageContainer>
-        </SwiperSlide>
-        <SwiperSlide>
-          <ImageContainer>
-            <FoodContentCard.Thumbnail
-              isPlayButton
-              time={'8:00'}
-              src={
-                'https://i.ytimg.com/vi/H_O3eoQD3TA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCh-w7jTBcaLPNy31EZ0ydlIOxOAQ'
-              }
-              size={'lg'}
-              socialBadge={'youtube'}
-            />
-          </ImageContainer>
-        </SwiperSlide>
+        {contents.map(
+          (
+            content: ComponentProps<typeof FoodContentCard.Thumbnail>,
+            idx: number
+          ) => (
+            <SwiperSlide key={`content-${idx}`}>
+              <ImageContainer>
+                <FoodContentCard.Thumbnail {...content} />
+              </ImageContainer>
+            </SwiperSlide>
+          )
+        )}
       </Swiper>
     </div>
   );
