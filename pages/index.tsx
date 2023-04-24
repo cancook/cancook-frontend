@@ -3,6 +3,8 @@ import BannerCarousel from '@/components/Carousel/Banner';
 import styled from '@emotion/styled';
 import Category from '@/components/Carousel/Category';
 import { CardProps } from '@/components/Carousel/Category/Card';
+import FoodContentCard from '@/components/FoodContentCard';
+import { ComponentProps } from 'react';
 
 // TODO: API 데이터를 불러오고 지워버리기
 const SAMPLE_CARD_DATA: CardProps[] = [
@@ -176,6 +178,37 @@ const SAMPLE_CARD_DATA: CardProps[] = [
   }
 ];
 
+const SAMPLE_BANNER_DATA: ComponentProps<typeof FoodContentCard.Thumbnail>[] = [
+  {
+    isPlayButton: true,
+    src: 'https://i.ytimg.com/vi/H_O3eoQD3TA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCh-w7jTBcaLPNy31EZ0ydlIOxOAQ',
+    size: 'lg',
+    time: '8:00',
+    socialBadge: 'youtube'
+  },
+  {
+    isPlayButton: true,
+    src: 'https://i.ytimg.com/vi/H_O3eoQD3TA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCh-w7jTBcaLPNy31EZ0ydlIOxOAQ',
+    size: 'lg',
+    time: '8:00',
+    socialBadge: 'youtube'
+  },
+  {
+    isPlayButton: true,
+    src: 'https://i.ytimg.com/vi/H_O3eoQD3TA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCh-w7jTBcaLPNy31EZ0ydlIOxOAQ',
+    size: 'lg',
+    time: '8:00',
+    socialBadge: 'youtube'
+  },
+  {
+    isPlayButton: true,
+    src: 'https://i.ytimg.com/vi/H_O3eoQD3TA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCh-w7jTBcaLPNy31EZ0ydlIOxOAQ',
+    size: 'lg',
+    time: '8:00',
+    socialBadge: 'youtube'
+  }
+];
+
 export default function Home() {
   return (
     <>
@@ -189,7 +222,7 @@ export default function Home() {
                 어떻게 보일지를 몰라서, 나중에 변경 예정
       */}
       <MainContainer>
-        <BannerCarousel />
+        <BannerCarousel contents={SAMPLE_BANNER_DATA} />
         <Category
           title={'헬스 하는 사람들을 위한 음식'}
           contents={SAMPLE_CARD_DATA}
