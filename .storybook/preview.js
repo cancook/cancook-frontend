@@ -1,5 +1,6 @@
 import { Global } from '@emotion/react';
 import { global } from '@/styles/Global';
+import 'swiper/css';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
