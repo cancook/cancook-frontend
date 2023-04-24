@@ -17,8 +17,6 @@ const BannerCarousel = () => {
         slidesPerView={2}
         centeredSlides
         loop
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
       >
         <SwiperSlide>
           <ImageContainer>Image Goes Here</ImageContainer>
@@ -27,28 +25,31 @@ const BannerCarousel = () => {
           <ImageContainer>Image Goes Here</ImageContainer>
         </SwiperSlide>
         <SwiperSlide>
-          <FoodContentCard.Thumbnail
-            isPlayButton
-            time={'8:00'}
-            src={
-              'https://i.ytimg.com/vi/H_O3eoQD3TA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCh-w7jTBcaLPNy31EZ0ydlIOxOAQ'
-            }
-            size={'lg'}
-            socialBadge={'youtube'}
-          />
+          <ImageContainer>
+            <FoodContentCard.Thumbnail
+              isPlayButton
+              time={'8:00'}
+              src={
+                'https://i.ytimg.com/vi/H_O3eoQD3TA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCh-w7jTBcaLPNy31EZ0ydlIOxOAQ'
+              }
+              size={'lg'}
+              socialBadge={'youtube'}
+            />
+          </ImageContainer>
         </SwiperSlide>
         <SwiperSlide>
-          <FoodContentCard.Thumbnail
-            isPlayButton
-            time={'8:00'}
-            src={
-              'https://i.ytimg.com/vi/H_O3eoQD3TA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCh-w7jTBcaLPNy31EZ0ydlIOxOAQ'
-            }
-            size={'lg'}
-            socialBadge={'youtube'}
-          />
+          <ImageContainer>
+            <FoodContentCard.Thumbnail
+              isPlayButton
+              time={'8:00'}
+              src={
+                'https://i.ytimg.com/vi/H_O3eoQD3TA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCh-w7jTBcaLPNy31EZ0ydlIOxOAQ'
+              }
+              size={'lg'}
+              socialBadge={'youtube'}
+            />
+          </ImageContainer>
         </SwiperSlide>
-        ...
       </Swiper>
     </div>
   );

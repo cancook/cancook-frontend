@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 import 'swiper/css/navigation';
 import styled from '@emotion/styled';
+import CreatorProfile from '@/components/FoodContentCard/Footer/CreatorProfile';
 
 export type CardProps = {
   thumbnail: ComponentProps<typeof FoodContentCard.Thumbnail>;
@@ -28,19 +29,18 @@ const CardCarousel = ({ cards }: Props) => {
         slidesPerGroup={6}
         centeredSlides
         loop
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
       >
         {cards.map((card: CardProps, idx: number) => (
           <SwiperSlide key={`card-${idx}`}>
-            <ImageContainer>Image Goes Here</ImageContainer>
-            {/* <FoodContentCard.Layout>
-              <FoodContentCard.Thumbnail {...card.thumbnail} />
-              <FoodContentCard.Body {...card.body} />
-              <CreatorProfile src="https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A">
-                김코딩
-              </CreatorProfile>
-            </FoodContentCard.Layout> */}
+            <CardContainer>
+              <FoodContentCard.Layout>
+                <FoodContentCard.Thumbnail {...card.thumbnail} />
+                <FoodContentCard.Body {...card.body} />
+                <CreatorProfile src="https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A">
+                  김코딩
+                </CreatorProfile>
+              </FoodContentCard.Layout>
+            </CardContainer>
           </SwiperSlide>
         ))}
       </Swiper>
@@ -50,7 +50,7 @@ const CardCarousel = ({ cards }: Props) => {
 
 export default CardCarousel;
 
-const ImageContainer = styled.div`
+const CardContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
