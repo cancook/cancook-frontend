@@ -1,14 +1,11 @@
 name: Release Drafter
 
 on:
-  push:
-    # branches to consider in the event; optional, defaults to all
+  pull_request:
     branches:
       - development
-  # pull_request event is required only for autolabeler
-  pull_request:
     # Only following types are handled by the action, but one can default to all as well
-    types: [opened, reopened, synchronize]
+    types: closed
   # pull_request_target event is required for autolabeler to support PRs from forks
   # pull_request_target:
   #   types: [opened, reopened, synchronize]
@@ -38,6 +35,6 @@ jobs:
         #   config-name: my-config.yml
         #   disable-autolabeler: true
         with:
-          config-file-path: release-drafter-config.yml
+          config-file-path: release-drafter.yml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
