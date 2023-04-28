@@ -1,6 +1,6 @@
-import { css } from '@emotion/react';
+import { Theme, css } from '@emotion/react';
 
-const colors = {
+export const colors = {
   orange: {
     50: '#FFF3EF',
     100: '#FFE1D6',
@@ -54,7 +54,7 @@ const colors = {
   }
 };
 
-const text = {
+export const font = {
   headLine: {
     lg: css`
       font-size: 1.875rem;
@@ -126,7 +126,7 @@ const text = {
 };
 
 // const colors = {}
-const screen = {
+export const screen = {
   /* Extra small devices (phones, 600px and down) */
   xs: '@media only screen and (max-width: 600px)',
 
@@ -147,9 +147,10 @@ const screen = {
   monitor: '@media only screen and (min-width: 768px)'
 };
 
-const theme = {
+const theme: Theme = {
   colors,
-  screen
+  screen,
+  font
 };
 
 export default theme;
