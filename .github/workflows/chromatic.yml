@@ -3,7 +3,7 @@ name: 'Chromatic Deployment'
 
 # Event for the workflow
 on:
-  push:
+  pull_request:
     branches:
       - 'feature/**-UI'
 
@@ -24,3 +24,33 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}
           onlyChanged: true
+      - name: Add Chromatic URL to PR comment
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const chromaticUrl = process.env.CHROMATIC_URL;
+            const commentBody = `Chromatic URL: ${chromaticUrl}`;
+            const { data: comments } = await github.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const commentToUpdate = comments.find((comment) =>
+              comment.body.includes('Chromatic URL:')
+            );
+            if (commentToUpdate) {
+              const { data: updatedComment } = await github.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: commentToUpdate.id,
+                body: commentBody,
+              });
+            } else {
+              await github.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: commentBody,
+              });
+            };
