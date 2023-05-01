@@ -47,6 +47,6 @@ const ImageContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  height: 350px;
+  height: 25rem;
   border: 1px solid red;
 `;

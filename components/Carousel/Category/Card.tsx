@@ -55,6 +55,6 @@ const CardContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  height: 350px;
+  height: 18rem;
   border: 1px solid red;
 `;
