@@ -2,37 +2,7 @@ import { StoryFn } from '@storybook/react';
 import BannerCarousel from './BannerCarousel';
 import { ComponentProps } from 'react';
 import FoodContentCard from '../FoodContentCard';
-
-const SAMPLE_BANNER_DATA: ComponentProps<typeof FoodContentCard.Thumbnail>[] = [
-  {
-    isPlayButton: true,
-    src: 'https://i.ytimg.com/vi/H_O3eoQD3TA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCh-w7jTBcaLPNy31EZ0ydlIOxOAQ',
-    size: 'lg',
-    time: '8:00',
-    socialBadge: 'youtube'
-  },
-  {
-    isPlayButton: true,
-    src: 'https://i.ytimg.com/vi/H_O3eoQD3TA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCh-w7jTBcaLPNy31EZ0ydlIOxOAQ',
-    size: 'lg',
-    time: '8:00',
-    socialBadge: 'youtube'
-  },
-  {
-    isPlayButton: true,
-    src: 'https://i.ytimg.com/vi/H_O3eoQD3TA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCh-w7jTBcaLPNy31EZ0ydlIOxOAQ',
-    size: 'lg',
-    time: '8:00',
-    socialBadge: 'youtube'
-  },
-  {
-    isPlayButton: true,
-    src: 'https://i.ytimg.com/vi/H_O3eoQD3TA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCh-w7jTBcaLPNy31EZ0ydlIOxOAQ',
-    size: 'lg',
-    time: '8:00',
-    socialBadge: 'youtube'
-  }
-];
+import { SAMPLE_BANNER_DATA } from '@/constants';
 
 type Props = {
   /**Thumbnail 콘텐츠들 */
