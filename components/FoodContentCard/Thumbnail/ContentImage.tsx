@@ -3,12 +3,6 @@ import React, { FC, ReactNode } from 'react';
 import styled from '@emotion/styled';
 import { FoodContentCardSize } from '@/types/foodContentCard';
 
-const ImageLayout = styled.div`
-  display: inline-flex;
-  position: relative;
-  cursor: pointer;
-`;
-
 const sizeMap = {
   md: {
     width: 305,
@@ -28,12 +22,14 @@ type Props = {
 
 const ContentImage: FC<Props> = ({ src, size, children }) => {
   return (
-    <ImageLayout>
+    <ImageLayout size={size}>
       <Image
         src={src}
         alt="thumbnail"
-        width={sizeMap[size].width}
-        height={sizeMap[size].height}
+        // width={sizeMap[size].width}
+        // height={sizeMap[size].height}
+        fill
+        style={{ objectFit: 'cover' }}
       />
       {children}
     </ImageLayout>
@@ -41,3 +37,11 @@ const ContentImage: FC<Props> = ({ src, size, children }) => {
 };
 
 export default ContentImage;
+
+const ImageLayout = styled.div<{ size: 'md' | 'lg' }>`
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  width: 100%;
+  height: ${({ size }) => (size ? `${sizeMap[size].height}px` : '100%')};
+`;
