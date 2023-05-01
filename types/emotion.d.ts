@@ -1,21 +1,9 @@
 import '@emotion/react';
-
+import { colors, screen, font } from '@/styles/theme';
 declare module '@emotion/react' {
   export interface Theme {
-    screen: {
-      xs: string;
-      s: string;
-      m: string;
-      l: string;
-      xl: string;
-      phone: string;
-      monitor: string;
-    };
-    colors: {
-      primary: string;
-      secondary: string;
-      white: string;
-      black: string;
-    };
+    screen: typeof screen;
+    colors: typeof colors;
+    font: typeof font;
   }
 }

@@ -1,14 +1,132 @@
-import { Theme } from '@emotion/react';
+import { Theme, css } from '@emotion/react';
 
-const colors = {
-  primary: '#000',
-  secondary: '#fff',
-  white: '#fff',
-  black: '#000'
+export const colors = {
+  orange: {
+    50: '#FFF3EF',
+    100: '#FFE1D6',
+    200: '#FABDA5',
+    300: '#FA9269',
+    400: '#FF6937',
+    500: '#C14F29',
+    600: '#9A3F21',
+    700: '#672A16'
+  },
+  red: {
+    50: '#FFEFED',
+    100: '#FED7D2',
+    200: '#F1998E',
+    300: '#E85C4A',
+    400: '#E11900',
+    500: '#AB1300',
+    600: '#870F00',
+    700: '#5A0A00'
+  },
+  yellow: {
+    50: '#FFFAF0',
+    100: '#FFF2D9',
+    200: '#FFE3AC',
+    300: '#FFCF70',
+    400: '#FFC043',
+    500: '#BC8B2C',
+    600: '#996F00',
+    700: '#674D1B'
+  },
+  gray: {
+    100: '#E8EAED',
+    200: '#BFC1C8',
+    300: '#97969E',
+    400: '#62626C',
+    500: '#4D4D58',
+    600: '#383840',
+    700: '#2C2C34',
+    800: '#232328',
+    900: '#151517'
+  },
+  white: {
+    0: '#FFFFFF',
+    50: '#FFFFFF80',
+    70: '#FFFFFFB2'
+  },
+  black: {
+    0: '#000000',
+    30: '#0000004c',
+    60: '#00000099'
+  }
+};
+
+export const font = {
+  headLine: {
+    lg: css`
+      font-size: 1.875rem;
+      line-height: 2.8125rem;
+      letter-spacing: -2%;
+    `,
+    md: css`
+      font-size: 1.75rem;
+      line-height: 2.625rem;
+      letter-spacing: -2%;
+    `,
+    sm: css`
+      font-size: 1.625rem;
+      line-height: 2.4375rem;
+      letter-spacing: -2%;
+    `
+  },
+  title: {
+    lg: css`
+      font-size: 1.5rem;
+      line-height: 1.5rem;
+      letter-spacing: -2%;
+    `,
+    md: css`
+      font-size: 1.25rem;
+      line-height: 1.75rem;
+      letter-spacing: -2%;
+    `,
+    sm: css`
+      font-size: 1.125rem;
+      line-height: 1.75rem;
+      letter-spacing: -2%;
+    `
+  },
+  label: {
+    lg: css`
+      font-size: 1rem;
+      line-height: 1.375rem;
+      letter-spacing: -2%;
+    `,
+    md: css`
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      letter-spacing: -2%;
+    `,
+    sm: css`
+      font-size: 0.75rem;
+      line-height: 1.125rem;
+      letter-spacing: -2%;
+    `
+  },
+  body: {
+    lg: css`
+      font-size: 1rem;
+      line-height: 1.75rem;
+      letter-spacing: -2%;
+    `,
+    md: css`
+      font-size: 0.875rem;
+      line-height: 1.5rem;
+      letter-spacing: -2%;
+    `,
+    sm: css`
+      font-size: 0.75rem;
+      line-height: 1.3125rem;
+      letter-spacing: -2%;
+    `
+  }
 };
 
 // const colors = {}
-const screen = {
+export const screen = {
   /* Extra small devices (phones, 600px and down) */
   xs: '@media only screen and (max-width: 600px)',
 
@@ -31,7 +149,8 @@ const screen = {
 
 const theme: Theme = {
   colors,
-  screen
+  screen,
+  font
 };
 
 export default theme;
