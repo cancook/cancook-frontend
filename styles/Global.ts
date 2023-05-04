@@ -1,6 +1,24 @@
 import { css } from '@emotion/react';
 
 export const global = css`
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('/fonts/Pretendard-Regular.ttf') format('truetype');
+    font-weight: normal;
+  }
+
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('/fonts/Pretendard-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+  }
+
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('/fonts/Pretendard-Bold.ttf') format('truetype');
+    font-weight: bold;
+  }
+
   html,
   body,
   div,
@@ -124,5 +142,10 @@ export const global = css`
   table {
     border-collapse: collapse;
     border-spacing: 0;
+  }
+
+  html,
+  body {
+    font-family: 'Pretendard', sans-serif;
   }
 `;
