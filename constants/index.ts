@@ -1,4 +1,4 @@
-import { CardProps } from '@/components/Carousel/Category/Card';
+import { CardProps } from '@/components/Carousel/Card/Card';
 import FoodContentCard from '@/components/FoodContentCard';
 import { ComponentProps } from 'react';
 
