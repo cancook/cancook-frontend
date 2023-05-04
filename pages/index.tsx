@@ -1,7 +1,8 @@
 import Head from 'next/head';
-import BannerCarousel from '@/components/Carousel/BannerCarousel';
+import BannerCarousel from '@/components/Carousel/Banner';
+import CardCarousel from '@/components/Carousel/Card';
 import styled from '@emotion/styled';
-import Category from '@/components/Carousel/Category';
+
 import { SAMPLE_BANNER_DATA, SAMPLE_CARD_DATA } from '@/constants';
 
 export default function Home() {
@@ -18,15 +19,15 @@ export default function Home() {
       */}
       <MainContainer>
         <BannerCarousel contents={SAMPLE_BANNER_DATA} />
-        <Category
+        <CardCarousel
           title={'헬스 하는 사람들을 위한 음식'}
           contents={SAMPLE_CARD_DATA}
         />
-        <Category
+        <CardCarousel
           title={'헬스 하는 사람들을 위한 음식'}
           contents={SAMPLE_CARD_DATA}
         />
-        <Category
+        <CardCarousel
           title={'헬스 하는 사람들을 위한 음식'}
           contents={SAMPLE_CARD_DATA}
         />
