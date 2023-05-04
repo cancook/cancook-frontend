@@ -1,5 +1,5 @@
 import { StoryFn } from '@storybook/react';
-import Category from '.';
+import CardCarouselContainer from '.';
 import { CardProps } from './Card';
 import { SAMPLE_CARD_DATA } from '@/constants';
 
@@ -10,11 +10,13 @@ type Props = {
 
 const FoodContentCardStory = {
   title: 'Component/Card Category',
-  component: Category
+  component: CardCarouselContainer
 };
 export default FoodContentCardStory;
 
-const CardTemplate: StoryFn<Props> = (props) => <Category {...props} />;
+const CardTemplate: StoryFn<Props> = (props) => (
+  <CardCarouselContainer {...props} />
+);
 
 /**
  * 카테고리에 보여지는 Carousel 입니다.
