@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import React, { useRef } from 'react';
-import CardCarousel, { CardProps } from './Card';
+import CardCarousel, { CardProps } from './CardCarousel';
 
 import ArrowRight from '@/assets/icons/arrow-right.svg';
 import ArrowLeft from '@/assets/icons/arrow-left.svg';

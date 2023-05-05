@@ -1,6 +1,6 @@
 import { StoryFn } from '@storybook/react';
 import CardCarouselContainer from './CardCarouselContainer';
-import { CardProps } from './Card';
+import { CardProps } from './CardCarousel';
 import { SAMPLE_CARD_DATA } from '@/constants';
 
 type Props = {
