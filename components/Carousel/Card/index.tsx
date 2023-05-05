@@ -2,8 +2,8 @@ import styled from '@emotion/styled';
 import React, { useRef } from 'react';
 import CardCarousel, { CardProps } from './Card';
 
-import ArrowRight from '@/components/common/Icon/arrow-right.svg';
-import ArrowLeft from '@/components/common/Icon/arrow-left.svg';
+import ArrowRight from '@/assets/icons/arrow-right.svg';
+import ArrowLeft from '@/assets/icons/arrow-left.svg';
 type Props = {
   /**
    * category의 이름
