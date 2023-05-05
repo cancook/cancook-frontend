@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import BannerCarousel from '@/components/Carousel/Banner';
-import CardCarousel from '@/components/Carousel/Card';
+import CardCarousel from '@/components/Carousel/Card/CardCarouselContainer';
 import styled from '@emotion/styled';
 
 import { SAMPLE_BANNER_DATA, SAMPLE_CARD_DATA } from '@/constants';
