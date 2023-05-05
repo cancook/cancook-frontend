@@ -7,7 +7,6 @@ import { Navigation } from 'swiper';
 import 'swiper/css/navigation';
 import styled from '@emotion/styled';
 import CreatorProfile from '@/components/FoodContentCard/Footer/CreatorProfile';
-import { NavigationOptions } from 'swiper/types';
 
 export type CardProps = {
   thumbnail: ComponentProps<typeof FoodContentCard.Thumbnail>;
@@ -32,9 +31,13 @@ const CardCarousel = ({ cards, prev, next }: Props) => {
         nextEl: next.current
       }}
       onBeforeInit={(swiper) => {
-        if (swiper && swiper.params.navigation) {
-          (swiper.params.navigation as NavigationOptions).prevEl = prev.current;
-          (swiper.params.navigation as NavigationOptions).nextEl = next.current;
+        if (
+          swiper &&
+          swiper.params.navigation &&
+          typeof swiper.params.navigation !== 'boolean'
+        ) {
+          swiper.params.navigation.prevEl = prev.current;
+          swiper.params.navigation.nextEl = next.current;
         }
       }}
       modules={[Navigation]}
