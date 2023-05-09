@@ -22,7 +22,7 @@ const BannerCarousel = ({ contents }: Props) => {
         spaceBetween={50}
         slidesPerView={2}
         centeredSlides
-        autoplay={{ delay: 3000 }}
+        autoplay={{ delay: 3000, pauseOnMouseEnter: true }}
         loop
       >
         {contents.map(
