@@ -1,5 +1,5 @@
 import { StoryFn } from '@storybook/react';
-import BannerCarousel from '.';
+import BannerCarousel from './BannerCarousel';
 import { ComponentProps } from 'react';
 import FoodContentCard from '../../FoodContentCard';
 import { SAMPLE_BANNER_DATA } from '@/constants';

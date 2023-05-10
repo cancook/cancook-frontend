@@ -3,7 +3,7 @@ import React, { ComponentProps } from 'react';
 import FoodContentCard from '@/components/FoodContentCard';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Autoplay } from 'swiper';
+import SwiperCore, { Autoplay, Navigation } from 'swiper';
 import 'swiper/css/navigation';
 import styled from '@emotion/styled';
 
@@ -18,10 +18,11 @@ const BannerCarousel = ({ contents }: Props) => {
   return (
     <BannerContainer>
       <Swiper
-        modules={[Autoplay]}
+        modules={[Autoplay, Navigation]}
         spaceBetween={50}
         slidesPerView={2}
         centeredSlides
+        navigation
         autoplay={{ delay: 3000, pauseOnMouseEnter: true }}
         loop
       >
@@ -59,6 +60,10 @@ const BannerContainer = styled.div`
       .banner-carousel-image-container:hover {
         scale: 1.2;
       }
+    }
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: ${({ theme }) => theme.colors.white[50]};
     }
   }
 `;

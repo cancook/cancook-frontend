@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import BannerCarousel from '@/components/Carousel/Banner';
+import BannerCarousel from '@/components/Carousel/Banner/BannerCarousel';
 import CardCarousel from '@/components/Carousel/Card/CardCarouselContainer';
 import styled from '@emotion/styled';
 
