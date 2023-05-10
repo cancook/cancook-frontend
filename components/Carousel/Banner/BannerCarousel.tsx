@@ -58,10 +58,11 @@ const BannerContainer = styled.div`
       z-index: 999;
 
       .banner-carousel-image-container {
-        transition: scale 100ms linear;
+        transition: all 100ms linear;
 
         &:hover {
           scale: 1.2;
+          box-shadow: 0 0 4rem 2rem rgba(0, 0, 0, 0.2);
         }
       }
     }
