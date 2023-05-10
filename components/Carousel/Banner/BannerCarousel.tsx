@@ -57,8 +57,12 @@ const BannerContainer = styled.div`
     .swiper-slide-active {
       z-index: 999;
 
-      .banner-carousel-image-container:hover {
-        scale: 1.2;
+      .banner-carousel-image-container {
+        transition: scale 100ms linear;
+
+        &:hover {
+          scale: 1.2;
+        }
       }
     }
     .swiper-button-next,
