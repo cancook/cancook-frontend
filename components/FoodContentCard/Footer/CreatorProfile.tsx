@@ -14,7 +14,7 @@ const ProfileLayout = styled.div`
   display: flex;
   align-items: center;
   margin-top: 0.625rem;
-  color: white;
+  color: ${({ theme }) => theme.colors.gray[200]};
 `;
 
 type Props = {
