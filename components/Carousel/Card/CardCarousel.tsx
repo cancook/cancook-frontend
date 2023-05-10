@@ -71,5 +71,4 @@ const CardContainer = styled.div`
   align-items: center;
 
   height: 18rem;
-  border: 1px solid red;
 `;
