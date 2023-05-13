@@ -1,5 +1,6 @@
-import { Global } from '@emotion/react';
+import { Global, ThemeProvider } from '@emotion/react';
 import { global } from '@/styles/Global';
+import theme from '@/styles/theme';
 import 'swiper/css';
 
 export const parameters = {
@@ -25,8 +26,10 @@ export const parameters = {
 export const decorators = [
   (Story) => (
     <>
-      <Global styles={global} />
-      <Story />
+      <ThemeProvider theme={theme}>
+        <Global styles={global} />
+        <Story />
+      </ThemeProvider>
     </>
   )
 ];

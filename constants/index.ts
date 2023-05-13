@@ -1,8 +1,41 @@
-import { StoryFn } from '@storybook/react';
-import Category from '.';
-import { CardProps } from './Card';
+import { CardProps } from '@/components/Carousel/Card/CardCarousel';
+import FoodContentCard from '@/components/FoodContentCard';
+import { ComponentProps } from 'react';
 
-const SAMPLE_CARD_DATA: CardProps[] = [
+export const SAMPLE_BANNER_DATA: ComponentProps<
+  typeof FoodContentCard.Thumbnail
+>[] = [
+  {
+    isPlayButton: true,
+    src: 'https://i.ytimg.com/vi/H_O3eoQD3TA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCh-w7jTBcaLPNy31EZ0ydlIOxOAQ',
+    size: 'lg',
+    time: '8:00',
+    socialBadge: 'youtube'
+  },
+  {
+    isPlayButton: true,
+    src: 'https://i.ytimg.com/vi/H_O3eoQD3TA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCh-w7jTBcaLPNy31EZ0ydlIOxOAQ',
+    size: 'lg',
+    time: '8:00',
+    socialBadge: 'youtube'
+  },
+  {
+    isPlayButton: true,
+    src: 'https://i.ytimg.com/vi/H_O3eoQD3TA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCh-w7jTBcaLPNy31EZ0ydlIOxOAQ',
+    size: 'lg',
+    time: '8:00',
+    socialBadge: 'youtube'
+  },
+  {
+    isPlayButton: true,
+    src: 'https://i.ytimg.com/vi/H_O3eoQD3TA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCh-w7jTBcaLPNy31EZ0ydlIOxOAQ',
+    size: 'lg',
+    time: '8:00',
+    socialBadge: 'youtube'
+  }
+];
+
+export const SAMPLE_CARD_DATA: CardProps[] = [
   {
     thumbnail: {
       isPlayButton: true,
@@ -172,28 +205,3 @@ const SAMPLE_CARD_DATA: CardProps[] = [
     }
   }
 ];
-
-type Props = {
-  title: string;
-  contents: CardProps[];
-};
-
-const FoodContentCardStory = {
-  title: 'Component/Card Category',
-  component: Category
-};
-export default FoodContentCardStory;
-
-const CardTemplate: StoryFn<Props> = (props) => <Category {...props} />;
-
-/**
- * 카테고리에 보여지는 Carousel 입니다.
- *
- * 한 개의 컨텐츠는 Card 로 나뉘어져 있으며, 여러개의 카드가 한개의 카테고리를 만듭니다.
- */
-export const CardCategory = CardTemplate.bind({});
-
-CardCategory.args = {
-  title: '헬스 하는 사람들을 위한 음식',
-  contents: SAMPLE_CARD_DATA
-};

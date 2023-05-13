@@ -23,6 +23,24 @@ module.exports = {
       ...config.resolve.alias,
       '@': path.resolve(__dirname, '../')
     };
+
+    // svgr/webpack
+    const imageRule = config.module?.rules?.find((rule) => {
+      const test = rule.test;
+
+      if (!test) {
+        return false;
+      }
+
+      return test.test('.svg');
+    });
+
+    imageRule.exclude = /\.svg$/;
+
+    config.module?.rules?.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack']
+    });
     return config;
   }
 };

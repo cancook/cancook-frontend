@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 
 const BodyLayout = styled.div`
   padding: 1rem 0rem 0rem 0rem;
-  color: white;
+  color: ${({ theme }) => theme.colors.gray[200]};
   line-height: 1.375rem;
   letter-spacing: -0.0375rem;
 `;

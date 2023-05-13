@@ -1,213 +1,9 @@
 import Head from 'next/head';
-import BannerCarousel from '@/components/Carousel/BannerCarousel';
+import BannerCarousel from '@/components/Carousel/Banner/BannerCarousel';
+import CardCarousel from '@/components/Carousel/Card/CardCarouselContainer';
 import styled from '@emotion/styled';
-import Category from '@/components/Carousel/Category';
-import { CardProps } from '@/components/Carousel/Category/Card';
-import FoodContentCard from '@/components/FoodContentCard';
-import { ComponentProps } from 'react';
 
-// TODO: API 데이터를 불러오고 지워버리기
-const SAMPLE_CARD_DATA: CardProps[] = [
-  {
-    thumbnail: {
-      isPlayButton: true,
-      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
-      size: 'md',
-      time: '8:00'
-    },
-    body: {
-      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
-      subTitle: '조회수 26만회 • 7일전'
-    }
-  },
-  {
-    thumbnail: {
-      isPlayButton: true,
-      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
-      size: 'md',
-      time: '8:00'
-    },
-    body: {
-      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
-      subTitle: '조회수 26만회 • 7일전'
-    }
-  },
-  {
-    thumbnail: {
-      isPlayButton: true,
-      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
-      size: 'md',
-      time: '8:00'
-    },
-    body: {
-      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
-      subTitle: '조회수 26만회 • 7일전'
-    }
-  },
-  {
-    thumbnail: {
-      isPlayButton: true,
-      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
-      size: 'md',
-      time: '8:00'
-    },
-    body: {
-      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
-      subTitle: '조회수 26만회 • 7일전'
-    }
-  },
-  {
-    thumbnail: {
-      isPlayButton: true,
-      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
-      size: 'md',
-      time: '8:00'
-    },
-    body: {
-      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
-      subTitle: '조회수 26만회 • 7일전'
-    }
-  },
-  {
-    thumbnail: {
-      isPlayButton: true,
-      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
-      size: 'md',
-      time: '8:00'
-    },
-    body: {
-      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
-      subTitle: '조회수 26만회 • 7일전'
-    }
-  },
-  {
-    thumbnail: {
-      isPlayButton: true,
-      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
-      size: 'md',
-      time: '8:00'
-    },
-    body: {
-      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
-      subTitle: '조회수 26만회 • 7일전'
-    }
-  },
-  {
-    thumbnail: {
-      isPlayButton: true,
-      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
-      size: 'md',
-      time: '8:00'
-    },
-    body: {
-      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
-      subTitle: '조회수 26만회 • 7일전'
-    }
-  },
-  {
-    thumbnail: {
-      isPlayButton: true,
-      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
-      size: 'md',
-      time: '8:00'
-    },
-    body: {
-      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
-      subTitle: '조회수 26만회 • 7일전'
-    }
-  },
-  {
-    thumbnail: {
-      isPlayButton: true,
-      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
-      size: 'md',
-      time: '8:00'
-    },
-    body: {
-      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
-      subTitle: '조회수 26만회 • 7일전'
-    }
-  },
-  {
-    thumbnail: {
-      isPlayButton: true,
-      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
-      size: 'md',
-      time: '8:00'
-    },
-    body: {
-      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
-      subTitle: '조회수 26만회 • 7일전'
-    }
-  },
-  {
-    thumbnail: {
-      isPlayButton: true,
-      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
-      size: 'md',
-      time: '8:00'
-    },
-    body: {
-      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
-      subTitle: '조회수 26만회 • 7일전'
-    }
-  },
-  {
-    thumbnail: {
-      isPlayButton: true,
-      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
-      size: 'md',
-      time: '8:00'
-    },
-    body: {
-      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
-      subTitle: '조회수 26만회 • 7일전'
-    }
-  },
-  {
-    thumbnail: {
-      isPlayButton: true,
-      src: 'https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A',
-      size: 'md',
-      time: '8:00'
-    },
-    body: {
-      title: '어떤 조합도 칼로리 폭탄! 미쿡요리 레시피',
-      subTitle: '조회수 26만회 • 7일전'
-    }
-  }
-];
-
-const SAMPLE_BANNER_DATA: ComponentProps<typeof FoodContentCard.Thumbnail>[] = [
-  {
-    isPlayButton: true,
-    src: 'https://i.ytimg.com/vi/H_O3eoQD3TA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCh-w7jTBcaLPNy31EZ0ydlIOxOAQ',
-    size: 'lg',
-    time: '8:00',
-    socialBadge: 'youtube'
-  },
-  {
-    isPlayButton: true,
-    src: 'https://i.ytimg.com/vi/H_O3eoQD3TA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCh-w7jTBcaLPNy31EZ0ydlIOxOAQ',
-    size: 'lg',
-    time: '8:00',
-    socialBadge: 'youtube'
-  },
-  {
-    isPlayButton: true,
-    src: 'https://i.ytimg.com/vi/H_O3eoQD3TA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCh-w7jTBcaLPNy31EZ0ydlIOxOAQ',
-    size: 'lg',
-    time: '8:00',
-    socialBadge: 'youtube'
-  },
-  {
-    isPlayButton: true,
-    src: 'https://i.ytimg.com/vi/H_O3eoQD3TA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCh-w7jTBcaLPNy31EZ0ydlIOxOAQ',
-    size: 'lg',
-    time: '8:00',
-    socialBadge: 'youtube'
-  }
-];
+import { SAMPLE_BANNER_DATA, SAMPLE_CARD_DATA } from '@/constants';
 
 export default function Home() {
   return (
@@ -223,15 +19,15 @@ export default function Home() {
       */}
       <MainContainer>
         <BannerCarousel contents={SAMPLE_BANNER_DATA} />
-        <Category
+        <CardCarousel
           title={'헬스 하는 사람들을 위한 음식'}
           contents={SAMPLE_CARD_DATA}
         />
-        <Category
+        <CardCarousel
           title={'헬스 하는 사람들을 위한 음식'}
           contents={SAMPLE_CARD_DATA}
         />
-        <Category
+        <CardCarousel
           title={'헬스 하는 사람들을 위한 음식'}
           contents={SAMPLE_CARD_DATA}
         />

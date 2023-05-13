@@ -3,7 +3,7 @@ import React, { ComponentProps } from 'react';
 import FoodContentCard from '@/components/FoodContentCard';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper';
+import SwiperCore, { Autoplay, Navigation } from 'swiper';
 import 'swiper/css/navigation';
 import styled from '@emotion/styled';
 
@@ -13,14 +13,17 @@ type Props = {
 };
 
 const BannerCarousel = ({ contents }: Props) => {
+  SwiperCore.use([Autoplay]);
+
   return (
-    <div>
+    <BannerContainer>
       <Swiper
-        navigation
-        modules={[Navigation]}
+        modules={[Autoplay, Navigation]}
         spaceBetween={50}
         slidesPerView={2}
         centeredSlides
+        navigation
+        autoplay={{ delay: 3000, pauseOnMouseEnter: true }}
         loop
       >
         {contents.map(
@@ -29,24 +32,51 @@ const BannerCarousel = ({ contents }: Props) => {
             idx: number
           ) => (
             <SwiperSlide key={`content-${idx}`}>
-              <ImageContainer>
+              <ImageContainer className="banner-carousel-image-container">
                 <FoodContentCard.Thumbnail {...content} />
               </ImageContainer>
             </SwiperSlide>
           )
         )}
       </Swiper>
-    </div>
+    </BannerContainer>
   );
 };
 
 export default BannerCarousel;
+
+const BannerContainer = styled.div`
+  .swiper {
+    display: flex;
+    align-items: center;
+
+    height: 25.95rem;
+    .swiper-wrapper {
+      height: auto;
+    }
+    .swiper-slide-active {
+      z-index: 999;
+
+      .banner-carousel-image-container {
+        transition: all 100ms linear;
+
+        &:hover {
+          scale: 1.2;
+          box-shadow: 0 0 4rem 2rem rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: ${({ theme }) => theme.colors.white[50]};
+    }
+  }
+`;
 
 const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 
-  height: 25rem;
-  border: 1px solid red;
+  height: 21.625rem;
 `;
