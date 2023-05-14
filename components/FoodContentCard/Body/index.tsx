@@ -9,6 +9,11 @@ const BodyLayout = styled.div`
 `;
 
 const Title = styled.h3`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   font-size: 1.125rem;
   font-weight: 700;
 `;
