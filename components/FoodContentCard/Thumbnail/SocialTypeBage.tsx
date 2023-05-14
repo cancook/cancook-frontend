@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React, { FC } from 'react';
-import youtubeLogo from '@/assets/png/youtube_logo.png';
-import naverBlogLogo from '@/assets/png/naver_blog_logo.png';
+import youtubeLogo from '@/public/png/youtube_logo.png';
+import naverBlogLogo from '@/public/png/naver_blog_logo.png';
 import styled from '@emotion/styled';
 import { SocialBadge } from '@/types/foodContentCard';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import videoPlayIcon from '@/assets/png/video_play.png';
+import videoPlayIcon from '@/public/png/video_play.png';
 import styled from '@emotion/styled';
 import Image from 'next/image';
 

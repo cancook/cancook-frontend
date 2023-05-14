@@ -1,7 +1,6 @@
 import React, { ComponentProps } from 'react';
 
 import FoodContentCard from '@/components/FoodContentCard';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 import 'swiper/css/navigation';
