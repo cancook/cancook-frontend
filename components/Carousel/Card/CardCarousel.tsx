@@ -48,15 +48,13 @@ const CardCarousel = ({ cards, prev, next }: Props) => {
     >
       {cards.map((card: CardProps, idx: number) => (
         <SwiperSlide key={`card-${idx}`}>
-          <CardContainer>
-            <FoodContentCard.Layout>
-              <FoodContentCard.Thumbnail {...card.thumbnail} />
-              <FoodContentCard.Body {...card.body} />
-              <CreatorProfile src="https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A">
-                김코딩
-              </CreatorProfile>
-            </FoodContentCard.Layout>
-          </CardContainer>
+          <FoodContentCard.Layout>
+            <FoodContentCard.Thumbnail {...card.thumbnail} />
+            <FoodContentCard.Body {...card.body} />
+            <CreatorProfile src="https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A">
+              김코딩
+            </CreatorProfile>
+          </FoodContentCard.Layout>
         </SwiperSlide>
       ))}
     </Swiper>
@@ -66,9 +64,5 @@ const CardCarousel = ({ cards, prev, next }: Props) => {
 export default CardCarousel;
 
 const CardContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  height: 18rem;
+  margin-right: 1rem;
 `;

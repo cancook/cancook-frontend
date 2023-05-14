@@ -43,5 +43,6 @@ const ImageLayout = styled.div<{ size: 'md' | 'lg' }>`
   position: relative;
   display: inline-flex;
   width: 100%;
-  height: ${({ size }) => (size ? `${sizeMap[size].height}px` : '100%')};
+  // height: ${({ size }) => (size ? `${sizeMap[size].height}px` : '100%')};
+  aspect-ratio: 16 / 9;
 `;

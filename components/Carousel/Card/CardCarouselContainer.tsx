@@ -45,7 +45,7 @@ const CardCarouselContainer = ({ title, contents }: Props) => {
 export default CardCarouselContainer;
 
 const CarouselContainer = styled.div`
-  max-width: 72.875rem;
+  max-width: 78.75rem;
   padding: 0 1rem;
   margin: auto;
 `;
@@ -79,4 +79,5 @@ const SwiperButtonWrapper = styled.div`
 
 const CategoryTitle = styled.h2`
   ${({ theme }) => theme.font.headLine.md};
+  color: ${({ theme }) => theme.colors.white[0]};
 `;
