@@ -4,8 +4,6 @@ import React, { ReactNode } from 'react';
 const BodyLayout = styled.div`
   padding: 1rem 0rem 0rem 0rem;
   color: ${({ theme }) => theme.colors.gray[200]};
-  line-height: 1.375rem;
-  letter-spacing: -0.0375rem;
 `;
 
 const Title = styled.h3`
@@ -14,14 +12,12 @@ const Title = styled.h3`
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  font-size: 1.125rem;
-  font-weight: 700;
+  ${({ theme }) => theme.font.title.sm};
 `;
 
 const Subtitle = styled.h5`
   margin-top: 0.25rem;
-  font-size: 0.875rem;
-  font-weight: 400;
+  ${({ theme }) => theme.font.body.lg};
 `;
 
 type Props = {

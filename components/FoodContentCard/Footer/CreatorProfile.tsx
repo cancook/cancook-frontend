@@ -7,8 +7,7 @@ const ProfileImage = styled(Image)`
 `;
 const UserName = styled.p`
   margin-left: 0.5rem;
-  font-size: 0.875rem;
-  letter-spacing: -0.0375rem;
+  ${({ theme }) => theme.font.label.lg};
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
