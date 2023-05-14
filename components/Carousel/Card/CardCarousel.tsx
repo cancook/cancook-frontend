@@ -52,7 +52,9 @@ const CardCarousel = ({ cards, prev, next }: Props) => {
             <FoodContentCard.Thumbnail {...card.thumbnail} />
             <FoodContentCard.Body {...card.body} />
             <CreatorProfile src="https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A">
-              김코딩
+              매우매우긴 유튜브 채널 이름 매우매우긴 유튜브 채널 이름 매우매우긴
+              유튜브 채널 이름 매우매우긴 유튜브 채널 이름 매우매우긴 유튜브
+              채널 이름
             </CreatorProfile>
           </FoodContentCard.Layout>
         </SwiperSlide>
