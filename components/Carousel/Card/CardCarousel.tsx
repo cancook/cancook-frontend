@@ -5,7 +5,6 @@ import FoodContentCard from '@/components/FoodContentCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 import 'swiper/css/navigation';
-import styled from '@emotion/styled';
 import CreatorProfile from '@/components/FoodContentCard/Footer/CreatorProfile';
 
 export type CardProps = {
@@ -64,7 +63,3 @@ const CardCarousel = ({ cards, prev, next }: Props) => {
 };
 
 export default CardCarousel;
-
-const CardContainer = styled.div`
-  margin-right: 1rem;
-`;
