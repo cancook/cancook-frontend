@@ -3,19 +3,19 @@ import { css } from '@emotion/react';
 export const global = css`
   @font-face {
     font-family: 'Pretendard';
-    src: url('fonts/Pretendard-Regular.ttf') format('truetype');
+    src: url('fonts/Pretendard-Regular.woff2') format('woff2');
     font-weight: 400;
   }
 
   @font-face {
     font-family: 'Pretendard';
-    src: url('fonts/Pretendard-SemiBold.ttf') format('truetype');
+    src: url('fonts/Pretendard-SemiBold.woff2') format('woff2');
     font-weight: 600;
   }
 
   @font-face {
     font-family: 'Pretendard';
-    src: url('fonts/Pretendard-Bold.ttf') format('truetype');
+    src: url('fonts/Pretendard-Bold.woff2') format('woff2');
     font-weight: 700;
   }
 
