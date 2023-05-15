@@ -1,11 +1,9 @@
 import React, { ComponentProps } from 'react';
 
 import FoodContentCard from '@/components/FoodContentCard';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 import 'swiper/css/navigation';
-import styled from '@emotion/styled';
 import CreatorProfile from '@/components/FoodContentCard/Footer/CreatorProfile';
 
 export type CardProps = {
@@ -48,15 +46,15 @@ const CardCarousel = ({ cards, prev, next }: Props) => {
     >
       {cards.map((card: CardProps, idx: number) => (
         <SwiperSlide key={`card-${idx}`}>
-          <CardContainer>
-            <FoodContentCard.Layout>
-              <FoodContentCard.Thumbnail {...card.thumbnail} />
-              <FoodContentCard.Body {...card.body} />
-              <CreatorProfile src="https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A">
-                김코딩
-              </CreatorProfile>
-            </FoodContentCard.Layout>
-          </CardContainer>
+          <FoodContentCard.Layout>
+            <FoodContentCard.Thumbnail {...card.thumbnail} />
+            <FoodContentCard.Body {...card.body} />
+            <CreatorProfile src="https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A">
+              매우매우긴 유튜브 채널 이름 매우매우긴 유튜브 채널 이름 매우매우긴
+              유튜브 채널 이름 매우매우긴 유튜브 채널 이름 매우매우긴 유튜브
+              채널 이름
+            </CreatorProfile>
+          </FoodContentCard.Layout>
         </SwiperSlide>
       ))}
     </Swiper>
@@ -64,11 +62,3 @@ const CardCarousel = ({ cards, prev, next }: Props) => {
 };
 
 export default CardCarousel;
-
-const CardContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  height: 18rem;
-`;

@@ -2,8 +2,8 @@ import styled from '@emotion/styled';
 import React, { useRef } from 'react';
 import CardCarousel, { CardProps } from './CardCarousel';
 
-import ArrowRight from '@/assets/icons/arrow-right.svg';
-import ArrowLeft from '@/assets/icons/arrow-left.svg';
+import ArrowRight from '@/public/svg/arrow-right.svg';
+import ArrowLeft from '@/public/svg/arrow-left.svg';
 type Props = {
   /**
    * category의 이름
@@ -45,7 +45,7 @@ const CardCarouselContainer = ({ title, contents }: Props) => {
 export default CardCarouselContainer;
 
 const CarouselContainer = styled.div`
-  max-width: 72.875rem;
+  max-width: 78.75rem;
   padding: 0 1rem;
   margin: auto;
 `;
@@ -79,4 +79,5 @@ const SwiperButtonWrapper = styled.div`
 
 const CategoryTitle = styled.h2`
   ${({ theme }) => theme.font.headLine.md};
+  color: ${({ theme }) => theme.colors.white[0]};
 `;

@@ -1,7 +1,6 @@
 import React from 'react';
-import videoPlayIcon from '@/assets/png/video_play.png';
+import VideoPlayIcon from '@/public/svg/video_play.svg';
 import styled from '@emotion/styled';
-import Image from 'next/image';
 
 export const PlayButton = styled.button`
   position: absolute;
@@ -18,7 +17,7 @@ export const PlayButton = styled.button`
 const VideoPlayButton = () => {
   return (
     <PlayButton>
-      <Image src={videoPlayIcon} alt="video-play-icon" />
+      <VideoPlayIcon />
     </PlayButton>
   );
 };

@@ -59,68 +59,80 @@ export const font = {
     lg: css`
       font-size: 1.875rem;
       line-height: 2.8125rem;
-      letter-spacing: -2%;
+      letter-spacing: -0.0375rem;
+      font-weight: 700;
     `,
     md: css`
       font-size: 1.75rem;
       line-height: 2.625rem;
-      letter-spacing: -2%;
+      letter-spacing: -0.0375rem;
+      font-weight: 700;
     `,
     sm: css`
       font-size: 1.625rem;
       line-height: 2.4375rem;
-      letter-spacing: -2%;
+      letter-spacing: -0.0375rem;
+      font-weight: 700;
     `
   },
   title: {
     lg: css`
       font-size: 1.5rem;
       line-height: 1.5rem;
-      letter-spacing: -2%;
+      letter-spacing: -0.0375rem;
+      font-weight: 700;
     `,
     md: css`
       font-size: 1.25rem;
       line-height: 1.75rem;
-      letter-spacing: -2%;
+      letter-spacing: -0.0375rem;
+      font-weight: 700;
     `,
     sm: css`
       font-size: 1.125rem;
       line-height: 1.75rem;
-      letter-spacing: -2%;
+      letter-spacing: -0.0375rem;
+      font-weight: 700;
     `
   },
   label: {
     lg: css`
       font-size: 1rem;
       line-height: 1.375rem;
-      letter-spacing: -2%;
+      letter-spacing: -0.0375rem;
+      font-weight: 600;
     `,
     md: css`
       font-size: 0.875rem;
       line-height: 1.25rem;
-      letter-spacing: -2%;
+      letter-spacing: -0.0375rem;
+      font-weight: 600;
     `,
     sm: css`
       font-size: 0.75rem;
       line-height: 1.125rem;
-      letter-spacing: -2%;
+      letter-spacing: -0.0375rem;
+      font-weight: 600;
     `
   },
   body: {
     lg: css`
       font-size: 1rem;
       line-height: 1.75rem;
-      letter-spacing: -2%;
+      letter-spacing: -0.0375rem;
+      font-weight: 400;
     `,
     md: css`
       font-size: 0.875rem;
       line-height: 1.5rem;
-      letter-spacing: -2%;
+      letter-spacing: -0.0375rem;
+      font-weight: 400;
     `,
     sm: css`
       font-size: 0.75rem;
       line-height: 1.3125rem;
-      letter-spacing: -2%;
+      letter-spacing: -0.0375rem;
+      font-weight: 400;
     `
   }
 };

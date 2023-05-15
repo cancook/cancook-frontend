@@ -1,7 +1,6 @@
-import Image from 'next/image';
 import React, { FC } from 'react';
-import youtubeLogo from '@/assets/png/youtube_logo.png';
-import naverBlogLogo from '@/assets/png/naver_blog_logo.png';
+import YoutubeIcon from '@/public/svg/youtube_logo.svg';
+import NaverBlogIcon from '@/public/svg/naver_blog_logo.svg';
 import styled from '@emotion/styled';
 import { SocialBadge } from '@/types/foodContentCard';
 
@@ -16,17 +15,13 @@ type Props = {
 };
 
 const badgeMap = {
-  youtube: youtubeLogo,
-  naverBlog: naverBlogLogo
+  youtube: <YoutubeIcon />,
+  naverBlog: <NaverBlogIcon />
 };
 
 const SocialTypeBadge: FC<Props> = ({ types }) => {
   if (types !== undefined) {
-    return (
-      <BadgeLayout>
-        <Image src={badgeMap[types]} alt={types} />
-      </BadgeLayout>
-    );
+    return <BadgeLayout>{badgeMap[types]}</BadgeLayout>;
   } else return <></>;
 };
 
