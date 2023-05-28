@@ -5,7 +5,6 @@ import FoodContentCard from '@/components/FoodContentCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper';
 import 'swiper/css/navigation';
-import 'swiper/css';
 import styled from '@emotion/styled';
 
 type Props = {
@@ -50,9 +49,9 @@ const BannerCarousel = ({ contents }: Props) => {
 export default BannerCarousel;
 
 const BannerContainer = styled.div`
+  min-width: 78.75rem;
   .swiper {
     overflow: visible;
-
     .swiper-button-next,
     .swiper-button-prev {
       color: ${({ theme }) => theme.colors.white[50]};
@@ -61,15 +60,14 @@ const BannerContainer = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  display: flex;
   position: relative;
+  overflow: visible;
   aspect-ratio: 16 / 9;
   width: 100%;
   transition: all 100ms linear;
   &:hover {
     scale: 1.2;
     box-shadow: 0 0 4rem 2rem rgba(0, 0, 0, 0.2);
-    position: absolute;
     z-index: 50;
   }
 `;
