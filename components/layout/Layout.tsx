@@ -13,6 +13,9 @@ const Layout = ({ children }: PropsWithChildren) => {
 
 export default Layout;
 
-const LayoutContainer = styled.main``;
+const LayoutContainer = styled.main`
+  overflow: auto;
+  min-width: 78.75rem;
+`;
 
 const Body = styled.section``;
