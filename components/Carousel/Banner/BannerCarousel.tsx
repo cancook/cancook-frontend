@@ -3,8 +3,9 @@ import React, { ComponentProps } from 'react';
 import FoodContentCard from '@/components/FoodContentCard';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Autoplay, Navigation } from 'swiper';
+import { Autoplay, Navigation } from 'swiper';
 import 'swiper/css/navigation';
+import 'swiper/css';
 import styled from '@emotion/styled';
 
 type Props = {
@@ -13,15 +14,13 @@ type Props = {
 };
 
 const BannerCarousel = ({ contents }: Props) => {
-  SwiperCore.use([Autoplay]);
-
   return (
     <BannerContainer>
       <Swiper
         modules={[Autoplay, Navigation]}
-        spaceBetween={50}
+        spaceBetween={20}
         slidesPerView={2}
-        centeredSlides
+        centeredSlides={true}
         navigation
         autoplay={{ delay: 3000, pauseOnMouseEnter: true }}
         loop
@@ -31,8 +30,13 @@ const BannerCarousel = ({ contents }: Props) => {
             content: ComponentProps<typeof FoodContentCard.Thumbnail>,
             idx: number
           ) => (
-            <SwiperSlide key={`content-${idx}`}>
-              <ImageContainer className="banner-carousel-image-container">
+            <SwiperSlide
+              key={`content-${idx}`}
+              style={{
+                transform: 'none'
+              }}
+            >
+              <ImageContainer>
                 <FoodContentCard.Thumbnail {...content} />
               </ImageContainer>
             </SwiperSlide>
@@ -47,25 +51,8 @@ export default BannerCarousel;
 
 const BannerContainer = styled.div`
   .swiper {
-    display: flex;
-    align-items: center;
+    overflow: visible;
 
-    height: 25.95rem;
-    .swiper-wrapper {
-      height: auto;
-    }
-    .swiper-slide-active {
-      z-index: 999;
-
-      .banner-carousel-image-container {
-        transition: all 100ms linear;
-
-        &:hover {
-          scale: 1.2;
-          box-shadow: 0 0 4rem 2rem rgba(0, 0, 0, 0.2);
-        }
-      }
-    }
     .swiper-button-next,
     .swiper-button-prev {
       color: ${({ theme }) => theme.colors.white[50]};
@@ -75,8 +62,14 @@ const BannerContainer = styled.div`
 
 const ImageContainer = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-
-  height: 21.625rem;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  transition: all 100ms linear;
+  &:hover {
+    scale: 1.2;
+    box-shadow: 0 0 4rem 2rem rgba(0, 0, 0, 0.2);
+    position: absolute;
+    z-index: 50;
+  }
 `;
