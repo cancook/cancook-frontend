@@ -3,9 +3,18 @@ import BannerCarousel from '@/components/Carousel/Banner/BannerCarousel';
 import CardCarousel from '@/components/Carousel/Card/CardCarouselContainer';
 import styled from '@emotion/styled';
 
-import { SAMPLE_BANNER_DATA, SAMPLE_CARD_DATA } from '@/constants';
+import { useQuery } from '@tanstack/react-query';
+import { getCategoryList, getRecommendedList } from '@/apis/youtube';
 
 export default function Home() {
+  const { data: recommendedData, isLoading: isRecommendedLoading } = useQuery(
+    ['youtube', 'recommended'],
+    getRecommendedList
+  );
+  const { data: categoryData, isLoading: isCategoryLoading } = useQuery(
+    ['youtube', 'category'],
+    getCategoryList
+  );
   return (
     <>
       <Head>
@@ -18,19 +27,16 @@ export default function Home() {
                 어떻게 보일지를 몰라서, 나중에 변경 예정
       */}
       <MainContainer>
-        <BannerCarousel contents={SAMPLE_BANNER_DATA} />
-        <CardCarousel
-          title={'헬스 하는 사람들을 위한 음식'}
-          contents={SAMPLE_CARD_DATA}
+        <BannerCarousel
+          contents={recommendedData}
+          isLoading={isRecommendedLoading}
         />
-        <CardCarousel
-          title={'헬스 하는 사람들을 위한 음식'}
-          contents={SAMPLE_CARD_DATA}
-        />
-        <CardCarousel
-          title={'헬스 하는 사람들을 위한 음식'}
-          contents={SAMPLE_CARD_DATA}
-        />
+        {categoryData?.map((category) => (
+          <CardCarousel
+            key={`category-${category.title}`}
+            contents={category}
+          />
+        ))}
       </MainContainer>
     </>
   );

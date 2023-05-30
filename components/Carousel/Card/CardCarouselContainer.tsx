@@ -1,29 +1,25 @@
 import styled from '@emotion/styled';
 import React, { useRef } from 'react';
-import CardCarousel, { CardProps } from './CardCarousel';
+import CardCarousel from './CardCarousel';
 
 import ArrowRight from '@/public/svg/arrow-right.svg';
 import ArrowLeft from '@/public/svg/arrow-left.svg';
+import { YoutubeCategory } from '@/types/youtube';
 type Props = {
-  /**
-   * category의 이름
-   */
-  title: string;
-
   /**
    * 카드에 들어가는 컨텐츠
    */
-  contents: CardProps[];
+  contents: YoutubeCategory;
 };
 
-const CardCarouselContainer = ({ title, contents }: Props) => {
+const CardCarouselContainer = ({ contents }: Props) => {
   const prevButtonRef = useRef<HTMLDivElement>(null);
   const nextButtonRef = useRef<HTMLDivElement>(null);
 
   return (
     <CarouselContainer>
       <TitleWrapper>
-        <CategoryTitle>{title}</CategoryTitle>
+        <CategoryTitle>{contents.title}</CategoryTitle>
         <SwiperButtonWrapper>
           <ArrowButton ref={prevButtonRef}>
             <ArrowLeft />
@@ -34,7 +30,7 @@ const CardCarouselContainer = ({ title, contents }: Props) => {
         </SwiperButtonWrapper>
       </TitleWrapper>
       <CardCarousel
-        cards={contents}
+        cards={contents.data}
         prev={prevButtonRef}
         next={nextButtonRef}
       />

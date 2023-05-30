@@ -1,4 +1,4 @@
-import React, { ComponentProps } from 'react';
+import React from 'react';
 
 import FoodContentCard from '@/components/FoodContentCard';
 
@@ -6,13 +6,15 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper';
 import 'swiper/css/navigation';
 import styled from '@emotion/styled';
+import { YoutubeRecommended } from '@/types/youtube';
 
 type Props = {
   /**Thumbnail 콘텐츠들 */
-  contents: ComponentProps<typeof FoodContentCard.Thumbnail>[];
+  contents: YoutubeRecommended[] | undefined;
+  isLoading: boolean;
 };
 
-const BannerCarousel = ({ contents }: Props) => {
+const BannerCarousel = ({ contents, isLoading }: Props) => {
   return (
     <BannerContainer>
       <Swiper
@@ -24,23 +26,23 @@ const BannerCarousel = ({ contents }: Props) => {
         autoplay={{ delay: 3000, pauseOnMouseEnter: true }}
         loop
       >
-        {contents.map(
-          (
-            content: ComponentProps<typeof FoodContentCard.Thumbnail>,
-            idx: number
-          ) => (
-            <SwiperSlide
-              key={`content-${idx}`}
-              style={{
-                transform: 'none'
-              }}
-            >
-              <ImageContainer>
-                <FoodContentCard.Thumbnail {...content} />
-              </ImageContainer>
-            </SwiperSlide>
-          )
-        )}
+        {contents?.map((content) => (
+          <SwiperSlide
+            key={`content-${content.id}`}
+            style={{
+              transform: 'none'
+              // z-index를 사용하려면 기존에 있는 transform속성을 초기화 시켜야 사용할수 있음 동시에 사용하면 z-index가 무시됨
+            }}
+          >
+            <ImageContainer>
+              <FoodContentCard.Thumbnail
+                time={content.playTime}
+                src={content.thumbnailURL}
+                size="lg"
+              />
+            </ImageContainer>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </BannerContainer>
   );
