@@ -1,6 +1,6 @@
 import { YoutubeRecommended, YoutubeCategory } from '@/types/youtube';
 
-export const youtubeBannerDummyData: YoutubeRecommended[] = [
+export const YOUTUBE_BANNER_DUMMY_DATA: YoutubeRecommended[] = [
   {
     id: '1',
     thumbnailURL: 'https://placekitten.com/800/600',
@@ -63,7 +63,7 @@ export const youtubeBannerDummyData: YoutubeRecommended[] = [
   }
 ];
 
-export const youtubeCategoryDummyData: YoutubeCategory[] = [
+export const YOUTUBE_CATEGORY_DUMMY_DATA: YoutubeCategory[] = [
   {
     title: '재미있는 요리 카테고리',
     data: [
