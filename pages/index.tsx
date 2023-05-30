@@ -48,6 +48,4 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4rem;
-
-  background-color: #000;
 `;

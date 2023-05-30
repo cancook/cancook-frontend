@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ReactQueryProvider>
       <ThemeProvider theme={theme}>
-        <Global styles={global} />
+        <Global styles={global(theme)} />
         <Layout>
           <Component {...pageProps} />
         </Layout>

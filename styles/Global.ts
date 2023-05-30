@@ -1,6 +1,6 @@
-import { css } from '@emotion/react';
+import { Theme, css } from '@emotion/react';
 
-export const global = css`
+export const global = (theme: Theme) => css`
   @font-face {
     font-family: 'Pretendard';
     src: url('fonts/Pretendard-Regular.woff2') format('woff2');
@@ -143,9 +143,9 @@ export const global = css`
     border-collapse: collapse;
     border-spacing: 0;
   }
-
   html,
   body {
     font-family: 'Pretendard', sans-serif;
+    background-color: ${theme.colors.gray[900]};
   }
 `;
