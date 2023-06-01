@@ -42,9 +42,9 @@ export default function Home() {
   );
 }
 
-const MainContainer = styled.div`
+export const MainContainer = styled.div`
   padding: 2rem 0;
-
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 4rem;

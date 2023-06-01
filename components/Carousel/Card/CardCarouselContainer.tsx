@@ -5,14 +5,14 @@ import CardCarousel from './CardCarousel';
 import ArrowRight from '@/public/svg/arrow-right.svg';
 import ArrowLeft from '@/public/svg/arrow-left.svg';
 import { YoutubeCategory } from '@/types/youtube';
-type Props = {
+export type CardCarouselContainerProps = {
   /**
    * 카드에 들어가는 컨텐츠
    */
   contents: YoutubeCategory;
 };
 
-const CardCarouselContainer = ({ contents }: Props) => {
+const CardCarouselContainer = ({ contents }: CardCarouselContainerProps) => {
   const prevButtonRef = useRef<HTMLDivElement>(null);
   const nextButtonRef = useRef<HTMLDivElement>(null);
 

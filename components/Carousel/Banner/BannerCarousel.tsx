@@ -8,13 +8,13 @@ import 'swiper/css/navigation';
 import styled from '@emotion/styled';
 import { YoutubeRecommended } from '@/types/youtube';
 
-type Props = {
+export type BannerCarouselProps = {
   /**Thumbnail 콘텐츠들 */
   contents: YoutubeRecommended[] | undefined;
   isLoading: boolean;
 };
 
-const BannerCarousel = ({ contents, isLoading }: Props) => {
+const BannerCarousel = ({ contents, isLoading }: BannerCarouselProps) => {
   return (
     <BannerContainer>
       <Swiper
