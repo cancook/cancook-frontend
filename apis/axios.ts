@@ -1,7 +1,9 @@
 import axios, { AxiosError } from 'axios';
-
+// 클릭시 url 열려야함
 export const BASE_URL =
-  process.env.NODE_ENV === 'production' ? 'http://self-dining.shop' : '/api';
+  process.env.NODE_ENV === 'production'
+    ? 'https://self-dining.shop/api'
+    : '/api';
 
 const axiosClient = (() => {
   const axiosInstance = axios.create({
