@@ -8,6 +8,7 @@ import CreatorProfile from '@/components/FoodContentCard/Footer/CreatorProfile';
 import { VideoInformation } from '@/types/youtube';
 import timeFormatter from '@/utils/timeFormatter';
 import viewsFormatter from '@/utils/viewsFormatter';
+import styled from '@emotion/styled';
 
 type Props = {
   /** thumbnail과 body를 받아서 카드 리스트를 만들고, 그 리스트로 carousel을 만들 수 있게끔 하는 data */
@@ -45,10 +46,14 @@ const CardCarousel = ({ cards, prev, next }: Props) => {
       {cards.map((card, idx) => (
         <SwiperSlide key={`card-${card.video.id}`}>
           <FoodContentCard.Layout>
-            <FoodContentCard.Thumbnail
-              src={card.video.thumbnailURL}
-              size="md"
-            />
+            <ImageWrapper>
+              <ImageScaleUp>
+                <FoodContentCard.Thumbnail
+                  src={card.video.thumbnailURL}
+                  size="md"
+                />
+              </ImageScaleUp>
+            </ImageWrapper>
             <FoodContentCard.Body
               title={card.video.title}
               subTitle={`조회수 ${viewsFormatter(
@@ -66,3 +71,15 @@ const CardCarousel = ({ cards, prev, next }: Props) => {
 };
 
 export default CardCarousel;
+
+const ImageWrapper = styled.div`
+  overflow: hidden;
+`;
+
+const ImageScaleUp = styled.div`
+  transform: scale(1);
+  transition: all 0.3s ease;
+  &:hover {
+    transform: scale(1.2);
+  }
+`;

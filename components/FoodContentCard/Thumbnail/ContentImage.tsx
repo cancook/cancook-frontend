@@ -29,7 +29,7 @@ const ContentImage: FC<Props> = ({ src, size, children }) => {
         // width={sizeMap[size].width}
         // height={sizeMap[size].height}
         fill
-        style={{ objectFit: 'cover' }}
+        style={{ objectFit: 'cover', borderRadius: '0.5rem' }}
       />
       {children}
     </ImageLayout>
