@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import React from 'react';
+import SelfDiningLogoIcon from '@/public/svg/self_dining_logo.svg';
 
 /**
  * Main 페이지의 Header Navigation 입니다.
@@ -9,7 +10,7 @@ import React from 'react';
 const Header = () => {
   return (
     <HeaderContainer>
-      <Logo>LOGO</Logo>
+      <SelfDiningLogoIcon />
     </HeaderContainer>
   );
 };
@@ -18,18 +19,9 @@ export default Header;
 
 const HeaderContainer = styled.header`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-
   padding: 0 1rem;
-
+  margin-top: 4.875rem;
   width: 100%;
-  height: 80px;
-
-  background-color: #000;
-`;
-
-const Logo = styled.div`
-  color: #fff;
-  font-weight: bold;
 `;

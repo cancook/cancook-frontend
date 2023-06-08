@@ -1,12 +1,9 @@
 import { StoryFn } from '@storybook/react';
-import CardCarouselContainer from './CardCarouselContainer';
-import { CardProps } from './CardCarousel';
-import { SAMPLE_CARD_DATA } from '@/constants';
-
-type Props = {
-  title: string;
-  contents: CardProps[];
-};
+import CardCarouselContainer, {
+  CardCarouselContainerProps
+} from './CardCarouselContainer';
+import { YOUTUBE_CATEGORY_DUMMY_DATA } from '@/constants/dummyData/youtube';
+import { MainContainer } from '@/pages';
 
 const FoodContentCardStory = {
   title: 'Component/Card Category',
@@ -14,8 +11,10 @@ const FoodContentCardStory = {
 };
 export default FoodContentCardStory;
 
-const CardTemplate: StoryFn<Props> = (props) => (
-  <CardCarouselContainer {...props} />
+const CardTemplate: StoryFn<CardCarouselContainerProps> = (props) => (
+  <MainContainer>
+    <CardCarouselContainer {...props} />
+  </MainContainer>
 );
 
 /**
@@ -26,6 +25,5 @@ const CardTemplate: StoryFn<Props> = (props) => (
 export const CardCategory = CardTemplate.bind({});
 
 CardCategory.args = {
-  title: '헬스 하는 사람들을 위한 음식',
-  contents: SAMPLE_CARD_DATA
+  contents: YOUTUBE_CATEGORY_DUMMY_DATA[0]
 };

@@ -31,9 +31,10 @@ const sizeMap = {
 export const TimeStampBox = styled.div<Props>`
   display: flex;
   padding: 0.125rem 0.375rem;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   background-color: #000000cc;
   color: white;
+  line-height: 1.125rem;
   font-size: ${({ size }) => sizeMap[size]};
   font-weight: 700;
 `;

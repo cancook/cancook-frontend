@@ -7,7 +7,7 @@ const ProfileImage = styled(Image)`
 `;
 const UserName = styled.p`
   margin-left: 0.5rem;
-  ${({ theme }) => theme.font.label.lg};
+  ${({ theme }) => theme.font.label.md};
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -15,7 +15,6 @@ const UserName = styled.p`
 const ProfileLayout = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 0.625rem;
   color: ${({ theme }) => theme.colors.gray[200]};
 `;
 

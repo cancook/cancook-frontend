@@ -4,6 +4,7 @@ import React, { ReactNode } from 'react';
 const BodyLayout = styled.div`
   padding: 1rem 0rem 0rem 0rem;
   color: ${({ theme }) => theme.colors.gray[200]};
+  cursor: pointer;
 `;
 
 const Title = styled.h3`
@@ -16,8 +17,7 @@ const Title = styled.h3`
 `;
 
 const Subtitle = styled.h5`
-  margin-top: 0.25rem;
-  ${({ theme }) => theme.font.body.lg};
+  ${({ theme }) => theme.font.body.md};
 `;
 
 type Props = {
