@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-// 클릭시 url 열려야함
+
 export const BASE_URL =
   process.env.NODE_ENV === 'production'
     ? 'https://self-dining.shop/api'

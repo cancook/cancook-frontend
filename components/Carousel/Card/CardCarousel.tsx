@@ -46,20 +46,22 @@ const CardCarousel = ({ cards, prev, next }: Props) => {
       {cards.map((card, idx) => (
         <SwiperSlide key={`card-${card.video.id}`}>
           <FoodContentCard.Layout>
-            <ImageWrapper>
-              <ImageScaleUp>
-                <FoodContentCard.Thumbnail
-                  src={card.video.thumbnailURL}
-                  size="md"
-                />
-              </ImageScaleUp>
-            </ImageWrapper>
-            <FoodContentCard.Body
-              title={card.video.title}
-              subTitle={`조회수 ${viewsFormatter(
-                card.video.views
-              )}회 • ${timeFormatter(card.video.createdAt)}전`}
-            />
+            <div onClick={() => window.open(card.video.link, '__blank')}>
+              <ImageWrapper>
+                <ImageScaleUp>
+                  <FoodContentCard.Thumbnail
+                    src={card.video.thumbnailURL}
+                    size="md"
+                  />
+                </ImageScaleUp>
+              </ImageWrapper>
+              <FoodContentCard.Body
+                title={card.video.title}
+                subTitle={`조회수 ${viewsFormatter(
+                  card.video.views
+                )}회 • ${timeFormatter(card.video.createdAt)}전`}
+              />
+            </div>
             <CreatorProfile src={card.creator.thumbnail}>
               {card.creator.name}
             </CreatorProfile>

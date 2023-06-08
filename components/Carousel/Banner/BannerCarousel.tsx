@@ -34,7 +34,9 @@ const BannerCarousel = ({ contents, isLoading }: BannerCarouselProps) => {
               // z-index를 사용하려면 기존에 있는 transform속성을 초기화 시켜야 사용할수 있음 동시에 사용하면 z-index가 무시됨
             }}
           >
-            <ImageContainer>
+            <ImageContainer
+              onClick={() => window.open(content.link, '__blank')}
+            >
               <FoodContentCard.Thumbnail
                 time={content.playTime}
                 src={content.thumbnailURL}
