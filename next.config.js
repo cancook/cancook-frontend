@@ -5,7 +5,12 @@ const withFonts = require('next-fonts');
 const nextConfig = withFonts({
   reactStrictMode: true,
   images: {
-    domains: ['i.ytimg.com', 'placekitten.com', 'yt3.ggpht.com']
+    domains: [
+      'i.ytimg.com',
+      'placekitten.com',
+      'yt3.ggpht.com',
+      'yt3.googleusercontent.com'
+    ]
   },
   webpack(config) {
     // NOTE: svg 파일을 react template 으로 변경

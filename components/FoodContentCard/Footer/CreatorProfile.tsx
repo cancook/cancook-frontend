@@ -14,6 +14,7 @@ const UserName = styled.p`
 `;
 const ProfileLayout = styled.div`
   display: flex;
+  margin-top: 0.625rem;
   align-items: center;
   color: ${({ theme }) => theme.colors.gray[200]};
 `;

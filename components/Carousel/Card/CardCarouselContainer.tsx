@@ -42,7 +42,6 @@ export default CardCarouselContainer;
 
 const CarouselContainer = styled.div`
   max-width: 78.75rem;
-  padding: 0 1rem;
   margin: auto;
 `;
 
