@@ -1,0 +1,38 @@
+name: Chromatic Deployment
+
+on:
+  pull_request:
+    paths:
+      - '**.stories.tsx'
+permissions:
+  contents: read
+
+jobs:
+  chromatic:
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: yarn
+      - uses: chromaui/action@v1
+        id: chromatic
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          onlyChanged: true
+      - name: Add Chromatic URL to PR comment
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const commentBody = `
+            Storybook URL: ${{ steps.chromatic.outputs.storybookUrl }} 
+            build URL: ${{ steps.chromatic.outputs.buildUrl }}
+            `;
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: commentBody
+            })
