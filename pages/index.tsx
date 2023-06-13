@@ -3,18 +3,26 @@ import BannerCarousel from '@/components/Carousel/Banner/BannerCarousel';
 import CardCarousel from '@/components/Carousel/Card/CardCarouselContainer';
 import styled from '@emotion/styled';
 
-import { useQuery } from '@tanstack/react-query';
-import { getCategoryList, getRecommendedList } from '@/apis/youtube';
+import { YoutubeCategory, YoutubeRecommended } from '@/types/youtube';
+import {
+  YOUTUBE_BANNER_DUMMY_DATA,
+  YOUTUBE_CATEGORY_DUMMY_DATA
+} from '@/constants/dummyData/youtube';
 
 export default function Home() {
-  const { data: recommendedData, isLoading: isRecommendedLoading } = useQuery(
-    ['youtube', 'recommended'],
-    getRecommendedList
-  );
-  const { data: categoryData, isLoading: isCategoryLoading } = useQuery(
-    ['youtube', 'category'],
-    getCategoryList
-  );
+  // const { data: recommendedData, isLoading: isRecommendedLoading } = useQuery(
+  //   ['youtube', 'recommended'],
+  //   getRecommendedList
+  // );
+  // const { data: categoryData, isLoading: isCategoryLoading } = useQuery(
+  //   ['youtube', 'category'],
+  //   getCategoryList
+  // );
+
+  // TODO: 테스트용
+  const recommendedData: YoutubeRecommended[] = YOUTUBE_BANNER_DUMMY_DATA;
+  const categoryData: YoutubeCategory[] = YOUTUBE_CATEGORY_DUMMY_DATA;
+
   return (
     <>
       <Head>
@@ -27,10 +35,7 @@ export default function Home() {
                 어떻게 보일지를 몰라서, 나중에 변경 예정
       */}
       <MainContainer>
-        <BannerCarousel
-          contents={recommendedData}
-          isLoading={isRecommendedLoading}
-        />
+        <BannerCarousel contents={recommendedData} isLoading={false} />
         {categoryData?.map((category) => (
           <CardCarousel
             key={`category-${category.title}`}
