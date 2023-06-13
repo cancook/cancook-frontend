@@ -146,6 +146,7 @@ export const global = (theme: Theme) => css`
   html,
   body {
     font-family: 'Pretendard', sans-serif;
-    background-color: ${theme.colors.gray[900]};
+    /* background-color: ${theme.colors.gray[900]}; */
+    background-color: #fcf4e4;
   }
 `;
