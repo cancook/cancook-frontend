@@ -7,6 +7,7 @@ import { Autoplay, Navigation, Pagination } from 'swiper';
 import 'swiper/css/navigation';
 import styled from '@emotion/styled';
 import Image from 'next/image';
+import useScreen from '@/hook/useScreen';
 
 export type BannerCarouselProps = {
   banners: Banner[];
@@ -14,6 +15,8 @@ export type BannerCarouselProps = {
 };
 
 const BannerCarousel = ({ banners, isLoading }: BannerCarouselProps) => {
+  const isDesktop = useScreen('desktop');
+
   return (
     <BannerContainer>
       <Swiper
@@ -28,7 +31,7 @@ const BannerCarousel = ({ banners, isLoading }: BannerCarouselProps) => {
           <SwiperSlide key={`banner-${idx}`}>
             <ImageContainer background={banner.background}>
               <Image
-                src={banner.img.phone}
+                src={isDesktop ? banner.img.default : banner.img.phone}
                 alt={banner.description}
                 fill
                 style={{ objectFit: 'cover' }}
