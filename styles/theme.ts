@@ -139,6 +139,14 @@ export const font = {
 
 export const screen = {
   /** All Devices  */
+  s: '@media only screen and (max-width: 767px)',
+
+  /* Medium devices (landscape tablets, 768px and up) */
+  m: '@media only screen and (min-width: 768px)',
+
+  /* Large devices (laptops/desktops, 1440px and up) */
+  l: '@media only screen and (min-width: 1440px)',
+
   phone: '@media only screen and (max-width: 767px)',
   tablet: '@media only screen and (min-width: 768px) and (max-width: 1439px)',
   monitor: '@media only screen and (min-width: 1440px)'
