@@ -156,8 +156,12 @@ export const screen = {
 
   /** All Devices  */
   phone: '@media only screen and (max-width: 768px)',
-  monitor: '@media only screen and (min-width: 768px)'
-};
+  monitor: '@media only screen and (min-width: 768px)',
+
+  desktop: '@media only screen and (min-width: 1440px)',
+  tablet: '@media only screen and (min-width: 768px)',
+  mobile: '@media only screen and (max-width: 768px)'
+} as const;
 
 const theme: Theme = {
   colors,
