@@ -1,7 +1,7 @@
+import { BANNER_DUMMY_DATA } from '@/constants/dummyData/banner';
+import { MainContainer } from '@/pages';
 import { StoryFn } from '@storybook/react';
 import BannerCarousel, { BannerCarouselProps } from './BannerCarousel';
-import { YOUTUBE_BANNER_DUMMY_DATA } from '@/constants/dummyData/youtube';
-import { MainContainer } from '@/pages';
 
 const FoodContentCardStory = {
   title: 'Component/Banner Carousel',
@@ -21,6 +21,6 @@ const CardTemplate: StoryFn<BannerCarouselProps> = (props) => (
 export const Default = CardTemplate.bind({});
 
 Default.args = {
-  contents: YOUTUBE_BANNER_DUMMY_DATA,
+  banners: BANNER_DUMMY_DATA,
   isLoading: false
 };
