@@ -137,7 +137,6 @@ export const font = {
   }
 };
 
-// const colors = {}
 export const screen = {
   /** All Devices  */
   phone: '@media only screen and (max-width: 767px)',
