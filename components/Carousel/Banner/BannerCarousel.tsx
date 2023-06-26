@@ -5,6 +5,8 @@ import { Banner } from '@/types/banner';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper';
 import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import useScreen from '@/hook/useScreen';
@@ -23,7 +25,7 @@ const BannerCarousel = ({ banners, isLoading }: BannerCarouselProps) => {
         modules={[Autoplay, Navigation, Pagination]}
         slidesPerView={1}
         navigation
-        pagination
+        pagination={{ type: 'fraction' }}
         autoplay={{ delay: 3000, pauseOnMouseEnter: true }}
         loop
       >
