@@ -23,10 +23,10 @@ const InputWrapper = styled.div<{ isFocus: boolean }>`
       isFocus ? theme.colors.yellow[400] : theme.colors.gray[600]};
 
   ${({ theme }) => theme.screen.tablet} {
-    max-width: 20rem;
+    max-width: 18rem;
   }
   ${({ theme }) => theme.screen.mobile} {
-    max-width: 20rem;
+    max-width: 18rem;
   }
   ${({ theme }) => theme.screen.desktop} {
     max-width: 50rem;
