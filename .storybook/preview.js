@@ -3,6 +3,38 @@ import { global } from '@/styles/Global';
 import theme from '@/styles/theme';
 import 'swiper/css';
 
+const customViewports = {
+  mobile: {
+    name: 'mobile view',
+    styles: {
+      width: '360px',
+      height: '780px'
+    }
+  },
+  desktop: {
+    name: 'desktop view',
+    styles: {
+      width: '1440px',
+      height: '1024px'
+    }
+  },
+  tablet: {
+    name: 'tablet view',
+    styles: {
+      width: '768px',
+      height: '780px'
+    }
+  }
+};
+
+const preview = {
+  parameters: {
+    viewport: {
+      viewports: customViewports
+    }
+  }
+};
+
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
@@ -33,3 +65,5 @@ export const decorators = [
     </>
   )
 ];
+
+export default preview;
