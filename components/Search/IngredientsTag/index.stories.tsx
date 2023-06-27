@@ -18,5 +18,8 @@ const Template: StoryFn<Props> = (args) => <IngredientsTag {...args} />;
 export const Potato = Template.bind({});
 
 Potato.args = {
-  name: '감자'
+  name: '감자',
+  onDeleteClick: () => {
+    console.log('클릭');
+  }
 };

@@ -43,13 +43,18 @@ const CloseIcon = styled(CloseIconSVG)`
 
 type IngredientsTagProps = {
   name: string;
+  onDeleteClick?: () => void;
 };
 
-const IngredientsTag = ({ name }: IngredientsTagProps) => {
+const IngredientsTag = ({
+  name,
+  onDeleteClick,
+  ...ars
+}: IngredientsTagProps) => {
   return (
-    <IngredientsWrapper>
+    <IngredientsWrapper {...ars}>
       <IngredientName>{name}</IngredientName>
-      <CloseIcon />
+      <CloseIcon onClick={onDeleteClick} />
     </IngredientsWrapper>
   );
 };
