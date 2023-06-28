@@ -24,7 +24,7 @@ const Banner = ({ banners, isLoading }: BannerProps) => {
       <Swiper
         modules={[Autoplay, Navigation, Pagination]}
         slidesPerView={1}
-        navigation
+        navigation={isDesktop}
         pagination={{ type: 'fraction' }}
         autoplay={{ delay: 3000, pauseOnMouseEnter: true }}
         loop
