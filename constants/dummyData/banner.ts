@@ -1,6 +1,6 @@
-import { Banner } from '@/types/banner';
+import { BannerInformation } from '@/types/banner';
 
-export const BANNER_DUMMY_DATA: Banner[] = [
+export const BANNER_DUMMY_DATA: BannerInformation[] = [
   {
     background: '#232328',
     img: {

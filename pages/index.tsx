@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import BannerCarousel from '@/components/Carousel/Banner/BannerCarousel';
+import Banner from '@/components/Banner/Banner';
 import CardCarousel from '@/components/Carousel/Card/CardCarouselContainer';
 import styled from '@emotion/styled';
 
@@ -8,7 +8,7 @@ import {
   YOUTUBE_BANNER_DUMMY_DATA,
   YOUTUBE_CATEGORY_DUMMY_DATA
 } from '@/constants/dummyData/youtube';
-import { Banner } from '@/types/banner';
+import { BannerInformation } from '@/types/banner';
 import { BANNER_DUMMY_DATA } from '@/constants/dummyData/banner';
 
 export default function Home() {
@@ -22,7 +22,7 @@ export default function Home() {
   // );
 
   // TODO: 테스트용
-  const bannerData: Banner[] = BANNER_DUMMY_DATA;
+  const bannerData: BannerInformation[] = BANNER_DUMMY_DATA;
   const recommendedData: YoutubeRecommended[] = YOUTUBE_BANNER_DUMMY_DATA;
   const categoryData: YoutubeCategory[] = YOUTUBE_CATEGORY_DUMMY_DATA;
 
@@ -38,7 +38,7 @@ export default function Home() {
                 어떻게 보일지를 몰라서, 나중에 변경 예정
       */}
       <MainContainer>
-        <BannerCarousel banners={bannerData} isLoading={false} />
+        <Banner banners={bannerData} isLoading={false} />
         {categoryData?.map((category) => (
           <CardCarousel
             key={`category-${category.title}`}

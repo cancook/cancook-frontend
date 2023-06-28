@@ -1,17 +1,17 @@
 import { BANNER_DUMMY_DATA } from '@/constants/dummyData/banner';
 import { MainContainer } from '@/pages';
 import { StoryFn } from '@storybook/react';
-import BannerCarousel, { BannerCarouselProps } from './BannerCarousel';
+import Banner, { BannerProps } from './Banner';
 
 const FoodContentCardStory = {
-  title: 'Component/Banner Carousel',
-  component: BannerCarousel
+  title: 'Component/Banner',
+  component: Banner
 };
 export default FoodContentCardStory;
 
-const CardTemplate: StoryFn<BannerCarouselProps> = (props) => (
+const CardTemplate: StoryFn<BannerProps> = (props) => (
   <MainContainer>
-    <BannerCarousel {...props} />
+    <Banner {...props} />
   </MainContainer>
 );
 

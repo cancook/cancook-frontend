@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Banner } from '@/types/banner';
+import { BannerInformation } from '@/types/banner';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper';
@@ -11,12 +11,12 @@ import styled from '@emotion/styled';
 import Image from 'next/image';
 import useScreen from '@/hook/useScreen';
 
-export type BannerCarouselProps = {
-  banners: Banner[];
+export type BannerProps = {
+  banners: BannerInformation[];
   isLoading: boolean;
 };
 
-const BannerCarousel = ({ banners, isLoading }: BannerCarouselProps) => {
+const Banner = ({ banners, isLoading }: BannerProps) => {
   const isDesktop = useScreen('desktop');
 
   return (
@@ -29,7 +29,7 @@ const BannerCarousel = ({ banners, isLoading }: BannerCarouselProps) => {
         autoplay={{ delay: 3000, pauseOnMouseEnter: true }}
         loop
       >
-        {banners.map((banner: Banner, idx: number) => (
+        {banners.map((banner: BannerInformation, idx: number) => (
           <SwiperSlide key={`banner-${idx}`}>
             <ImageContainer background={banner.background}>
               <Image
@@ -46,7 +46,7 @@ const BannerCarousel = ({ banners, isLoading }: BannerCarouselProps) => {
   );
 };
 
-export default BannerCarousel;
+export default Banner;
 
 const BannerContainer = styled.div`
   .swiper {
@@ -58,6 +58,21 @@ const BannerContainer = styled.div`
         font-size: 2rem;
       }
     }
+
+    .swiper-pagination-fraction {
+      width: auto;
+      right: 1.5rem;
+      left: auto;
+      padding: 0 0.5rem;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 1.5rem;
+      color: white;
+      font-size: 0.875rem;
+      .swiper-pagination-current,
+      .swiper-pagination-total {
+        line-height: 1.5rem;
+      }
+    }
   }
 `;
 
@@ -65,12 +80,9 @@ const ImageContainer = styled.div<{ background: string }>`
   position: relative;
   overflow: visible;
   background-color: ${({ background }) => background};
-
   height: 160px;
 
-  transition: all 100ms linear;
-
-  ${({ theme }) => theme.screen.m} {
+  ${({ theme }) => theme.screen.tablet} {
     height: 340px;
   }
 `;
