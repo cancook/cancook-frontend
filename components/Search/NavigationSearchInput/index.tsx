@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
-import SearchIcon from '../../../public/svg/search.svg';
+import SearchIcon from '@/public/svg/search.svg';
 import { useTheme } from '@emotion/react';
 
 const Input = styled.input<{ isFocus: boolean }>`
@@ -16,18 +16,12 @@ const InputWrapper = styled.div<{ isFocus: boolean }>`
   display: flex;
   align-items: center;
   width: 100%;
+  max-width: 18rem;
   padding: 0.75rem 1rem;
   border-radius: 1.5rem;
   border: 0.0625rem solid
     ${({ theme, isFocus }) =>
       isFocus ? theme.colors.yellow[400] : theme.colors.gray[600]};
-
-  ${({ theme }) => theme.screen.tablet} {
-    max-width: 18rem;
-  }
-  ${({ theme }) => theme.screen.mobile} {
-    max-width: 18rem;
-  }
   ${({ theme }) => theme.screen.desktop} {
     max-width: 50rem;
   }
