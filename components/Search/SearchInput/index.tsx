@@ -17,6 +17,7 @@ const InputWrapper = styled.div<{ isFocus: boolean }>`
   align-items: center;
   width: 100%;
   max-width: 18rem;
+  margin: auto;
   padding: 0.75rem 1rem;
   border-radius: 1.5rem;
   border: 0.0625rem solid
@@ -27,7 +28,7 @@ const InputWrapper = styled.div<{ isFocus: boolean }>`
   }
 `;
 
-const NavSearchInput = ({ ...args }) => {
+const SearchInput = ({ ...args }) => {
   const [isFocus, setIsFocus] = useState(false);
   const theme = useTheme();
 
@@ -56,4 +57,4 @@ const NavSearchInput = ({ ...args }) => {
   );
 };
 
-export default NavSearchInput;
+export default SearchInput;
