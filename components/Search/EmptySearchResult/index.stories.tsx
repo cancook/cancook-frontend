@@ -3,7 +3,7 @@ import EmptySearchResult from '.';
 import { ComponentProps } from 'react';
 
 const EmptySearchResultComponent = {
-  title: 'Component/EmptySearchResult',
+  title: 'Component/Search/EmptySearchResult',
   component: EmptySearchResult
 };
 export default EmptySearchResultComponent;

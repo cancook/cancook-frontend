@@ -1,17 +1,11 @@
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import React from 'react';
-import emptyGIFPath from '../../../public/gifs/stir-cook.gif';
+import emptyGIFPath from '@/public/gifs/stir-cook.gif';
 
 const Wrapper = styled.div`
-  ${({ theme }) => theme.screen.mobile} {
-    width: 11rem;
-    height: 8.5rem;
-  }
-  ${({ theme }) => theme.screen.tablet} {
-    width: 11rem;
-    height: 8.5rem;
-  }
+  width: 11rem;
+  height: 8.5rem;
   ${({ theme }) => theme.screen.desktop} {
     width: 19.3125rem;
     height: 21rem;
@@ -20,12 +14,7 @@ const Wrapper = styled.div`
 const Text = styled.p`
   color: ${({ theme }) => theme.colors.gray[400]};
   text-align: center;
-  ${({ theme }) => theme.screen.mobile} {
-    ${({ theme }) => theme.font.body.md};
-  }
-  ${({ theme }) => theme.screen.tablet} {
-    ${({ theme }) => theme.font.body.md};
-  }
+  ${({ theme }) => theme.font.body.md};
   ${({ theme }) => theme.screen.desktop} {
     ${({ theme }) => theme.font.title.lg};
     line-height: 2.125rem;
@@ -35,18 +24,12 @@ const Text = styled.p`
 const EmptyResultImage = styled(Image)`
   display: block;
   margin: auto;
+  width: 5rem;
+  height: 5rem;
 
-  ${({ theme }) => theme.screen.mobile} {
-    width: 5rem;
-    height: 5rem;
-  }
-  ${({ theme }) => theme.screen.tablet} {
-    width: 5rem;
-    height: 5rem;
-  }
   ${({ theme }) => theme.screen.desktop} {
-    width: 260px;
-    height: 260px;
+    width: 16.25rem;
+    height: 16.25rem;
   }
 `;
 
