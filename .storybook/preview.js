@@ -8,21 +8,21 @@ const customViewports = {
     name: 'mobile view',
     styles: {
       width: '360px',
-      height: '780px'
+      height: '100%'
     }
   },
   desktop: {
     name: 'desktop view',
     styles: {
       width: '1440px',
-      height: '1024px'
+      height: '100%'
     }
   },
   tablet: {
     name: 'tablet view',
     styles: {
       width: '768px',
-      height: '780px'
+      height: '100%'
     }
   }
 };
@@ -31,7 +31,8 @@ const preview = {
   parameters: {
     viewport: {
       viewports: customViewports
-    }
+    },
+    layout: 'fullscreen'
   }
 };
 
