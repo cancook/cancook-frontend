@@ -16,18 +16,20 @@ const InputWrapper = styled.div<{ isFocus: boolean }>`
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 18rem;
+  max-width: 20rem;
+  margin: auto;
   padding: 0.75rem 1rem;
   border-radius: 1.5rem;
   border: 0.0625rem solid
     ${({ theme, isFocus }) =>
       isFocus ? theme.colors.yellow[400] : theme.colors.gray[600]};
+  background-color: ${({ theme }) => theme.colors.gray[800]};
   ${({ theme }) => theme.screen.desktop} {
     max-width: 50rem;
   }
 `;
 
-const NavSearchInput = ({ ...args }) => {
+const SearchInput = ({ ...args }) => {
   const [isFocus, setIsFocus] = useState(false);
   const theme = useTheme();
 
@@ -56,4 +58,4 @@ const NavSearchInput = ({ ...args }) => {
   );
 };
 
-export default NavSearchInput;
+export default SearchInput;
