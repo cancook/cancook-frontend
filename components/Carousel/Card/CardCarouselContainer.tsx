@@ -63,10 +63,14 @@ const CarouselContainer = styled.div`
 `;
 
 const TitleWrapper = styled.div`
-  padding: 2.5rem 0;
+  padding: 1.5rem 0rem 0.75rem 0rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  ${({ theme }) => theme.screen.desktop} {
+    padding: 2rem 0;
+  }
 `;
 
 const ArrowButton = styled.div`
@@ -90,6 +94,10 @@ const SwiperButtonWrapper = styled.div`
 `;
 
 const CategoryTitle = styled.h2`
-  ${({ theme }) => theme.font.headLine.md};
   color: ${({ theme }) => theme.colors.white[0]};
+  ${({ theme }) => theme.font.title.sm};
+
+  ${({ theme }) => theme.screen.desktop} {
+    ${({ theme }) => theme.font.headLine.md};
+  }
 `;
