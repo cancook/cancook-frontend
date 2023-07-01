@@ -41,15 +41,26 @@ const CardCarouselContainer = ({ contents }: CardCarouselContainerProps) => {
 export default CardCarouselContainer;
 
 const CarouselContainer = styled.div`
-  max-width: 78.75rem;
+  max-width: 80rem;
   margin: auto;
+
+  width: 100%;
+  padding: 0 1.25rem;
+
+  ${({ theme }) => theme.screen.desktop} {
+    width: auto;
+  }
 `;
 
 const TitleWrapper = styled.div`
-  padding: 2.5rem 0;
+  padding: 1.5rem 0rem 0.75rem 0rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  ${({ theme }) => theme.screen.desktop} {
+    padding: 2rem 0;
+  }
 `;
 
 const ArrowButton = styled.div`
@@ -73,6 +84,10 @@ const SwiperButtonWrapper = styled.div`
 `;
 
 const CategoryTitle = styled.h2`
-  ${({ theme }) => theme.font.headLine.md};
   color: ${({ theme }) => theme.colors.white[0]};
+  ${({ theme }) => theme.font.title.sm};
+
+  ${({ theme }) => theme.screen.desktop} {
+    ${({ theme }) => theme.font.headLine.md};
+  }
 `;
