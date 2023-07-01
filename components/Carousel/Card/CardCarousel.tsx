@@ -2,8 +2,10 @@ import React from 'react';
 
 import FoodContentCard from '@/components/FoodContentCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper';
+import { FreeMode, Navigation } from 'swiper';
 import 'swiper/css/navigation';
+import 'swiper/css/free-mode';
+
 import CreatorProfile from '@/components/FoodContentCard/Footer/CreatorProfile';
 import { VideoInformation } from '@/types/youtube';
 import timeFormatter from '@/utils/timeFormatter';
@@ -16,11 +18,23 @@ type Props = {
 
   /** Card carousel을 움직이는 왼쪽 버튼 */
   prev: React.RefObject<HTMLDivElement>;
-  /** Card carousel을 움직이는 오른쪽 버튼 */
 
+  /** Card carousel을 움직이는 오른쪽 버튼 */
   next: React.RefObject<HTMLDivElement>;
+
+  /** Carousel에 보여지는 카드 수 */
+  slidesPerView?: number;
+
+  /** Carousel에서 다음 버튼을 누르면 넘어가는 카드 수 */
+  slidesPerGroup?: number;
 };
-const CardCarousel = ({ cards, prev, next }: Props) => {
+const CardCarousel = ({
+  cards,
+  prev,
+  next,
+  slidesPerView = 4,
+  slidesPerGroup = 4
+}: Props) => {
   return (
     <Swiper
       navigation={{
@@ -37,10 +51,11 @@ const CardCarousel = ({ cards, prev, next }: Props) => {
           swiper.params.navigation.nextEl = next.current;
         }
       }}
-      modules={[Navigation]}
+      modules={[FreeMode, Navigation]}
       spaceBetween={20}
-      slidesPerView={4}
-      slidesPerGroup={4}
+      slidesPerView={slidesPerView}
+      slidesPerGroup={slidesPerGroup}
+      freeMode
       loop
     >
       {cards.map((card, idx) => (

@@ -5,6 +5,7 @@ import CardCarousel from './CardCarousel';
 import ArrowRight from '@/public/svg/arrow-right.svg';
 import ArrowLeft from '@/public/svg/arrow-left.svg';
 import { YoutubeCategory } from '@/types/youtube';
+import { useScreenType } from '@/hook/useScreen';
 export type CardCarouselContainerProps = {
   /**
    * 카드에 들어가는 컨텐츠
@@ -15,6 +16,13 @@ export type CardCarouselContainerProps = {
 const CardCarouselContainer = ({ contents }: CardCarouselContainerProps) => {
   const prevButtonRef = useRef<HTMLDivElement>(null);
   const nextButtonRef = useRef<HTMLDivElement>(null);
+
+  const screenType = useScreenType();
+  // NOTE: 반응형으로 카드의 수가 달라짐
+  const slidesPerView =
+    screenType === 'phone' ? 1.5 : screenType === 'tablet' ? 3 : 4;
+  const slidesPerGroup =
+    screenType === 'phone' ? 1 : screenType === 'tablet' ? 3 : 4;
 
   return (
     <CarouselContainer>
@@ -33,6 +41,8 @@ const CardCarouselContainer = ({ contents }: CardCarouselContainerProps) => {
         cards={contents.data}
         prev={prevButtonRef}
         next={nextButtonRef}
+        slidesPerView={slidesPerView}
+        slidesPerGroup={slidesPerGroup}
       />
     </CarouselContainer>
   );
@@ -41,8 +51,15 @@ const CardCarouselContainer = ({ contents }: CardCarouselContainerProps) => {
 export default CardCarouselContainer;
 
 const CarouselContainer = styled.div`
-  max-width: 78.75rem;
+  max-width: 80rem;
   margin: auto;
+
+  width: 100%;
+  padding: 0 1.25rem;
+
+  ${({ theme }) => theme.screen.desktop} {
+    width: auto;
+  }
 `;
 
 const TitleWrapper = styled.div`
