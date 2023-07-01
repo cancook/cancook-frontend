@@ -1,26 +1,26 @@
 import { useEffect, useState } from 'react';
 
-type ScreenMode = 'phone' | 'tablet' | 'desktop';
+// type ScreenMode = 'phone' | 'tablet' | 'desktop';
 
-const useScreen = (mode: ScreenMode) => {
+const useScreen = () => {
   const [screenSize, setScreenSize] = useState('');
 
-  const handleResize = () => {
-    const { innerWidth } = window;
-    let currentScreenSize = '';
-
-    if (innerWidth < 768) {
-      currentScreenSize = 'phone';
-    } else if (innerWidth < 1440) {
-      currentScreenSize = 'tablet';
-    } else {
-      currentScreenSize = 'desktop';
-    }
-
-    setScreenSize(currentScreenSize);
-  };
-
   useEffect(() => {
+    const handleResize = () => {
+      const { innerWidth } = window;
+      let currentScreenSize = '';
+
+      if (innerWidth < 768) {
+        currentScreenSize = 'phone';
+      } else if (innerWidth < 1440) {
+        currentScreenSize = 'tablet';
+      } else {
+        currentScreenSize = 'desktop';
+      }
+
+      setScreenSize(currentScreenSize);
+    };
+
     handleResize();
     window.addEventListener('resize', handleResize);
 
@@ -29,7 +29,7 @@ const useScreen = (mode: ScreenMode) => {
     };
   }, []);
 
-  return screenSize === mode;
+  return screenSize;
 };
 
 export default useScreen;

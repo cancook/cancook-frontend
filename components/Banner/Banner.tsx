@@ -17,27 +17,38 @@ export type BannerProps = {
 };
 
 const Banner = ({ banners, isLoading }: BannerProps) => {
-  const isDesktop = useScreen('desktop');
+  const screenType = useScreen();
 
   return (
     <BannerContainer>
       <Swiper
         modules={[Autoplay, Navigation, Pagination]}
         slidesPerView={1}
-        navigation={isDesktop}
+        navigation={false}
         pagination={{ type: 'fraction' }}
         autoplay={{ delay: 3000, pauseOnMouseEnter: true }}
+        breakpoints={{
+          1440: {
+            navigation: true
+          }
+        }}
         loop
       >
         {banners.map((banner: BannerInformation, idx: number) => (
           <SwiperSlide key={`banner-${idx}`}>
             <ImageContainer background={banner.background}>
-              <Image
-                src={isDesktop ? banner.img.default : banner.img.phone}
-                alt={banner.description}
-                fill
-                style={{ objectFit: 'cover' }}
-              />
+              {screenType !== '' && (
+                <Image
+                  src={
+                    screenType === 'desktop'
+                      ? banner.img.default
+                      : banner.img.phone
+                  }
+                  alt={banner.description}
+                  fill
+                  style={{ objectFit: 'cover' }}
+                />
+              )}
             </ImageContainer>
           </SwiperSlide>
         ))}
