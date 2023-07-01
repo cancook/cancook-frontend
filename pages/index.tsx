@@ -52,5 +52,9 @@ export const MainContainer = styled.div`
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 0;
+
+  ${({ theme }) => theme.screen.desktop} {
+    gap: 1.5rem;
+  }
 `;
