@@ -21,20 +21,8 @@ type Props = {
 
   /** Card carousel을 움직이는 오른쪽 버튼 */
   next: React.RefObject<HTMLDivElement>;
-
-  /** Carousel에 보여지는 카드 수 */
-  slidesPerView?: number;
-
-  /** Carousel에서 다음 버튼을 누르면 넘어가는 카드 수 */
-  slidesPerGroup?: number;
 };
-const CardCarousel = ({
-  cards,
-  prev,
-  next,
-  slidesPerView = 4,
-  slidesPerGroup = 4
-}: Props) => {
+const CardCarousel = ({ cards, prev, next }: Props) => {
   return (
     <Swiper
       navigation={{
@@ -53,9 +41,20 @@ const CardCarousel = ({
       }}
       modules={[FreeMode, Navigation]}
       spaceBetween={20}
-      slidesPerView={slidesPerView}
-      slidesPerGroup={slidesPerGroup}
+      slidesPerView={1.5}
+      slidesPerGroup={1}
       freeMode
+      breakpoints={{
+        768: {
+          slidesPerView: 3,
+          slidesPerGroup: 3
+        },
+        1440: {
+          slidesPerView: 4,
+          slidesPerGroup: 4,
+          freeMode: false
+        }
+      }}
       loop
     >
       {cards.map((card, idx) => (
