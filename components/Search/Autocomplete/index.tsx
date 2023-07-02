@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 import React from 'react';
 
-const AutocompleteWrapper = styled.ul`
+const AutocompleteWrapper = styled.ul<{ isOpen: boolean }>`
+  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
   margin-top: 0.5rem;
   padding: 0.5rem 0;
   width: 100%;
@@ -29,11 +30,12 @@ const AutocompleteItem = styled.li`
 
 type AutocompleteProps = {
   keywords: string[];
+  isOpen: boolean;
 };
 
-const Autocomplete = ({ keywords }: AutocompleteProps) => {
+const Autocomplete = ({ keywords, isOpen }: AutocompleteProps) => {
   return (
-    <AutocompleteWrapper>
+    <AutocompleteWrapper isOpen={isOpen}>
       {keywords.map((keyword, index) => (
         <AutocompleteItem key={`autocomplete-keyword-${index}`}>
           {keyword}
