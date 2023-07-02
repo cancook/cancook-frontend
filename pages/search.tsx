@@ -33,7 +33,7 @@ const SearchPage = () => {
     <>
       <SearchBox>
         <Title>오늘은 어떤 재료로 요리할까?</Title>
-        <SearchInput />
+        <SearchInput initialFocus={true} />
       </SearchBox>
       <SearchResultWrapper>
         <EmptySearchResult />

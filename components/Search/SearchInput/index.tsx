@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import SearchIcon from '@/public/svg/search.svg';
 import { useTheme } from '@emotion/react';
 
@@ -29,8 +29,14 @@ const InputWrapper = styled.div<{ isFocus: boolean }>`
   }
 `;
 
-const SearchInput = ({ ...args }) => {
-  const [isFocus, setIsFocus] = useState(false);
+type SearchInputProps = {
+  initialFocus?: boolean;
+  [key: string]: any; // ...rest props
+};
+
+const SearchInput = ({ initialFocus, ...props }: SearchInputProps) => {
+  const [isFocus, setIsFocus] = useState(initialFocus || false);
+  const inputRef = useRef<HTMLInputElement>(null);
   const theme = useTheme();
 
   const handleFocus = () => {
@@ -40,6 +46,12 @@ const SearchInput = ({ ...args }) => {
   const handleBlur = () => {
     setIsFocus(false);
   };
+  useEffect(() => {
+    if (initialFocus && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [initialFocus]);
+
   return (
     <InputWrapper isFocus={isFocus}>
       <SearchIcon
@@ -47,12 +59,13 @@ const SearchInput = ({ ...args }) => {
         style={{ cursor: 'pointer' }}
       />
       <Input
+        ref={inputRef}
         type="text"
         placeholder="냉장고에 있는 재료를 적어주세요!"
         onFocus={handleFocus}
         onBlur={handleBlur}
         isFocus={isFocus}
-        {...args}
+        {...props}
       />
     </InputWrapper>
   );
