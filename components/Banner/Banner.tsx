@@ -46,7 +46,9 @@ const Banner = ({ banners, isLoading }: BannerProps) => {
                   }
                   alt={banner.description}
                   fill
-                  style={{ objectFit: 'cover' }}
+                  style={{
+                    objectFit: screenType === 'desktop' ? 'contain' : 'cover'
+                  }}
                 />
               )}
             </ImageContainer>

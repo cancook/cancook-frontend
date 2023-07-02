@@ -10,7 +10,7 @@ export const BANNER_DUMMY_DATA: BannerInformation[] = [
     description: '냉장고에 뭐가 있더라'
   },
   {
-    background: '#232333',
+    background: '#232328',
     img: {
       default: '/asset/banner/monitor_banner_01.png',
       phone: '/asset/banner/phone_banner_01.png'
@@ -18,7 +18,7 @@ export const BANNER_DUMMY_DATA: BannerInformation[] = [
     description: '냉장고에 뭐가 있더라'
   },
   {
-    background: '#ff0f0f',
+    background: '#232328',
     img: {
       default: '/asset/banner/monitor_banner_01.png',
       phone: '/asset/banner/phone_banner_01.png'
