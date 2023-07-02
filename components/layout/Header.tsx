@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import MainLogo from '@/public/svg/cancook_logo.svg';
 import React from 'react';
 import SearchInput from '../Search/SearchInput';
+import { useRouter } from 'next/router';
 
 const HeaderWrapper = styled.nav`
   position: sticky;
@@ -11,6 +12,7 @@ const HeaderWrapper = styled.nav`
   align-items: center;
   gap: 1rem;
   padding: 0.75rem 1.25rem;
+  height: 6rem;
   z-index: 10;
   backdrop-filter: blur(20px);
   ${({ theme }) => theme.screen.desktop} {
@@ -21,10 +23,14 @@ const HeaderWrapper = styled.nav`
 `;
 
 const Header = () => {
+  const router = useRouter();
+
   return (
     <HeaderWrapper>
-      <MainLogo />
-      <SearchInput />
+      <MainLogo onClick={() => router.push('/')} />
+      {router.pathname !== '/search' && (
+        <SearchInput onClick={() => router.push('/search')} />
+      )}
     </HeaderWrapper>
   );
 };
