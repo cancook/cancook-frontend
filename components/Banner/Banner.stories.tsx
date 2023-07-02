@@ -3,13 +3,13 @@ import { MainContainer } from '@/pages';
 import { StoryFn } from '@storybook/react';
 import Banner, { BannerProps } from './Banner';
 
-const FoodContentCardStory = {
+const BannerStory = {
   title: 'Component/Banner',
   component: Banner
 };
-export default FoodContentCardStory;
+export default BannerStory;
 
-const CardTemplate: StoryFn<BannerProps> = (props) => (
+const BannerTemplate: StoryFn<BannerProps> = (props) => (
   <MainContainer>
     <Banner {...props} />
   </MainContainer>
@@ -18,7 +18,7 @@ const CardTemplate: StoryFn<BannerProps> = (props) => (
 /**
  * 메인 배너에 보여지는 썸네일 입니다.
  */
-export const Default = CardTemplate.bind({});
+export const Default = BannerTemplate.bind({});
 
 Default.args = {
   banners: BANNER_DUMMY_DATA,
