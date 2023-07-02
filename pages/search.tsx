@@ -2,7 +2,7 @@ import Autocomplete from '@/components/Search/Autocomplete';
 import EmptySearchResult from '@/components/Search/EmptySearchResult';
 import SearchInput from '@/components/Search/SearchInput';
 import styled from '@emotion/styled';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const SearchBox = styled.div`
   position: relative;
@@ -42,6 +42,7 @@ const SearchResultWrapper = styled.div`
 const SearchPage = () => {
   const [keyword, setKeyword] = useState(' ');
   const [isFocus, setIsFocus] = useState(true);
+  const inputFocus = useRef<HTMLInputElement>(null);
 
   const handleFocus = () => {
     setIsFocus(true);
@@ -51,6 +52,9 @@ const SearchPage = () => {
     setIsFocus(false);
   };
 
+  useEffect(() => {
+    inputFocus.current?.focus();
+  }, []);
   return (
     <>
       <SearchBox>
@@ -61,6 +65,7 @@ const SearchPage = () => {
           onChange={(e: any) => setKeyword(e.target.value)}
           handleFocus={handleFocus}
           handleBlur={handleBlur}
+          inputRef={inputFocus}
         />
         <Autocomplete keywords={[keyword, '1', '2']} isOpen={isFocus} />
       </SearchBox>
