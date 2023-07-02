@@ -31,6 +31,7 @@ const InputWrapper = styled.div<{ isFocus: boolean }>`
 
 type SearchInputProps = {
   isFocus: boolean;
+  onInputWrapperClick?: () => void;
   [key: string]: any; // ...rest props
 };
 
@@ -39,11 +40,12 @@ const SearchInput = ({
   inputRef,
   handleFocus,
   handleBlur,
+  onInputWrapperClick,
   ...props
 }: SearchInputProps) => {
   const theme = useTheme();
   return (
-    <InputWrapper isFocus={isFocus}>
+    <InputWrapper isFocus={isFocus} onClick={onInputWrapperClick}>
       <SearchIcon
         fill={isFocus ? theme.colors.yellow[400] : theme.colors.gray[600]}
         style={{ cursor: 'pointer' }}

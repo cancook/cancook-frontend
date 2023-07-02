@@ -1,9 +1,8 @@
 import styled from '@emotion/styled';
 import MainLogo from '@/public/svg/cancook_logo.svg';
-import React, { useState } from 'react';
+import React from 'react';
 import SearchInput from '../Search/SearchInput';
 import { useRouter } from 'next/router';
-import useScreen from '@/hook/useScreen';
 
 const HeaderWrapper = styled.nav`
   position: sticky;
@@ -25,26 +24,15 @@ const HeaderWrapper = styled.nav`
 
 const Header = () => {
   const router = useRouter();
-  const [isFocus, setIsFocus] = useState(false);
-  const screenSize = useScreen();
-
-  const handleFocus = () => {
-    setIsFocus(true);
-  };
-
-  const handleBlur = () => {
-    setIsFocus(false);
-  };
 
   return (
     <HeaderWrapper>
       <MainLogo onClick={() => router.push('/')} />
-      {(router.pathname !== '/search' || screenSize !== 'desktop') && (
+      {router.pathname !== '/search' && (
         <SearchInput
-          isFocus={isFocus}
-          onClick={() => router.push('/search')}
-          handleFocus={handleFocus}
-          handleBlur={handleBlur}
+          isFocus={false}
+          onInputWrapperClick={() => router.push('/search')}
+          disabled
         />
       )}
     </HeaderWrapper>

@@ -45,7 +45,7 @@ const SearchPage = () => {
 
   return (
     <>
-      {screenSize === 'desktop' && (
+      {screenSize === 'desktop' ? (
         <SearchBox>
           <Title>오늘은 어떤 재료로 요리할까?</Title>
           <SearchInput
@@ -57,6 +57,17 @@ const SearchPage = () => {
           />
           <Autocomplete keywords={[keyword, '1', '2']} isOpen={isFocus} />
         </SearchBox>
+      ) : (
+        <>
+          <SearchInput
+            isFocus={isFocus}
+            value={keyword}
+            onChange={(e: any) => setKeyword(e.target.value)}
+            handleFocus={handleFocus}
+            handleBlur={handleBlur}
+          />
+          <Autocomplete keywords={[keyword, '1', '2']} isOpen={isFocus} />
+        </>
       )}
       <SearchResultWrapper>
         <EmptySearchResult />
