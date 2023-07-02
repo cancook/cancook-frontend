@@ -1,27 +1,32 @@
 import styled from '@emotion/styled';
+import MainLogo from '@/public/svg/cancook_logo.svg';
 import React from 'react';
-import SelfDiningLogoIcon from '@/public/svg/self_dining_logo.svg';
+import SearchInput from '../Search/SearchInput';
 
-/**
- * Main 페이지의 Header Navigation 입니다.
- * TODO: 현재로서는 Logo 만 있는 상태, 나중에 Search 바 추가 예정
- *
- */
+const HeaderWrapper = styled.nav`
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  z-index: 10;
+  backdrop-filter: blur(20px);
+  ${({ theme }) => theme.screen.desktop} {
+    padding: 1.5rem 2.5rem;
+    flex-direction: row;
+    gap: 0;
+  }
+`;
+
 const Header = () => {
   return (
-    <HeaderContainer>
-      <SelfDiningLogoIcon />
-    </HeaderContainer>
+    <HeaderWrapper>
+      <MainLogo />
+      <SearchInput />
+    </HeaderWrapper>
   );
 };
 
 export default Header;
-
-const HeaderContainer = styled.header`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 1rem;
-  margin-top: 4.875rem;
-  width: 100%;
-`;

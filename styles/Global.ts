@@ -19,6 +19,9 @@ export const global = (theme: Theme) => css`
     font-weight: 700;
   }
 
+  * {
+    box-sizing: border-box;
+  }
   html,
   body,
   div,
@@ -123,6 +126,7 @@ export const global = (theme: Theme) => css`
   }
   body {
     line-height: 1;
+    box-sizing: border-box;
   }
   ol,
   ul {

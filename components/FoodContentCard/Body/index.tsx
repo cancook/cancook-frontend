@@ -13,11 +13,20 @@ const Title = styled.h3`
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  ${({ theme }) => theme.font.title.sm};
+
+  ${({ theme }) => theme.font.label.lg}
+
+  ${({ theme }) => theme.screen.desktop} {
+    ${({ theme }) => theme.font.title.sm};
+  }
 `;
 
 const Subtitle = styled.h5`
   ${({ theme }) => theme.font.body.md};
+
+  ${({ theme }) => theme.screen.desktop} {
+    ${({ theme }) => theme.font.label.lg};
+  }
 `;
 
 type Props = {
