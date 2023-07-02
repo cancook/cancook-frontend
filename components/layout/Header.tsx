@@ -3,6 +3,7 @@ import MainLogo from '@/public/svg/cancook_logo.svg';
 import React, { useState } from 'react';
 import SearchInput from '../Search/SearchInput';
 import { useRouter } from 'next/router';
+import useScreen from '@/hook/useScreen';
 
 const HeaderWrapper = styled.nav`
   position: sticky;
@@ -25,6 +26,7 @@ const HeaderWrapper = styled.nav`
 const Header = () => {
   const router = useRouter();
   const [isFocus, setIsFocus] = useState(false);
+  const screenSize = useScreen();
 
   const handleFocus = () => {
     setIsFocus(true);
@@ -37,7 +39,7 @@ const Header = () => {
   return (
     <HeaderWrapper>
       <MainLogo onClick={() => router.push('/')} />
-      {router.pathname !== '/search' && (
+      {(router.pathname !== '/search' || screenSize !== 'desktop') && (
         <SearchInput
           isFocus={isFocus}
           onClick={() => router.push('/search')}

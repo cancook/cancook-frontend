@@ -1,6 +1,7 @@
 import Autocomplete from '@/components/Search/Autocomplete';
 import EmptySearchResult from '@/components/Search/EmptySearchResult';
 import SearchInput from '@/components/Search/SearchInput';
+import useScreen from '@/hook/useScreen';
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
 
@@ -32,6 +33,7 @@ const SearchResultWrapper = styled.div`
 const SearchPage = () => {
   const [keyword, setKeyword] = useState(' ');
   const [isFocus, setIsFocus] = useState(true);
+  const screenSize = useScreen();
 
   const handleFocus = () => {
     setIsFocus(true);
@@ -43,17 +45,19 @@ const SearchPage = () => {
 
   return (
     <>
-      <SearchBox>
-        <Title>오늘은 어떤 재료로 요리할까?</Title>
-        <SearchInput
-          isFocus={isFocus}
-          value={keyword}
-          onChange={(e: any) => setKeyword(e.target.value)}
-          handleFocus={handleFocus}
-          handleBlur={handleBlur}
-        />
-        <Autocomplete keywords={[keyword, '1', '2']} isOpen={isFocus} />
-      </SearchBox>
+      {screenSize === 'desktop' && (
+        <SearchBox>
+          <Title>오늘은 어떤 재료로 요리할까?</Title>
+          <SearchInput
+            isFocus={isFocus}
+            value={keyword}
+            onChange={(e: any) => setKeyword(e.target.value)}
+            handleFocus={handleFocus}
+            handleBlur={handleBlur}
+          />
+          <Autocomplete keywords={[keyword, '1', '2']} isOpen={isFocus} />
+        </SearchBox>
+      )}
       <SearchResultWrapper>
         <EmptySearchResult />
       </SearchResultWrapper>
