@@ -28,6 +28,7 @@
     "next-fonts": "^1.5.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-transition-group": "^4.4.5",
     "swiper": "^9.2.4",
     "typescript": "5.0.2"
   },
@@ -45,6 +46,7 @@
     "@storybook/react": "^7.0.6",
     "@storybook/testing-library": "^0.1.0",
     "@types/jest": "^29.5.1",
+    "@types/react-transition-group": "^4.4.6",
     "babel-loader": "^8.3.0",
     "chromatic": "^6.17.3",
     "eslint-config-prettier": "^8.8.0",
