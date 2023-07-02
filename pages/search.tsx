@@ -1,7 +1,8 @@
+import Autocomplete from '@/components/Search/Autocomplete';
 import EmptySearchResult from '@/components/Search/EmptySearchResult';
 import SearchInput from '@/components/Search/SearchInput';
 import styled from '@emotion/styled';
-import React from 'react';
+import React, { useState } from 'react';
 
 const SearchBox = styled.div`
   width: 85rem;
@@ -29,11 +30,29 @@ const SearchResultWrapper = styled.div`
 `;
 
 const SearchPage = () => {
+  const [keyword, setKeyword] = useState(' ');
+  const [isFocus, setIsFocus] = useState(true);
+
+  const handleFocus = () => {
+    setIsFocus(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocus(false);
+  };
+
   return (
     <>
       <SearchBox>
         <Title>오늘은 어떤 재료로 요리할까?</Title>
-        <SearchInput initialFocus={true} />
+        <SearchInput
+          isFocus={isFocus}
+          value={keyword}
+          onChange={(e: any) => setKeyword(e.target.value)}
+          handleFocus={handleFocus}
+          handleBlur={handleBlur}
+        />
+        <Autocomplete keywords={[keyword, '1', '2']} isOpen={isFocus} />
       </SearchBox>
       <SearchResultWrapper>
         <EmptySearchResult />
