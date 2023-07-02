@@ -3,6 +3,7 @@ import React from 'react';
 
 const AutocompleteWrapper = styled.ul<{ isOpen: boolean }>`
   display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  position: absolute;
   margin-top: 0.5rem;
   padding: 0.5rem 0;
   width: 100%;
@@ -10,7 +11,9 @@ const AutocompleteWrapper = styled.ul<{ isOpen: boolean }>`
   border-radius: 1rem;
   overflow-x: hidden;
   overflow-y: auto;
+  background-color: ${({ theme }) => theme.colors.gray[900]};
   ${({ theme }) => theme.screen.desktop} {
+    position: relative;
     background-color: ${({ theme }) => theme.colors.white[0]};
   }
 `;
