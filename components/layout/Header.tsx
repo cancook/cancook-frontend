@@ -27,7 +27,12 @@ const Header = () => {
 
   return (
     <HeaderWrapper>
-      <MainLogo onClick={() => router.push('/')} />
+      <MainLogo
+        onClick={() => router.push('/')}
+        style={{
+          cursor: 'pointer'
+        }}
+      />
       {router.pathname !== '/search' && (
         <SearchInput
           isFocus={false}
