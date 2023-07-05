@@ -78,9 +78,12 @@ const ArrowButton = styled.div`
 `;
 
 const SwiperButtonWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.625rem;
+  display: none;
+  ${({ theme }) => theme.screen.desktop} {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+  }
 `;
 
 const CategoryTitle = styled.h2`
