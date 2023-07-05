@@ -16,8 +16,7 @@ const Text = styled.p`
   text-align: center;
   ${({ theme }) => theme.font.body.md};
   ${({ theme }) => theme.screen.desktop} {
-    ${({ theme }) => theme.font.title.lg};
-    line-height: 2.125rem;
+    ${({ theme }) => theme.font.title.sm};
   }
 `;
 
