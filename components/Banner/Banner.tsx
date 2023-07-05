@@ -24,14 +24,9 @@ const Banner = ({ banners, isLoading }: BannerProps) => {
       <Swiper
         modules={[Autoplay, Navigation, Pagination]}
         slidesPerView={1}
-        navigation={false}
+        navigation
         pagination={{ type: 'fraction' }}
         autoplay={{ delay: 3000, pauseOnMouseEnter: true }}
-        breakpoints={{
-          1440: {
-            navigation: true
-          }
-        }}
         loop
       >
         {banners.map((banner: BannerInformation, idx: number) => (
@@ -66,12 +61,8 @@ const BannerContainer = styled.div`
     overflow: visible;
     .swiper-button-next,
     .swiper-button-prev {
-      color: ${({ theme }) => theme.colors.white[50]};
-      &::after {
-        font-size: 2rem;
-      }
+      display: none;
     }
-
     .swiper-pagination-fraction {
       width: auto;
       right: 1.5rem;
@@ -84,6 +75,19 @@ const BannerContainer = styled.div`
       .swiper-pagination-current,
       .swiper-pagination-total {
         line-height: 1.5rem;
+      }
+    }
+  }
+
+  ${({ theme }) => theme.screen.desktop} {
+    .swiper {
+      .swiper-button-next,
+      .swiper-button-prev {
+        display: block;
+        color: ${({ theme }) => theme.colors.white[50]};
+        &::after {
+          font-size: 2rem;
+        }
       }
     }
   }
