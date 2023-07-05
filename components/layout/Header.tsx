@@ -11,14 +11,22 @@ const HeaderWrapper = styled.nav`
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  padding: 0.75rem 1.25rem;
+  padding: 2rem 1.25rem 1rem;
   z-index: 10;
   backdrop-filter: blur(20px);
+  .invisible-logo {
+    display: none;
+  }
   ${({ theme }) => theme.screen.desktop} {
     height: 6rem;
     padding: 1.5rem 2.5rem;
     flex-direction: row;
     gap: 0;
+
+    .invisible-logo {
+      display: block;
+      opacity: 0;
+    }
   }
 `;
 
@@ -40,6 +48,13 @@ const Header = () => {
           disabled
         />
       )}
+      <MainLogo
+        className="invisible-logo"
+        onClick={() => router.push('/')}
+        style={{
+          cursor: 'pointer'
+        }}
+      />
     </HeaderWrapper>
   );
 };

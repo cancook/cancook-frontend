@@ -51,7 +51,8 @@ export default function Home() {
 }
 
 export const MainContainer = styled.div`
-  padding: 2rem 0;
+  padding: 0;
+  padding-bottom: 2rem;
   overflow: hidden;
   display: flex;
   flex-direction: column;
