@@ -16,7 +16,7 @@ const InputWrapper = styled.div<{ isFocus: boolean }>`
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 20rem;
+  height: 2.5rem;
   margin: auto;
   padding: 0.75rem 1rem;
   border-radius: 1.5rem;
@@ -26,6 +26,7 @@ const InputWrapper = styled.div<{ isFocus: boolean }>`
   background-color: ${({ theme }) => theme.colors.gray[800]};
   ${({ theme }) => theme.screen.desktop} {
     max-width: 50rem;
+    height: 3rem;
   }
 `;
 
