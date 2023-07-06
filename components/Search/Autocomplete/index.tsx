@@ -14,7 +14,7 @@ const AutocompleteWrapper = styled.ul<{ isOpen: boolean }>`
   background-color: ${({ theme }) => theme.colors.gray[900]};
   ${({ theme }) => theme.screen.desktop} {
     position: relative;
-    background-color: ${({ theme }) => theme.colors.white[0]};
+    background-color: ${({ theme }) => theme.colors.gray[800]};
   }
 `;
 
@@ -24,9 +24,9 @@ const AutocompleteItem = styled.li`
   ${({ theme }) => theme.font.title.sm}
   cursor: pointer;
   ${({ theme }) => theme.screen.desktop} {
-    color: ${({ theme }) => theme.colors.gray[800]};
+    color: ${({ theme }) => theme.colors.gray[100]};
     :hover {
-      background-color: ${({ theme }) => theme.colors.yellow[50]};
+      background-color: #ffc04319;
     }
   }
 `;
