@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react';
 import FoodContentCard from '.';
 import { StoryFn } from '@storybook/react';
-import CreatorProfile from './Footer/CreatorProfile';
+import FoodContentCardFooter from './Footer';
 
 const FoodContentCardStory = {
   title: 'Component/FoodContentCard',
@@ -20,9 +20,9 @@ const CardTemplate: StoryFn<Props> = ({ Thumbnail, Body }) => (
   <FoodContentCard.Layout>
     <FoodContentCard.Thumbnail {...Thumbnail} />
     <FoodContentCard.Body {...Body} />
-    <CreatorProfile src="https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A">
+    <FoodContentCardFooter src="https://i.ytimg.com/vi/B2s5seuBCn0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLArD-nM9VEHz5TZ3qai6BzHy9H28A">
       김코딩
-    </CreatorProfile>
+    </FoodContentCardFooter>
   </FoodContentCard.Layout>
 );
 

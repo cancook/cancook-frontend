@@ -38,7 +38,7 @@ type Props = {
   /**
    * 게시글의 부제목을 나타냅니다.
    */
-  subTitle: string;
+  subTitle?: string;
   /**
    * 기본 제공되는 레이아웃 이외에 노드를 직접 넣어 사용할수 있습니다.
    */
