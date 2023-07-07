@@ -18,6 +18,7 @@ const Title = styled.h3`
 
   ${({ theme }) => theme.screen.desktop} {
     ${({ theme }) => theme.font.title.sm};
+    font-size: 1rem;
   }
 `;
 
