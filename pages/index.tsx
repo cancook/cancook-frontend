@@ -3,28 +3,27 @@ import Banner from '@/components/Banner/Banner';
 import CardCarousel from '@/components/Carousel/Card/CardCarouselContainer';
 import styled from '@emotion/styled';
 
-import { YoutubeCategory, YoutubeRecommended } from '@/types/youtube';
-import {
-  YOUTUBE_BANNER_DUMMY_DATA,
-  YOUTUBE_CATEGORY_DUMMY_DATA
-} from '@/constants/dummyData/youtube';
+import { YoutubeRecommended } from '@/types/youtube';
+import { YOUTUBE_BANNER_DUMMY_DATA } from '@/constants/dummyData/youtube';
 import { BannerInformation } from '@/types/banner';
 import { BANNER_DUMMY_DATA } from '@/constants/dummyData/banner';
+import { getCategoryList } from '@/apis/youtube';
+import { useQuery } from '@tanstack/react-query';
 
 export default function Home() {
   // const { data: recommendedData, isLoading: isRecommendedLoading } = useQuery(
   //   ['youtube', 'recommended'],
   //   getRecommendedList
   // );
-  // const { data: categoryData, isLoading: isCategoryLoading } = useQuery(
-  //   ['youtube', 'category'],
-  //   getCategoryList
-  // );
+  const { data: categoryData, isLoading: isCategoryLoading } = useQuery(
+    ['youtube', 'category'],
+    getCategoryList
+  );
 
   // TODO: 테스트용
   const bannerData: BannerInformation[] = BANNER_DUMMY_DATA;
   const recommendedData: YoutubeRecommended[] = YOUTUBE_BANNER_DUMMY_DATA;
-  const categoryData: YoutubeCategory[] = YOUTUBE_CATEGORY_DUMMY_DATA;
+  // const categoryData: YoutubeCategory[] = YOUTUBE_CATEGORY_DUMMY_DATA;
 
   return (
     <>
@@ -51,7 +50,8 @@ export default function Home() {
 }
 
 export const MainContainer = styled.div`
-  padding: 2rem 0;
+  padding: 0;
+  padding-bottom: 2rem;
   overflow: hidden;
   display: flex;
   flex-direction: column;

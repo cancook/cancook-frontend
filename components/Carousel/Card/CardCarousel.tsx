@@ -6,7 +6,6 @@ import { FreeMode, Navigation } from 'swiper';
 import 'swiper/css/navigation';
 import 'swiper/css/free-mode';
 
-import CreatorProfile from '@/components/FoodContentCard/Footer/CreatorProfile';
 import { VideoInformation } from '@/types/youtube';
 import timeFormatter from '@/utils/timeFormatter';
 import viewsFormatter from '@/utils/viewsFormatter';
@@ -69,16 +68,16 @@ const CardCarousel = ({ cards, prev, next }: Props) => {
                   />
                 </ImageScaleUp>
               </ImageWrapper>
-              <FoodContentCard.Body
-                title={card.video.title}
-                subTitle={`조회수 ${viewsFormatter(
-                  card.video.views
-                )}회 • ${timeFormatter(card.video.createdAt)}전`}
-              />
+              <FoodContentCard.Body title={card.video.title} />
             </div>
-            <CreatorProfile src={card.creator.thumbnail}>
+            <FoodContentCard.Footer
+              src={card.creator.thumbnail}
+              viewAndDates={`조회수 ${viewsFormatter(
+                card.video.views
+              )}회 • ${timeFormatter(card.video.createdAt)}전`}
+            >
               {card.creator.name}
-            </CreatorProfile>
+            </FoodContentCard.Footer>
           </FoodContentCard.Layout>
         </SwiperSlide>
       ))}

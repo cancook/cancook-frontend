@@ -6,11 +6,10 @@ import React, { useEffect, useRef, useState } from 'react';
 
 const SearchBox = styled.div`
   position: relative;
-  max-width: 22.5rem;
   margin: auto;
+  padding: 1rem 1.25rem 0;
   ${({ theme }) => theme.screen.desktop} {
     width: 85rem;
-    max-width: none;
     height: 22.0625rem;
     padding: 5rem 20rem 8.75rem 20rem;
     margin: 2.5rem auto;

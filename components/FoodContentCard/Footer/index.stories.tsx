@@ -1,22 +1,22 @@
 import { StoryFn } from '@storybook/react';
 import { ComponentProps } from 'react';
-import CreatorProfile from './CreatorProfile';
+import FoodContentCardFooter from '.';
 import FoodContentCard from '..';
 
 const CreatorProfileComponent = {
   title: 'Component/FoodContentCard/CreatorProfile',
-  component: CreatorProfile
+  component: FoodContentCardFooter
 };
 export default CreatorProfileComponent;
 
-type CreatorProfileProps = ComponentProps<typeof CreatorProfile>;
+type CreatorProfileProps = ComponentProps<typeof FoodContentCardFooter>;
 
 /**
  * 게시글 작성자를 보여주는 컴포넌트입니다.
  */
 export const CreatorProfileTemplate: StoryFn<CreatorProfileProps> = (args) => (
   <FoodContentCard.Layout>
-    <CreatorProfile {...args} />
+    <FoodContentCardFooter {...args} />
   </FoodContentCard.Layout>
 );
 CreatorProfileTemplate.args = {

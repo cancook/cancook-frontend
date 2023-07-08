@@ -45,15 +45,24 @@ const CarouselContainer = styled.div`
   margin: auto;
 
   width: 100%;
-  padding: 0 1.25rem;
+  padding: 0;
+
+  /* 시작은 1.25rem 간격이 있는 상태에서 시작해야한다... */
+  .swiper-wrapper {
+    margin-left: 1.25rem;
+  }
 
   ${({ theme }) => theme.screen.desktop} {
+    padding: 0 1.25rem;
     width: auto;
+    .swiper-wrapper {
+      margin-left: 0;
+    }
   }
 `;
 
 const TitleWrapper = styled.div`
-  padding: 1.5rem 0rem 0.75rem 0rem;
+  padding: 1.5rem 1.25rem 0.75rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -78,9 +87,12 @@ const ArrowButton = styled.div`
 `;
 
 const SwiperButtonWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.625rem;
+  display: none;
+  ${({ theme }) => theme.screen.desktop} {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+  }
 `;
 
 const CategoryTitle = styled.h2`
