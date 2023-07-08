@@ -4,8 +4,6 @@ import React from 'react';
 const AutocompleteWrapper = styled.ul<{ isOpen: boolean }>`
   display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
   position: absolute;
-  margin-top: 0.5rem;
-  padding: 0.5rem 0;
   width: 100%;
   max-height: 23rem;
   border-radius: 1rem;
@@ -14,6 +12,8 @@ const AutocompleteWrapper = styled.ul<{ isOpen: boolean }>`
   background-color: ${({ theme }) => theme.colors.gray[900]};
   ${({ theme }) => theme.screen.desktop} {
     position: relative;
+    margin-top: 0.5rem;
+    padding: 0.5rem 0;
     background-color: ${({ theme }) => theme.colors.gray[800]};
   }
 `;
