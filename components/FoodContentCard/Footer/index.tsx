@@ -19,11 +19,13 @@ const ProfileLayout = styled.div`
   margin-top: 0.625rem;
   align-items: center;
   color: ${({ theme }) => theme.colors.gray[200]};
+  white-space: nowrap;
 `;
 
 const ViewAndDates = styled.h5`
   margin-left: 0.5rem;
-  ${({ theme }) => theme.font.body.md};
+  ${({ theme }) => theme.font.body.sm};
+  color: ${({ theme }) => theme.colors.gray[400]};
 
   ${({ theme }) => theme.screen.desktop} {
     ${({ theme }) => theme.font.body.md};
