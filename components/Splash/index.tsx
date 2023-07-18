@@ -1,39 +1,9 @@
 import styled from '@emotion/styled';
 import React from 'react';
-
-type CarouselTextItem = {
-  img: string;
-  name: string;
-};
-
-type CarouselTextList = CarouselTextItem[];
-
-const TextCarousel = ({
-  ingredientList
-}: {
-  ingredientList: CarouselTextList;
-}) => {
-  return (
-    <TextCarouselContainer>
-      <HeadTextCarouselList>
-        {ingredientList.map((ingredient) => (
-          <TextCarouselItem key={ingredient.name}>
-            {ingredient.img}
-            {ingredient.name}
-          </TextCarouselItem>
-        ))}
-      </HeadTextCarouselList>
-      <TailTextCarouselList>
-        {ingredientList.map((ingredient) => (
-          <TextCarouselItem key={ingredient.name}>
-            {ingredient.img}
-            {ingredient.name}
-          </TextCarouselItem>
-        ))}
-      </TailTextCarouselList>
-    </TextCarouselContainer>
-  );
-};
+import RotatingText from './RotatingText';
+import ScrollToCategory from './ScrollToCategory';
+import theme from '@/styles/theme';
+import SearchIcon from '@/public/svg/search.svg';
 
 const Splash = () => {
   const ingredientList = [
@@ -47,9 +17,19 @@ const Splash = () => {
   return (
     <SplashContainer>
       <SplashHeader>
-        오늘은 <TextCarousel ingredientList={ingredientList} />로
+        오늘은 <RotatingText ingredientList={ingredientList} />로
       </SplashHeader>
       <SplashHeader>어떤 요리를 만들어볼까?</SplashHeader>
+      {/* <SearchInputConatiner>
+        <SearchInput isFocus={false} />
+      </SearchInputConatiner> */}
+      <SearchButtonContainer>
+        <SearchButton>
+          <SearchIcon fill={theme.colors.gray[300]} />
+          <span className="button-text">냉장고에 있는 재료를 골라주세요</span>
+        </SearchButton>
+      </SearchButtonContainer>
+      <ScrollToCategory />
     </SplashContainer>
   );
 };
@@ -83,150 +63,52 @@ const SplashHeader = styled.h1`
   }
 `;
 
-// Text Carousel
-const TextCarouselContainer = styled.div`
-  position: relative;
-  width: 6.75rem;
-  height: 2.25rem;
-  border-radius: 0.45rem;
-  background: #232328;
-  overflow: hidden;
+const SearchButtonContainer = styled.div`
+  margin: 1rem auto 0;
+  padding: 0.62rem 1.5rem;
+  width: 100%;
 
   ${({ theme }) => theme.screen.desktop} {
-    width: 15rem;
-    height: 5rem;
-    border-radius: 1rem;
+    margin-top: 4.5rem;
+    padding: 0;
   }
 `;
 
-// count 는 list item 의 숫자입니다.
-const TextCarouselList = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  animation-duration: 10s;
-  animation-timing-function: cubic-bezier(0.55, 0, 0.55, 1);
-  animation-iteration-count: infinite;
-  animation-fill-mode: forwards;
-`;
+const SearchButton = styled.button`
+  cursor: text;
+  width: 100%;
+  max-width: 50rem;
+  height: 2.75rem;
 
-const HeadTextCarouselList = styled(TextCarouselList)`
-  animation-name: headTextMove;
+  display: flex;
+  margin: auto;
+  padding: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  align-self: stretch;
+  border-radius: 0.5rem;
+  background-color: #2c2c34;
+  border: none;
 
-  @keyframes headTextMove {
-    0%,
-    12.5% {
-      top: 0;
-    }
-    25%,
-    37.5% {
-      top: calc(1 * -2.25rem);
-    }
-    50%,
-    62.5% {
-      top: calc(2 * -2.25rem);
-    }
-    75%,
-    87.5% {
-      top: calc(3 * -2.25rem);
-    }
-    100% {
-      top: calc(4 * -2.25rem);
-    }
-  }
-
-  ${({ theme }) => theme.screen.desktop} {
-    @keyframes headTextMove {
-      0%,
-      12.5% {
-        top: 0;
-      }
-      25%,
-      37.5% {
-        top: calc(1 * -4.59375rem);
-      }
-      50%,
-      62.5% {
-        top: calc(2 * -4.59375rem);
-      }
-      75%,
-      87.5% {
-        top: calc(3 * -4.59375rem);
-      }
-      100% {
-        top: calc(4 * -4.59375rem);
-      }
-    }
-  }
-`;
-
-const TailTextCarouselList = styled(TextCarouselList)`
-  animation-name: tailTextMove;
-  top: calc(-4 * -2.25rem);
-  @keyframes tailTextMove {
-    0%,
-    12.5% {
-      top: calc(-4 * -2.25rem);
-    }
-    25%,
-    37.5% {
-      top: calc(-3 * -2.25rem);
-    }
-    50%,
-    62.5% {
-      top: calc(-2 * -2.25rem);
-    }
-    75%,
-    87.5% {
-      top: calc(-1 * -2.25rem);
-    }
-    100% {
-      top: calc(0 * -2.25rem);
-    }
-  }
-
-  ${({ theme }) => theme.screen.desktop} {
-    top: calc(-4 * -4.59375rem);
-    @keyframes tailTextMove {
-      0%,
-      12.5% {
-        top: calc(-4 * -4.59375rem);
-      }
-      25%,
-      37.5% {
-        top: calc(-3 * -4.59375rem);
-      }
-      50%,
-      62.5% {
-        top: calc(-2 * -4.59375rem);
-      }
-      75%,
-      87.5% {
-        top: calc(-1 * -4.59375rem);
-      }
-      100% {
-        top: calc(0 * -4.59375rem);
-      }
-    }
-  }
-`;
-
-const TextCarouselItem = styled.div`
-  text-align: center;
-  color: #ffc043;
-  font-family: Pretendard;
-  font-size: 1.575rem;
-  font-style: normal;
-  font-weight: 700;
-  letter-spacing: -0.01688rem;
-  padding: 0 0.375rem;
-  line-height: 2.25rem;
-
-  ${({ theme }) => theme.screen.desktop} {
-    font-size: 3.5rem;
-    line-height: normal;
+  .button-text {
+    color: #97969e;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.25rem; /* 142.857% */
     letter-spacing: -0.0375rem;
+  }
+
+  ${({ theme }) => theme.screen.desktop} {
+    height: 4.5rem;
+    border-radius: 1rem;
+
+    .button-text {
+      font-size: 1.25rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 1.375rem; /* 110% */
+      letter-spacing: -0.0375rem;
+    }
   }
 `;
