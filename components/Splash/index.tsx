@@ -41,14 +41,7 @@ const Splash = () => {
     { img: '🥚', name: '달걀' },
     { img: '🐮', name: '소고기' },
     { img: '🥬', name: '양배추' },
-    { img: '🦑', name: '오징어' }
-    // { img: '🥛', name: '우유' },
-    // { img: '🍚', name: '밥' },
-    // { img: '🧅', name: '양파' },
-    // { img: '🥓', name: '베이컨' },
-    // { img: '🍤', name: '새우' },
-    // { img: '🧄', name: '마늘' }
-    // { img: '🍗', name: '닭고기' }
+    { img: '🧅', name: '양파' }
   ];
 
   return (
@@ -63,6 +56,7 @@ const Splash = () => {
 
 export default Splash;
 
+// Container
 const SplashContainer = styled.div`
   /* TODO: height 재설정 필요 100vh - header-height */
   height: 80vh;
@@ -79,6 +73,14 @@ const SplashHeader = styled.h1`
   position: relative;
   ${({ theme }) => theme.font.headLine.lg};
   color: #fff;
+
+  ${({ theme }) => theme.screen.desktop} {
+    font-size: 4.375rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.0375rem;
+  }
 `;
 
 // Text Carousel
@@ -89,13 +91,23 @@ const TextCarouselContainer = styled.div`
   border-radius: 0.45rem;
   background: #232328;
   overflow: hidden;
+
+  ${({ theme }) => theme.screen.desktop} {
+    width: 15rem;
+    height: 5rem;
+    border-radius: 1rem;
+  }
 `;
 
 // count 는 list item 의 숫자입니다.
 const TextCarouselList = styled.div`
   position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   animation-duration: 10s;
-  animation-timing-function: cubic-bezier(0.55, 0.05, 0.55, 0.95);
+  animation-timing-function: cubic-bezier(0.55, 0, 0.55, 1);
   animation-iteration-count: infinite;
   animation-fill-mode: forwards;
 `;
@@ -104,42 +116,99 @@ const HeadTextCarouselList = styled(TextCarouselList)`
   animation-name: headTextMove;
 
   @keyframes headTextMove {
-    0% {
+    0%,
+    12.5% {
       top: 0;
     }
-    25% {
+    25%,
+    37.5% {
       top: calc(1 * -2.25rem);
     }
-    50% {
+    50%,
+    62.5% {
       top: calc(2 * -2.25rem);
     }
-    75% {
+    75%,
+    87.5% {
       top: calc(3 * -2.25rem);
     }
     100% {
       top: calc(4 * -2.25rem);
     }
   }
+
+  ${({ theme }) => theme.screen.desktop} {
+    @keyframes headTextMove {
+      0%,
+      12.5% {
+        top: 0;
+      }
+      25%,
+      37.5% {
+        top: calc(1 * -4.59375rem);
+      }
+      50%,
+      62.5% {
+        top: calc(2 * -4.59375rem);
+      }
+      75%,
+      87.5% {
+        top: calc(3 * -4.59375rem);
+      }
+      100% {
+        top: calc(4 * -4.59375rem);
+      }
+    }
+  }
 `;
 
 const TailTextCarouselList = styled(TextCarouselList)`
   animation-name: tailTextMove;
-  top: calc(4 * 2.25rem);
+  top: calc(-4 * -2.25rem);
   @keyframes tailTextMove {
-    0% {
+    0%,
+    12.5% {
       top: calc(-4 * -2.25rem);
     }
-    25% {
+    25%,
+    37.5% {
       top: calc(-3 * -2.25rem);
     }
-    50% {
+    50%,
+    62.5% {
       top: calc(-2 * -2.25rem);
     }
-    75% {
+    75%,
+    87.5% {
       top: calc(-1 * -2.25rem);
     }
     100% {
       top: calc(0 * -2.25rem);
+    }
+  }
+
+  ${({ theme }) => theme.screen.desktop} {
+    top: calc(-4 * -4.59375rem);
+    @keyframes tailTextMove {
+      0%,
+      12.5% {
+        top: calc(-4 * -4.59375rem);
+      }
+      25%,
+      37.5% {
+        top: calc(-3 * -4.59375rem);
+      }
+      50%,
+      62.5% {
+        top: calc(-2 * -4.59375rem);
+      }
+      75%,
+      87.5% {
+        top: calc(-1 * -4.59375rem);
+      }
+      100% {
+        top: calc(0 * -4.59375rem);
+      }
     }
   }
 `;
@@ -154,4 +223,10 @@ const TextCarouselItem = styled.div`
   letter-spacing: -0.01688rem;
   padding: 0 0.375rem;
   line-height: 2.25rem;
+
+  ${({ theme }) => theme.screen.desktop} {
+    font-size: 3.5rem;
+    line-height: normal;
+    letter-spacing: -0.0375rem;
+  }
 `;

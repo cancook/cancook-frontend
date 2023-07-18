@@ -32,9 +32,10 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* NOTE: 이 부분은 따로 component로 빼도 될거 같기는 한데, 우선 Server Side Props 로 받아오면 
-                어떻게 보일지를 몰라서, 나중에 변경 예정
-      */}
+      {/* NOTE: 07-18 update
+                메인 페이지 진입시 처음 보이는 것은 검색창이며,
+                아래의 MainContainer 는 검색이 종료 된뒤 결과 페이지와 흡사합니다. */}
+
       {/* <MainContainer>
         <Banner banners={bannerData} isLoading={false} />
         {categoryData?.map((category) => (
