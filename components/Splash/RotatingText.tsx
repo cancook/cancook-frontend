@@ -98,18 +98,18 @@ const HeadRotatingTextList = styled(RotatingTextList)`
       }
       25%,
       37.5% {
-        top: calc(1 * -4.59375rem);
+        top: calc(1 * -5rem);
       }
       50%,
       62.5% {
-        top: calc(2 * -4.59375rem);
+        top: calc(2 * -5rem);
       }
       75%,
       87.5% {
-        top: calc(3 * -4.59375rem);
+        top: calc(3 * -5rem);
       }
       100% {
-        top: calc(4 * -4.59375rem);
+        top: calc(4 * -5rem);
       }
     }
   }
@@ -141,26 +141,26 @@ const TailRotatingTextList = styled(RotatingTextList)`
   }
 
   ${({ theme }) => theme.screen.desktop} {
-    top: calc(-4 * -4.59375rem);
+    top: calc(-4 * -5rem);
     @keyframes tailTextMove {
       0%,
       12.5% {
-        top: calc(-4 * -4.59375rem);
+        top: calc(-4 * -5rem);
       }
       25%,
       37.5% {
-        top: calc(-3 * -4.59375rem);
+        top: calc(-3 * -5rem);
       }
       50%,
       62.5% {
-        top: calc(-2 * -4.59375rem);
+        top: calc(-2 * -5rem);
       }
       75%,
       87.5% {
-        top: calc(-1 * -4.59375rem);
+        top: calc(-1 * -5rem);
       }
       100% {
-        top: calc(0 * -4.59375rem);
+        top: calc(0 * -5rem);
       }
     }
   }
@@ -179,7 +179,7 @@ const RotatingTextItem = styled.div`
 
   ${({ theme }) => theme.screen.desktop} {
     font-size: 3.5rem;
-    line-height: normal;
+    line-height: 5rem;
     letter-spacing: -0.0375rem;
   }
 `;
