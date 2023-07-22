@@ -8,10 +8,10 @@ import SearchIcon from '@/public/svg/search.svg';
 const Splash = () => {
   const ingredientList = [
     // TODO: change img to image src
-    { img: '🥚', name: '달걀' },
-    { img: '🐮', name: '소고기' },
-    { img: '🥬', name: '양배추' },
-    { img: '🧅', name: '양파' }
+    { img: 'Egg', name: '달걀' },
+    { img: 'Cow Face', name: '소고기' },
+    { img: 'Leafy Green', name: '양배추' },
+    { img: 'Onion', name: '양파' }
   ];
 
   return (

@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import Image from 'next/image';
 
 type RotatingTextItem = {
   img: string;
@@ -17,16 +18,30 @@ const RotatingText = ({
       <HeadRotatingTextList>
         {ingredientList.map((ingredient) => (
           <RotatingTextItem key={ingredient.name}>
-            {ingredient.img}
-            {ingredient.name}
+            <EmojiWrapper>
+              <Image
+                src={`/asset/emoji/${ingredient.img}.png`}
+                alt={`Emoji ${ingredient.img}`}
+                fill
+                style={{ objectFit: 'contain' }}
+              />
+            </EmojiWrapper>
+            <RotatingTextName>{ingredient.name}</RotatingTextName>
           </RotatingTextItem>
         ))}
       </HeadRotatingTextList>
       <TailRotatingTextList>
         {ingredientList.map((ingredient) => (
           <RotatingTextItem key={ingredient.name}>
-            {ingredient.img}
-            {ingredient.name}
+            <EmojiWrapper>
+              <Image
+                src={`/asset/emoji/${ingredient.img}.png`}
+                alt={`Emoji ${ingredient.img}`}
+                fill
+                style={{ objectFit: 'contain' }}
+              />
+            </EmojiWrapper>
+            <RotatingTextName>{ingredient.name}</RotatingTextName>
           </RotatingTextItem>
         ))}
       </TailRotatingTextList>
@@ -167,6 +182,23 @@ const TailRotatingTextList = styled(RotatingTextList)`
 `;
 
 const RotatingTextItem = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const EmojiWrapper = styled.div`
+  position: relative;
+  width: 1.65rem;
+  height: 1.65rem;
+
+  ${({ theme }) => theme.screen.desktop} {
+    width: 4rem;
+    height: 4rem;
+  }
+`;
+
+const RotatingTextName = styled.span`
   text-align: center;
   color: #ffc043;
   font-family: Pretendard;
