@@ -1,7 +1,6 @@
 import { MainContainer } from '@/pages';
 import { StoryFn } from '@storybook/react';
 import Splash from '.';
-import styled from '@emotion/styled';
 
 const BannerStory = {
   title: 'Component/Splash',
@@ -11,9 +10,7 @@ export default BannerStory;
 
 const BannerTemplate: StoryFn = () => (
   <MainContainer>
-    <StyledContainer>
-      <Splash />
-    </StyledContainer>
+    <Splash />
   </MainContainer>
 );
 
@@ -25,7 +22,3 @@ const BannerTemplate: StoryFn = () => (
 export const Default = BannerTemplate.bind({});
 
 Default.args = {};
-
-const StyledContainer = styled.div`
-  background-color: #151517;
-`;
