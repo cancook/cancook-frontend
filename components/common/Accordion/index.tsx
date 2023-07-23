@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useEffect, useRef, useState } from 'react';
 import CloseIcon from '@/public/svg/arrow-up.svg';
-import OpenIcon from '@/public/svg/arrow-down.svg';
 
 type AccordionProps = {
   title: string;
@@ -10,25 +9,39 @@ type AccordionProps = {
 
 const Accordion = ({ title, children }: AccordionProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [height, setHeight] = useState(0);
+
+  const bodyRef = useRef<HTMLDivElement>(null);
   const toggle = () => setIsOpen((pre) => !pre);
+
+  useEffect(() => {
+    setHeight(bodyRef.current?.getBoundingClientRect().height || 0);
+  }, [children]);
+
   return (
     <AccordionWrapper>
       <Title onClick={toggle}>
         {title}
-        {isOpen ? <CloseIcon /> : <OpenIcon />}
+        <ArrowIcon isOpen={isOpen} />
       </Title>
-      <BodyWrapper isOpen={isOpen}>
-        <Body>{children}</Body>
+      <BodyWrapper isOpen={isOpen} height={height}>
+        <Body ref={bodyRef}>{children}</Body>
       </BodyWrapper>
     </AccordionWrapper>
   );
 };
+
+const ArrowIcon = styled(CloseIcon)<{ isOpen: boolean }>`
+  transform: ${({ isOpen }) => (isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
+  transition: transform 0.3s ease-in-out;
+`;
 
 const AccordionWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.gray[700]};
   padding: 1rem;
   border-radius: 0.5rem;
 `;
+
 const Title = styled.span`
   display: flex;
   justify-content: space-between;
@@ -44,20 +57,13 @@ const Title = styled.span`
   line-height: 22px; /* 137.5% */
   letter-spacing: -0.6px;
 `;
-const BodyWrapper = styled.div<{ isOpen: boolean }>`
+const BodyWrapper = styled.div<{ isOpen: boolean; height: number }>`
   color: ${({ theme }) => theme.colors.gray[200]};
-  height: ${({ isOpen }) => (isOpen ? 'auto' : '0px')};
-  /* 
-                    TODO: 애니메이션 인사이트가 필요합니다.... 
-  제가 알아본 바로는 height의 높이값을 지정해 주지않으면 애니메이션이 안먹는다고
-  알고 있어 해당 요소는 높이값을 고정할 수 없으므로 이걸 동적으로 받으려면 JS를 사용해서 직접 
-  값을 주입해야 하는건가? 일단 %와 auto사용은 불가능...
-  */
-  /* transition: height 0.3s ease-in-out; */
+  max-height: ${({ isOpen, height }) => (isOpen ? `${height}px` : 0)};
+  transition: max-height 0.5s ease-in-out;
   overflow: hidden;
 
   /* font */
-
   font-family: Pretendard;
   font-size: 12px;
   font-style: normal;
@@ -67,7 +73,7 @@ const BodyWrapper = styled.div<{ isOpen: boolean }>`
 `;
 
 const Body = styled.div`
-  margin-top: 1rem;
+  padding-top: 1rem;
 `;
 
 export default Accordion;
