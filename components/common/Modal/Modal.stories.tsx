@@ -1,8 +1,7 @@
-import { ComponentProps } from 'react';
 import { StoryFn } from '@storybook/react';
 import Modal from '.';
 import styled from '@emotion/styled';
-import { showModal } from './ModalState';
+import { ModalState, showModal } from '../../../provider/ModalState';
 
 const ModalComponent = {
   title: 'Component/common/Modal',
@@ -10,15 +9,13 @@ const ModalComponent = {
 };
 export default ModalComponent;
 
-type ModalProps = ComponentProps<typeof Modal>;
-
-const ModalTemplate: StoryFn<ModalProps> = () => {
+const ModalTemplate: StoryFn<{ args: ModalState }> = ({
+  args
+}: {
+  args: ModalState;
+}) => {
   const handleModalClick = () => {
-    showModal({
-      show: true,
-      title: '모달 테스트',
-      body: <div>기본 모달을 띄우줍니다.</div>
-    });
+    showModal(args);
   };
   return (
     <Container>
@@ -29,9 +26,35 @@ const ModalTemplate: StoryFn<ModalProps> = () => {
 };
 
 /**
- * 메인 버튼 컴포넌트 입니다.
+ * 가장 기본적인 Modal 입니다.
  */
 export const Default = ModalTemplate.bind({});
-Default.args = {};
+Default.args = {
+  args: { show: true, body: <div>Test1</div> }
+};
+
+/**
+ * Title 을 가지고 있는 모달입니다.
+ */
+export const Title = ModalTemplate.bind({});
+Title.args = {
+  args: {
+    show: true,
+    title: '타이틀을 입력하세요',
+    body: <div>Title Test</div>
+  }
+};
+
+/**
+ * 모바일 상에서는 전체 페이지로 보이는 모달입니다.
+ */
+export const FullScreen = ModalTemplate.bind({});
+FullScreen.args = {
+  args: {
+    fullScreen: true,
+    show: true,
+    body: <div>Full Screen Test</div>
+  }
+};
 
 const Container = styled.div``;

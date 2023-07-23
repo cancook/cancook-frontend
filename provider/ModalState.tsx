@@ -8,16 +8,29 @@ export type ModalState = {
   show: boolean;
   /** Title */
   title?: string;
-  /** Content body */
+  /** Content body that is full screen in mobile */
+  fullScreen?: boolean;
+  /** Content body in normal modal state*/
   body: React.ReactNode;
 };
 
 const initialState: ModalState = {
+  className: undefined,
   show: false,
-  body: null
+  title: undefined,
+  body: <></>,
+  fullScreen: false
 };
 
 export const useModalStore = create(() => initialState);
+
+export const resetModal = () => {
+  useModalStore.setState(initialState);
+};
+
+export const closeModal = () => {
+  useModalStore.setState({ ...initialState, show: false });
+};
 
 export const showModal = (args: ModalState) => {
   const { show, ...rest } = args;
