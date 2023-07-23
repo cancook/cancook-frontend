@@ -40,19 +40,47 @@ export const Tabs = ({ children }: TabsProps) => {
 
 const TabsContainer = styled.div`
   display: flex;
+  flex-direction: column;
   color: white;
-  /* height: 100px; */
+  height: 100%;
+  width: 100%;
+
+  ${({ theme }) => theme.screen.tablet} {
+    flex-direction: row;
+  }
 `;
 
 /** Nav Link */
 const NavContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 0.44rem;
   overflow: scroll;
   padding: 0 1rem;
 
+  /* width */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    border-radius: 4px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.colors.gray[400]};
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b30000;
+  }
+
   ${({ theme }) => theme.screen.tablet} {
+    flex-direction: column;
     padding: 0 1.5rem;
   }
 `;
@@ -65,6 +93,7 @@ const NavItem = styled.div<{ selected: boolean }>`
   width: 5.25rem;
   height: 2.75rem;
 
+  flex: 0 0 5.25rem;
   transition: border-bottom 0.2s ease-in;
 
   border-bottom: 1px solid
@@ -75,6 +104,10 @@ const NavItem = styled.div<{ selected: boolean }>`
 
   color: ${({ selected, theme }) =>
     selected ? theme.colors.yellow[400] : theme.colors.gray[400]};
+
+  ${({ theme }) => theme.screen.tablet} {
+    flex: 0 0 2.75rem;
+  }
 `;
 
 /** Content Tab */

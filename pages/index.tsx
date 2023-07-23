@@ -9,6 +9,7 @@ import { BannerInformation } from '@/types/banner';
 import { BANNER_DUMMY_DATA } from '@/constants/dummyData/banner';
 import { getCategoryList } from '@/apis/youtube';
 import { useQuery } from '@tanstack/react-query';
+import { showModal } from '@/provider/ModalState';
 
 export default function Home() {
   // const { data: recommendedData, isLoading: isRecommendedLoading } = useQuery(
@@ -36,6 +37,21 @@ export default function Home() {
       {/* NOTE: 이 부분은 따로 component로 빼도 될거 같기는 한데, 우선 Server Side Props 로 받아오면 
                 어떻게 보일지를 몰라서, 나중에 변경 예정
       */}
+      <button
+        onClick={() => {
+          showModal({
+            show: true,
+            title: '타이틀이 들어갑니다.',
+            body: (
+              <>
+                <h1>Hello Biches</h1>
+              </>
+            )
+          });
+        }}
+      >
+        버튼
+      </button>
       <MainContainer>
         <Banner banners={bannerData} isLoading={false} />
         {categoryData?.map((category) => (
