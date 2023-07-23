@@ -56,32 +56,34 @@ const NavContainer = styled.div`
   flex-direction: row;
   gap: 0.44rem;
   overflow: scroll;
-  padding: 0 1rem;
+  padding: 0.75rem 1rem 0;
 
-  /* width */
+  // scroll bar
   ::-webkit-scrollbar {
-    width: 4px;
+    width: 0px;
     height: 4px;
   }
 
-  /* Track */
   ::-webkit-scrollbar-track {
     border-radius: 4px;
   }
 
-  /* Handle */
   ::-webkit-scrollbar-thumb {
     background: ${({ theme }) => theme.colors.gray[400]};
+    border-radius: 2px;
   }
 
-  /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #b30000;
   }
 
   ${({ theme }) => theme.screen.tablet} {
     flex-direction: column;
     padding: 0 1.5rem;
+
+    ::-webkit-scrollbar {
+      height: 0px;
+      width: 4px;
+    }
   }
 `;
 
