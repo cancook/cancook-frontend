@@ -79,6 +79,7 @@ const NavContainer = styled.div`
   ${({ theme }) => theme.screen.tablet} {
     flex-direction: column;
     padding: 0 1.5rem;
+    flex: 0 0 8.3125rem;
 
     ::-webkit-scrollbar {
       height: 0px;

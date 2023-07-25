@@ -33,6 +33,7 @@ const ModalTitleContainer = styled.div`
 
   ${({ theme }) => theme.screen.tablet} {
     padding: 1.5rem;
+    height: auto;
   }
 `;
 

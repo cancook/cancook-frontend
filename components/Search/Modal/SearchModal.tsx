@@ -31,7 +31,59 @@ const SearchModal = () => {
       {/* Tab 컨테이너 */}
       <TabsContainer>
         <Tabs>
-          <Tab title="고기칸">Test 1</Tab>
+          <Tab title="고기칸">
+            <div
+              style={{
+                fontSize: '2rem',
+                height: 'calc(80vh - 18rem)',
+                overflow: 'scroll'
+              }}
+            >
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
+              temporibus, reiciendis quas saepe nihil voluptatem repudiandae
+              iste et id architecto eum vero, voluptatum maiores impedit quos
+              pariatur velit asperiores cumque. Lorem ipsum dolor sit amet,
+              consectetur adipisicing elit. Perferendis labore maiores harum
+              quibusdam eum numquam et officia sint ipsam! Ipsum perspiciatis
+              magni cum ipsam quae non voluptatum tempora deserunt accusamus.
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia
+              suscipit sapiente architecto distinctio reprehenderit delectus
+              voluptates nobis, repudiandae assumenda similique dolore ipsa
+              alias voluptatum, aut tempore illum quo sunt iure. Facilis quasi
+              et minus eos, officiis tempore accusantium! Eos ipsam provident
+              atque ullam, perspiciatis quae saepe in, aliquid dolorem placeat
+              at odit dolores maiores. Voluptatibus rerum repellendus nesciunt
+              quis enim! Delectus non distinctio necessitatibus eos magnam.
+              Rerum ab ducimus omnis amet, blanditiis commodi suscipit in sed
+              recusandae quis fugit eligendi aliquam impedit. Reiciendis id sit,
+              at fugit qui quam hic? Ullam quis expedita nihil numquam quisquam
+              sed accusamus voluptatem omnis, iure hic ab rerum itaque tenetur
+              at enim error vitae vero? Obcaecati nam libero, officiis ducimus
+              blanditiis error excepturi illo? Voluptate quisquam illum corporis
+              explicabo dolor fugit accusantium consequuntur, similique
+              necessitatibus eius aut ducimus nesciunt deleniti ut aliquid
+              suscipit exercitationem tempore iste blanditiis repellendus
+              dolores commodi delectus. Odio, expedita minima. Placeat,
+              similique nulla quisquam nisi odit perferendis, cum tenetur quod
+              iusto commodi voluptate natus, facere eligendi minima quasi
+              aliquid ratione provident adipisci est totam non accusantium? Nam
+              ullam minima quos! Ipsum a quidem temporibus odit quis enim minus,
+              repudiandae reiciendis ipsa ab saepe illum obcaecati dolorem
+              officiis quibusdam tempore. Fuga laboriosam ipsam quibusdam nisi
+              doloremque quidem iure dolore nostrum omnis. Accusantium
+              perferendis alias cum quam porro, nobis eos consectetur maiores!
+              Nisi ea dolor reiciendis aliquam dolore obcaecati facere corrupti,
+              incidunt unde officiis suscipit nam nesciunt, reprehenderit
+              recusandae optio ducimus et. Facere ad explicabo officiis? Esse
+              dolor numquam totam aliquam distinctio et perspiciatis dolores
+              voluptatem deleniti nihil? Ipsam ab iusto, ipsum suscipit in unde
+              voluptatem officiis ad eos repellat quam aspernatur? Similique
+              excepturi totam omnis dolorem id deleniti quam recusandae!
+              Voluptatibus, sint odit facere reiciendis alias, consequatur
+              tempore provident dolor earum voluptate laudantium cum molestiae
+              vel impedit iure aut accusamus mollitia.
+            </div>
+          </Tab>
           <Tab title="야채칸">Test 2</Tab>
           <Tab title="과일칸">Test 3</Tab>
           <Tab title="기타">Test 4</Tab>
@@ -79,12 +131,17 @@ export default SearchModal;
 const SearhcInputContainer = styled.div`
   padding: 0 1rem 0.5rem;
 
-  ${({ theme }) => theme.screen.desktop} {
+  ${({ theme }) => theme.screen.tablet} {
   }
 `;
 
 // Tab Container
-const TabsContainer = styled.div``;
+const TabsContainer = styled.div`
+  min-height: auto;
+  ${({ theme }) => theme.screen.tablet} {
+    height: 20rem;
+  }
+`;
 
 // Button Container
 const ButtonContainer = styled.div`
@@ -96,6 +153,10 @@ const ButtonContainer = styled.div`
   flex-direction: column;
   gap: 0.88rem;
   padding: 0.5rem 1.5rem 2rem;
+
+  ${({ theme }) => theme.screen.tablet} {
+    position: relative;
+  }
 `;
 
 const OptionalButtonContainer = styled.div`
