@@ -30,7 +30,8 @@
     "react-dom": "18.2.0",
     "react-transition-group": "^4.4.5",
     "swiper": "^9.2.4",
-    "typescript": "5.0.2"
+    "typescript": "5.0.2",
+    "zustand": "^4.3.9"
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",
