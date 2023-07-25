@@ -1,7 +1,7 @@
 import { StoryFn } from '@storybook/react';
 import Modal from '.';
 import styled from '@emotion/styled';
-import { ModalState, showModal } from '../../../provider/ModalState';
+import { ModalState, showModal } from '@/provider/ModalState';
 
 const ModalComponent = {
   title: 'Component/common/Modal',
