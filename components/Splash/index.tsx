@@ -4,6 +4,8 @@ import RotatingText from './RotatingText';
 import ScrollToCategory from './ScrollToCategory';
 import theme from '@/styles/theme';
 import SearchIcon from '@/public/svg/search.svg';
+import { showModal } from '@/provider/ModalState';
+import SearchModal from '@/components/Search/Modal/SearchModal';
 
 const Splash = () => {
   const ingredientList = [
@@ -13,6 +15,14 @@ const Splash = () => {
     { img: 'Leafy Green', name: '양배추' },
     { img: 'Onion', name: '양파' }
   ];
+
+  const handleSearchModalOpen = () => {
+    showModal({
+      show: true,
+      title: '재료 찾기',
+      body: <SearchModal />
+    });
+  };
 
   return (
     <SplashContainer>
@@ -24,7 +34,7 @@ const Splash = () => {
         <SearchInput isFocus={false} />
       </SearchInputConatiner> */}
       <SearchButtonContainer>
-        <SearchButton>
+        <SearchButton onClick={handleSearchModalOpen}>
           <SearchIcon fill={theme.colors.gray[300]} />
           <span className="button-text">냉장고에 있는 재료를 골라주세요</span>
         </SearchButton>

@@ -22,11 +22,11 @@ const ModalContainer = styled.div<Pick<ModalScreenContainer, 'show'>>`
   width: 100%;
   border-top-right-radius: 1.5rem;
   border-top-left-radius: 1.5rem;
-  background-color: ${({ theme }) => theme.colors.gray[600]};
+  background-color: ${({ theme }) => theme.colors.gray[800]};
   z-index: 99;
 
   ${({ theme }) => theme.screen.tablet} {
-    background-color: ${({ theme }) => theme.colors.gray[600]};
+    background-color: ${({ theme }) => theme.colors.gray[800]};
     width: 35rem;
     top: 50%;
     left: 50%;

@@ -15,7 +15,14 @@ export type ToggleProps = {
 const Toggle = (props: ToggleProps) => {
   return (
     <ToggleWrapper {...props}>
-      <ToggleInput type="checkbox" id="custom-toggle-input" />
+      <ToggleInput
+        type="checkbox"
+        id="custom-toggle-input"
+        checked={props.checked}
+        onChange={() => {
+          props.setValue();
+        }}
+      />
       <ToggleLabel
         htmlFor="custom-toggle-input"
         id="custom-toggle-label"

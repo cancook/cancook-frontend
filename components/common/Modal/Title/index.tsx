@@ -16,7 +16,7 @@ const TitleContainer = ({ children }: TitleContainerProps) => {
       <TitleLineContiainer onClick={closeModal}></TitleLineContiainer>
       <TitleLine onClick={close}></TitleLine>
       <ModalTitle>{children}</ModalTitle>
-      <ModalCloseButton onClick={close}>
+      <ModalCloseButton onClick={closeModal}>
         <CloseButton />
       </ModalCloseButton>
     </ModalTitleContainer>
