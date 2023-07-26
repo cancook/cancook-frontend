@@ -7,8 +7,10 @@ const Divider = () => {
 
 const Line = styled.hr`
   width: 100%;
-  height: 0.05rem;
-  background-color: ${({ theme }) => theme.colors.gray[400]};
+  margin: 0;
+  border: 0.05rem solid;
+  height: 0;
+  border-color: ${({ theme }) => theme.colors.gray[400]};
 `;
 
 export default Divider;
