@@ -115,5 +115,6 @@ const NavItem = styled.div<{ selected: boolean }>`
 
 /** Content Tab */
 const TabContent = styled.div`
+  width: 100%;
   overflow: scroll;
 `;

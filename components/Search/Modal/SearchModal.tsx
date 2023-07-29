@@ -5,6 +5,7 @@ import { Tab, Tabs } from '@/components/common/Tab';
 import RefreshSvg from '@/public/svg/refresh.svg';
 import Toggle from '@/components/common/Toggle';
 import Button from '@/components/common/Button';
+import CheckboxField from '@/components/common/Checkbox';
 
 const SearchModal = () => {
   const [value, setValue] = useState<string>();
@@ -32,57 +33,148 @@ const SearchModal = () => {
       <TabsContainer>
         <Tabs>
           <Tab title="고기칸">
-            <div
-              style={{
-                fontSize: '2rem',
-                height: 'calc(80vh - 18rem)',
-                overflow: 'scroll'
-              }}
-            >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-              temporibus, reiciendis quas saepe nihil voluptatem repudiandae
-              iste et id architecto eum vero, voluptatum maiores impedit quos
-              pariatur velit asperiores cumque. Lorem ipsum dolor sit amet,
-              consectetur adipisicing elit. Perferendis labore maiores harum
-              quibusdam eum numquam et officia sint ipsam! Ipsum perspiciatis
-              magni cum ipsam quae non voluptatum tempora deserunt accusamus.
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia
-              suscipit sapiente architecto distinctio reprehenderit delectus
-              voluptates nobis, repudiandae assumenda similique dolore ipsa
-              alias voluptatum, aut tempore illum quo sunt iure. Facilis quasi
-              et minus eos, officiis tempore accusantium! Eos ipsam provident
-              atque ullam, perspiciatis quae saepe in, aliquid dolorem placeat
-              at odit dolores maiores. Voluptatibus rerum repellendus nesciunt
-              quis enim! Delectus non distinctio necessitatibus eos magnam.
-              Rerum ab ducimus omnis amet, blanditiis commodi suscipit in sed
-              recusandae quis fugit eligendi aliquam impedit. Reiciendis id sit,
-              at fugit qui quam hic? Ullam quis expedita nihil numquam quisquam
-              sed accusamus voluptatem omnis, iure hic ab rerum itaque tenetur
-              at enim error vitae vero? Obcaecati nam libero, officiis ducimus
-              blanditiis error excepturi illo? Voluptate quisquam illum corporis
-              explicabo dolor fugit accusantium consequuntur, similique
-              necessitatibus eius aut ducimus nesciunt deleniti ut aliquid
-              suscipit exercitationem tempore iste blanditiis repellendus
-              dolores commodi delectus. Odio, expedita minima. Placeat,
-              similique nulla quisquam nisi odit perferendis, cum tenetur quod
-              iusto commodi voluptate natus, facere eligendi minima quasi
-              aliquid ratione provident adipisci est totam non accusantium? Nam
-              ullam minima quos! Ipsum a quidem temporibus odit quis enim minus,
-              repudiandae reiciendis ipsa ab saepe illum obcaecati dolorem
-              officiis quibusdam tempore. Fuga laboriosam ipsam quibusdam nisi
-              doloremque quidem iure dolore nostrum omnis. Accusantium
-              perferendis alias cum quam porro, nobis eos consectetur maiores!
-              Nisi ea dolor reiciendis aliquam dolore obcaecati facere corrupti,
-              incidunt unde officiis suscipit nam nesciunt, reprehenderit
-              recusandae optio ducimus et. Facere ad explicabo officiis? Esse
-              dolor numquam totam aliquam distinctio et perspiciatis dolores
-              voluptatem deleniti nihil? Ipsam ab iusto, ipsum suscipit in unde
-              voluptatem officiis ad eos repellat quam aspernatur? Similique
-              excepturi totam omnis dolorem id deleniti quam recusandae!
-              Voluptatibus, sint odit facere reiciendis alias, consequatur
-              tempore provident dolor earum voluptate laudantium cum molestiae
-              vel impedit iure aut accusamus mollitia.
-            </div>
+            <TabWrapper>
+              <CheckboxFieldWrapper>
+                <CheckboxField
+                  name={'beef'}
+                  label={'소고기'}
+                  checked={false}
+                  setValue={() => {
+                    console.log('소고기');
+                  }}
+                />
+              </CheckboxFieldWrapper>
+              <CheckboxFieldWrapper>
+                <CheckboxField
+                  name={'beef'}
+                  label={'소고기'}
+                  checked={false}
+                  setValue={() => {
+                    console.log('소고기');
+                  }}
+                />
+              </CheckboxFieldWrapper>
+              <CheckboxFieldWrapper>
+                <CheckboxField
+                  name={'beef'}
+                  label={'소고기'}
+                  checked={false}
+                  setValue={() => {
+                    console.log('소고기');
+                  }}
+                />
+              </CheckboxFieldWrapper>
+              <CheckboxFieldWrapper>
+                <CheckboxField
+                  name={'beef'}
+                  label={'소고기'}
+                  checked={false}
+                  setValue={() => {
+                    console.log('소고기');
+                  }}
+                />
+              </CheckboxFieldWrapper>
+              <CheckboxFieldWrapper>
+                <CheckboxField
+                  name={'beef'}
+                  label={'소고기'}
+                  checked={false}
+                  setValue={() => {
+                    console.log('소고기');
+                  }}
+                />
+              </CheckboxFieldWrapper>
+              <CheckboxFieldWrapper>
+                <CheckboxField
+                  name={'beef'}
+                  label={'소고기'}
+                  checked={false}
+                  setValue={() => {
+                    console.log('소고기');
+                  }}
+                />
+              </CheckboxFieldWrapper>
+              <CheckboxFieldWrapper>
+                <CheckboxField
+                  name={'beef'}
+                  label={'소고기'}
+                  checked={false}
+                  setValue={() => {
+                    console.log('소고기');
+                  }}
+                />
+              </CheckboxFieldWrapper>
+              <CheckboxFieldWrapper>
+                <CheckboxField
+                  name={'beef'}
+                  label={'소고기'}
+                  checked={false}
+                  setValue={() => {
+                    console.log('소고기');
+                  }}
+                />
+              </CheckboxFieldWrapper>
+              <CheckboxFieldWrapper>
+                <CheckboxField
+                  name={'beef'}
+                  label={'소고기'}
+                  checked={false}
+                  setValue={() => {
+                    console.log('소고기');
+                  }}
+                />
+              </CheckboxFieldWrapper>
+              <CheckboxFieldWrapper>
+                <CheckboxField
+                  name={'beef'}
+                  label={'소고기'}
+                  checked={false}
+                  setValue={() => {
+                    console.log('소고기');
+                  }}
+                />
+              </CheckboxFieldWrapper>
+              <CheckboxFieldWrapper>
+                <CheckboxField
+                  name={'beef'}
+                  label={'소고기'}
+                  checked={false}
+                  setValue={() => {
+                    console.log('소고기');
+                  }}
+                />
+              </CheckboxFieldWrapper>
+              <CheckboxFieldWrapper>
+                <CheckboxField
+                  name={'beef'}
+                  label={'소고기'}
+                  checked={false}
+                  setValue={() => {
+                    console.log('소고기');
+                  }}
+                />
+              </CheckboxFieldWrapper>
+              <CheckboxFieldWrapper>
+                <CheckboxField
+                  name={'beef'}
+                  label={'소고기'}
+                  checked={false}
+                  setValue={() => {
+                    console.log('소고기');
+                  }}
+                />
+              </CheckboxFieldWrapper>
+              <CheckboxFieldWrapper>
+                <CheckboxField
+                  name={'beef'}
+                  label={'소고기'}
+                  checked={false}
+                  setValue={() => {
+                    console.log('소고기');
+                  }}
+                />
+              </CheckboxFieldWrapper>
+            </TabWrapper>
           </Tab>
           <Tab title="야채칸">Test 2</Tab>
           <Tab title="과일칸">Test 3</Tab>
@@ -141,6 +233,17 @@ const TabsContainer = styled.div`
   ${({ theme }) => theme.screen.tablet} {
     height: 20rem;
   }
+`;
+
+const TabWrapper = styled.div`
+  display: flex;
+  overflow: scroll;
+  width: 100%;
+  flex-direction: column;
+`;
+const CheckboxFieldWrapper = styled.div`
+  width: 100%;
+  padding: 0.62rem 1rem;
 `;
 
 // Button Container
