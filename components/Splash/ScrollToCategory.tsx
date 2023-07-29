@@ -2,9 +2,13 @@ import styled from '@emotion/styled';
 import Image from 'next/image';
 import React from 'react';
 
-const ScrollToCategory = () => {
+type ScrollToButtonProps = {
+  onClick: () => void;
+};
+
+const ScrollToCategory = ({ onClick }: ScrollToButtonProps) => {
   return (
-    <ScrollToCategoryContainer>
+    <ScrollToCategoryContainer onClick={onClick}>
       <ScrollToText>스크롤 해보세요!</ScrollToText>
       <SpringImage>
         <Image
@@ -21,6 +25,7 @@ const ScrollToCategory = () => {
 export default ScrollToCategory;
 
 const ScrollToCategoryContainer = styled.div`
+  cursor: pointer;
   position: absolute;
   bottom: 0.75rem;
 
