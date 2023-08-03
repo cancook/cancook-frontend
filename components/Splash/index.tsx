@@ -29,9 +29,6 @@ const Splash = () => {
           오늘은 <RotatingText ingredientList={ingredientList} />로
         </SplashHeader>
         <SplashHeader>어떤 요리를 만들어볼까?</SplashHeader>
-        {/* <SearchInputConatiner>
-        <SearchInput isFocus={false} />
-      </SearchInputConatiner> */}
         <SearchButtonContainer>
           <SearchButton>
             <SearchIcon fill={theme.colors.gray[300]} />
@@ -50,7 +47,9 @@ const Splash = () => {
 export default Splash;
 
 const SplashView = styled.div`
+  height: calc(100vh - 6rem);
   scroll-snap-type: y mandatory;
+  overflow: auto;
 `;
 
 // Container
@@ -132,6 +131,10 @@ const SearchButton = styled.button`
 `;
 
 const CategoryContainer = styled.section`
-  padding-top: 6rem;
+  /* Scroll to 버튼을 덮어쓰기 */
+  position: relative;
+  z-index: 1;
+
+  background-color: black;
   scroll-snap-align: start;
 `;

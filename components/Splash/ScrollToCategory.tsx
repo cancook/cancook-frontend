@@ -37,6 +37,7 @@ const ScrollToCategoryContainer = styled.div`
   ${({ theme }) => theme.screen.desktop} {
     bottom: 1.5rem;
   }
+  z-index: 0;
 `;
 
 const ScrollToText = styled.span`
