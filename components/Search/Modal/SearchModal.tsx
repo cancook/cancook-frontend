@@ -6,15 +6,21 @@ import RefreshSvg from '@/public/svg/refresh.svg';
 import Toggle from '@/components/common/Toggle';
 import Button from '@/components/common/Button';
 import CheckboxField from '@/components/common/Checkbox';
+import { useCategoryIngredientList } from '@/apis/ingredient';
 
 const SearchModal = () => {
   const [value, setValue] = useState<string>();
   const [selectedChecked, setSelectedChecked] = useState<boolean>(false);
   const [selectedIngredients, setSelectedIngredients] = useState<string[]>([]);
 
+  const { list: categoryIngredientList } = useCategoryIngredientList();
+
   const reset = () => {
     setSelectedIngredients([]);
   };
+
+  if (categoryIngredientList.length === 0) return <></>;
+
   return (
     <div>
       {/* Search Input 컨테이너 */}
@@ -32,153 +38,24 @@ const SearchModal = () => {
       {/* Tab 컨테이너 */}
       <TabsContainer>
         <Tabs>
-          <Tab title="고기칸">
-            <TabWrapper>
-              <CheckboxFieldWrapper>
-                <CheckboxField
-                  name={'beef'}
-                  label={'소고기'}
-                  checked={false}
-                  setValue={() => {
-                    console.log('소고기');
-                  }}
-                />
-              </CheckboxFieldWrapper>
-              <CheckboxFieldWrapper>
-                <CheckboxField
-                  name={'beef'}
-                  label={'소고기'}
-                  checked={false}
-                  setValue={() => {
-                    console.log('소고기');
-                  }}
-                />
-              </CheckboxFieldWrapper>
-              <CheckboxFieldWrapper>
-                <CheckboxField
-                  name={'beef'}
-                  label={'소고기'}
-                  checked={false}
-                  setValue={() => {
-                    console.log('소고기');
-                  }}
-                />
-              </CheckboxFieldWrapper>
-              <CheckboxFieldWrapper>
-                <CheckboxField
-                  name={'beef'}
-                  label={'소고기'}
-                  checked={false}
-                  setValue={() => {
-                    console.log('소고기');
-                  }}
-                />
-              </CheckboxFieldWrapper>
-              <CheckboxFieldWrapper>
-                <CheckboxField
-                  name={'beef'}
-                  label={'소고기'}
-                  checked={false}
-                  setValue={() => {
-                    console.log('소고기');
-                  }}
-                />
-              </CheckboxFieldWrapper>
-              <CheckboxFieldWrapper>
-                <CheckboxField
-                  name={'beef'}
-                  label={'소고기'}
-                  checked={false}
-                  setValue={() => {
-                    console.log('소고기');
-                  }}
-                />
-              </CheckboxFieldWrapper>
-              <CheckboxFieldWrapper>
-                <CheckboxField
-                  name={'beef'}
-                  label={'소고기'}
-                  checked={false}
-                  setValue={() => {
-                    console.log('소고기');
-                  }}
-                />
-              </CheckboxFieldWrapper>
-              <CheckboxFieldWrapper>
-                <CheckboxField
-                  name={'beef'}
-                  label={'소고기'}
-                  checked={false}
-                  setValue={() => {
-                    console.log('소고기');
-                  }}
-                />
-              </CheckboxFieldWrapper>
-              <CheckboxFieldWrapper>
-                <CheckboxField
-                  name={'beef'}
-                  label={'소고기'}
-                  checked={false}
-                  setValue={() => {
-                    console.log('소고기');
-                  }}
-                />
-              </CheckboxFieldWrapper>
-              <CheckboxFieldWrapper>
-                <CheckboxField
-                  name={'beef'}
-                  label={'소고기'}
-                  checked={false}
-                  setValue={() => {
-                    console.log('소고기');
-                  }}
-                />
-              </CheckboxFieldWrapper>
-              <CheckboxFieldWrapper>
-                <CheckboxField
-                  name={'beef'}
-                  label={'소고기'}
-                  checked={false}
-                  setValue={() => {
-                    console.log('소고기');
-                  }}
-                />
-              </CheckboxFieldWrapper>
-              <CheckboxFieldWrapper>
-                <CheckboxField
-                  name={'beef'}
-                  label={'소고기'}
-                  checked={false}
-                  setValue={() => {
-                    console.log('소고기');
-                  }}
-                />
-              </CheckboxFieldWrapper>
-              <CheckboxFieldWrapper>
-                <CheckboxField
-                  name={'beef'}
-                  label={'소고기'}
-                  checked={false}
-                  setValue={() => {
-                    console.log('소고기');
-                  }}
-                />
-              </CheckboxFieldWrapper>
-              <CheckboxFieldWrapper>
-                <CheckboxField
-                  name={'beef'}
-                  label={'소고기'}
-                  checked={false}
-                  setValue={() => {
-                    console.log('소고기');
-                  }}
-                />
-              </CheckboxFieldWrapper>
-            </TabWrapper>
-          </Tab>
-          <Tab title="야채칸">Test 2</Tab>
-          <Tab title="과일칸">Test 3</Tab>
-          <Tab title="기타">Test 4</Tab>
+          {categoryIngredientList.map((category: CategoryIngredient) => (
+            <Tab key={category.category_name} title={category.category_name}>
+              <TabWrapper>
+                {category.ingredientNameList.map((ingredient: Ingredient) => (
+                  <CheckboxFieldWrapper key={ingredient}>
+                    <CheckboxField
+                      name={ingredient}
+                      label={ingredient}
+                      checked={false}
+                      setValue={() => {
+                        console.log(ingredient);
+                      }}
+                    />
+                  </CheckboxFieldWrapper>
+                ))}
+              </TabWrapper>
+            </Tab>
+          ))}
         </Tabs>
       </TabsContainer>
       {/* 버튼 컨테이너 */}
