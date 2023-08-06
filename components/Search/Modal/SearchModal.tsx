@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import SearchInput from '../SearchInput';
 import styled from '@emotion/styled';
 import { Tab, Tabs } from '@/components/common/Tab';
@@ -11,13 +11,73 @@ import { useCategoryIngredientList } from '@/apis/ingredient';
 const SearchModal = () => {
   const [value, setValue] = useState<string>();
   const [selectedChecked, setSelectedChecked] = useState<boolean>(false);
-  const [selectedIngredients, setSelectedIngredients] = useState<string[]>([]);
+  const [selectedIngredients, setSelectedIngredients] = useState<
+    CategoryIngredient[]
+  >([]);
 
   const { list: categoryIngredientList } = useCategoryIngredientList();
 
-  const reset = () => {
-    setSelectedIngredients([]);
+  // Reset All
+  const reset = useCallback(() => {
+    setSelectedIngredients(
+      categoryIngredientList.map((category) => {
+        return {
+          category_name: category.category_name,
+          ingredientNameList: []
+        };
+      })
+    );
+  }, [categoryIngredientList]);
+
+  // check handle
+  const handleIngredientCheck = (category: string, ingredient: string) => {
+    const findCategory = selectedIngredients.find(
+      (item) => item.category_name === category
+    );
+
+    if (findCategory) {
+      const findIngredientInSelectedCategory =
+        findCategory.ingredientNameList.find((item) => item === ingredient);
+
+      if (findIngredientInSelectedCategory) {
+        // 이미 존재하는 ingredient, ingredient를 빼기
+        const updatedIngredients = selectedIngredients.map((item) => {
+          if (item.category_name === category) {
+            const updatedIngredientNameList = item.ingredientNameList.filter(
+              (name) => name !== ingredient
+            );
+            return { ...item, ingredientNameList: updatedIngredientNameList };
+          }
+          return item;
+        });
+
+        setSelectedIngredients(updatedIngredients);
+      } else {
+        // 없는 ingredient, 데이터안에 추가
+        const updatedIngredients = selectedIngredients.map((item) => {
+          if (item.category_name === category) {
+            return {
+              ...item,
+              ingredientNameList: [...item.ingredientNameList, ingredient]
+            };
+          }
+          return item;
+        });
+
+        setSelectedIngredients(updatedIngredients);
+      }
+    }
   };
+
+  const isChecked = (category: string, ingredient: string): boolean => {
+    return !!selectedIngredients
+      .find((item: CategoryIngredient) => item.category_name === category)
+      ?.ingredientNameList.find((item: string) => item === ingredient);
+  };
+
+  useEffect(() => {
+    if (categoryIngredientList.length > 0) reset();
+  }, [categoryIngredientList, reset]);
 
   if (categoryIngredientList.length === 0) return <></>;
 
@@ -46,9 +106,12 @@ const SearchModal = () => {
                     <CheckboxField
                       name={ingredient}
                       label={ingredient}
-                      checked={false}
+                      checked={isChecked(category.category_name, ingredient)}
                       setValue={() => {
-                        console.log(ingredient);
+                        handleIngredientCheck(
+                          category.category_name,
+                          ingredient
+                        );
                       }}
                     />
                   </CheckboxFieldWrapper>
