@@ -1,241 +1,57 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import SearchInput from '../SearchInput';
+import React, { useState } from 'react';
+import { useCategoryIngredientList } from '@/apis/search/getCategoryIngredient';
+import InputSection from './InputSection';
+import TabSection from './TabSection';
+import ButtonSection from './ButtonSection';
+import { getYoutubeFromIngredient } from '@/apis/search/getYoutubeFromIngredient';
 import styled from '@emotion/styled';
-import { Tab, Tabs } from '@/components/common/Tab';
-import RefreshSvg from '@/public/svg/refresh.svg';
-import Toggle from '@/components/common/Toggle';
-import Button from '@/components/common/Button';
-import CheckboxField from '@/components/common/Checkbox';
-import { useCategoryIngredientList } from '@/apis/ingredient';
 
 const SearchModal = () => {
   const [value, setValue] = useState<string>();
-  const [selectedChecked, setSelectedChecked] = useState<boolean>(false);
-  const [selectedIngredients, setSelectedIngredients] = useState<
-    CategoryIngredient[]
-  >([]);
+  const [selectedOnly, setSelectedOnly] = useState<boolean>(false);
+  const [selectedIngredients, setSelectedIngredients] = useState<string[]>([]);
 
   const { list: categoryIngredientList } = useCategoryIngredientList();
 
   // Reset All
-  const reset = useCallback(() => {
-    setSelectedIngredients(
-      categoryIngredientList.map((category) => {
-        return {
-          category_name: category.category_name,
-          ingredientNameList: []
-        };
-      })
-    );
-  }, [categoryIngredientList]);
-
-  // check handle
-  const handleIngredientCheck = (category: string, ingredient: string) => {
-    const findCategory = selectedIngredients.find(
-      (item) => item.category_name === category
-    );
-
-    if (findCategory) {
-      const findIngredientInSelectedCategory =
-        findCategory.ingredientNameList.find((item) => item === ingredient);
-
-      if (findIngredientInSelectedCategory) {
-        // 이미 존재하는 ingredient, ingredient를 빼기
-        const updatedIngredients = selectedIngredients.map((item) => {
-          if (item.category_name === category) {
-            const updatedIngredientNameList = item.ingredientNameList.filter(
-              (name) => name !== ingredient
-            );
-            return { ...item, ingredientNameList: updatedIngredientNameList };
-          }
-          return item;
-        });
-
-        setSelectedIngredients(updatedIngredients);
-      } else {
-        // 없는 ingredient, 데이터안에 추가
-        const updatedIngredients = selectedIngredients.map((item) => {
-          if (item.category_name === category) {
-            return {
-              ...item,
-              ingredientNameList: [...item.ingredientNameList, ingredient]
-            };
-          }
-          return item;
-        });
-
-        setSelectedIngredients(updatedIngredients);
-      }
-    }
+  const reset = () => {
+    setSelectedIngredients([]);
   };
 
-  const isChecked = (category: string, ingredient: string): boolean => {
-    return !!selectedIngredients
-      .find((item: CategoryIngredient) => item.category_name === category)
-      ?.ingredientNameList.find((item: string) => item === ingredient);
+  const handleSumbitSearchModal = () => {
+    getYoutubeFromIngredient(selectedIngredients).then((res) => {
+      console.log(
+        '===선택된 ingredient들을 이용하여 youtube 검색을 진행합니다.==='
+      );
+      console.log(res);
+    });
   };
 
-  useEffect(() => {
-    if (categoryIngredientList.length > 0) reset();
-  }, [categoryIngredientList, reset]);
-
-  if (categoryIngredientList.length === 0) return <></>;
+  if (categoryIngredientList.length === 0)
+    return <SkeletonModal></SkeletonModal>;
 
   return (
     <div>
-      {/* Search Input 컨테이너 */}
-      <SearhcInputContainer>
-        {/* TODO: height 변경 */}
-        <SearchInput
-          isFocus={false}
-          value={value}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setValue(e.target.value)
-          }
-          className="search-input"
-        />
-      </SearhcInputContainer>
-      {/* Tab 컨테이너 */}
-      <TabsContainer>
-        <Tabs>
-          {categoryIngredientList.map((category: CategoryIngredient) => (
-            <Tab key={category.category_name} title={category.category_name}>
-              <TabWrapper>
-                {category.ingredientNameList.map((ingredient: Ingredient) => (
-                  <CheckboxFieldWrapper key={ingredient}>
-                    <CheckboxField
-                      name={ingredient}
-                      label={ingredient}
-                      checked={isChecked(category.category_name, ingredient)}
-                      setValue={() => {
-                        handleIngredientCheck(
-                          category.category_name,
-                          ingredient
-                        );
-                      }}
-                    />
-                  </CheckboxFieldWrapper>
-                ))}
-              </TabWrapper>
-            </Tab>
-          ))}
-        </Tabs>
-      </TabsContainer>
-      {/* 버튼 컨테이너 */}
-      <ButtonContainer>
-        <OptionalButtonContainer>
-          <RefreshButton onClick={reset}>
-            <RefreshSvg />
-            <span className="optional-button-label">전체 초기화</span>
-          </RefreshButton>
-          <SelectedToggleWrapper
-            onClick={() => {
-              setSelectedChecked((prev) => !prev);
-            }}
-          >
-            <span className="optional-button-label">선택 재료만</span>
-            <Toggle
-              checked={selectedChecked}
-              setValue={() => {
-                setSelectedChecked((prev) => !prev);
-              }}
-            />
-          </SelectedToggleWrapper>
-        </OptionalButtonContainer>
-        <SubmitButtonContainer>
-          <SubmitButton
-            disabled={selectedIngredients.length === 0}
-            onClick={() => {
-              console.log('레시피 찾기');
-            }}
-          >
-            레시피 찾기
-          </SubmitButton>
-        </SubmitButtonContainer>
-      </ButtonContainer>
+      <InputSection value={value} setValue={setValue} />
+      <TabSection
+        selectedIngredients={selectedIngredients}
+        setSelectedIngredients={setSelectedIngredients}
+        selectedOnly={selectedOnly}
+        categoryIngredientList={categoryIngredientList}
+      />
+      <ButtonSection
+        reset={reset}
+        selectedOnly={selectedOnly}
+        setSelectedOnly={setSelectedOnly}
+        selectedIngredients={selectedIngredients}
+        onSubmit={handleSumbitSearchModal}
+      />
     </div>
   );
 };
 
 export default SearchModal;
 
-// Search Container
-const SearhcInputContainer = styled.div`
-  padding: 0 1rem 0.5rem;
-
-  ${({ theme }) => theme.screen.tablet} {
-  }
-`;
-
-// Tab Container
-const TabsContainer = styled.div`
-  min-height: auto;
-  ${({ theme }) => theme.screen.tablet} {
-    height: 20rem;
-  }
-`;
-
-const TabWrapper = styled.div`
-  display: flex;
-  overflow: scroll;
-  width: 100%;
-  flex-direction: column;
-`;
-const CheckboxFieldWrapper = styled.div`
-  width: 100%;
-  padding: 0.62rem 1rem;
-`;
-
-// Button Container
-const ButtonContainer = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.88rem;
-  padding: 0.5rem 1.5rem 2rem;
-
-  ${({ theme }) => theme.screen.tablet} {
-    position: relative;
-  }
-`;
-
-const OptionalButtonContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-
-  .optional-button-label {
-    ${({ theme }) => theme.font.body.sm};
-    color: rgba(255, 255, 255, 0.5);
-  }
-`;
-
-const RefreshButton = styled.button`
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  gap: 0.5rem;
-  align-items: center;
-
-  border: none;
-  outline: none;
-  background: none;
-`;
-
-const SelectedToggleWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 0.5rem;
-  align-items: center;
-  cursor: pointer;
-`;
-
-const SubmitButtonContainer = styled.div`
-  width: 100%;
-`;
-
-const SubmitButton = styled(Button)`
-  padding: 0.69rem 0;
+const SkeletonModal = styled.div`
+  height: 30rem;
 `;

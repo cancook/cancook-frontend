@@ -10,19 +10,23 @@ export type YoutubeCategory = {
   data: VideoInformation[];
 };
 
+export type Video = {
+  id: string;
+  title: string;
+  thumbnailURL: string;
+  playTime: string;
+  views: number;
+  link: string; // 해당 게시글 외부 링크
+  createdAt: string;
+};
+
+export type Creator = {
+  id: string;
+  name: string;
+  thumbnail: string;
+};
+
 export type VideoInformation = {
-  video: {
-    id: string;
-    title: string;
-    thumbnailURL: string;
-    playTime: string;
-    views: number;
-    link: string; // 해당 게시글 외부 링크
-    createdAt: string;
-  };
-  creator: {
-    id: string;
-    name: string;
-    thumbnail: string;
-  };
+  video: Video;
+  creator: Creator;
 };

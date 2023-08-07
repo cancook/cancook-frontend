@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import axiosClient from './axios';
+import axiosClient from '../axios';
 import { useMemo } from 'react';
 
 /**
