@@ -11,7 +11,8 @@ const SearchModal = () => {
   const [selectedOnly, setSelectedOnly] = useState<boolean>(false);
   const [selectedIngredients, setSelectedIngredients] = useState<string[]>([]);
 
-  const { list: categoryIngredientList } = useCategoryIngredientList();
+  const { list: categoryIngredientList, isLoading } =
+    useCategoryIngredientList();
 
   // Reset All
   const reset = () => {
@@ -27,8 +28,7 @@ const SearchModal = () => {
     });
   };
 
-  if (categoryIngredientList.length === 0)
-    return <SkeletonModal></SkeletonModal>;
+  if (isLoading) return <SkeletonModal></SkeletonModal>;
 
   return (
     <div>
