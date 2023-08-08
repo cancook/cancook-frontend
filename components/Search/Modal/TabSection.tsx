@@ -40,20 +40,9 @@ const TabSection = ({
         {categoryIngredientList.map((category: CategoryIngredient) => (
           <Tab key={category.category_name} title={category.category_name}>
             <TabWrapper>
-              {category.ingredientNameList.map((ingredient: Ingredient) =>
-                !selectedOnly ? (
-                  <CheckboxFieldWrapper key={ingredient}>
-                    <CheckboxField
-                      name={ingredient}
-                      label={ingredient}
-                      checked={isChecked(ingredient)}
-                      setValue={() => {
-                        handleIngredientCheck(ingredient);
-                      }}
-                    />
-                  </CheckboxFieldWrapper>
-                ) : (
-                  isChecked(ingredient) && (
+              {category.ingredientNameList.map(
+                (ingredient: Ingredient) =>
+                  (!selectedOnly || isChecked(ingredient)) && (
                     <CheckboxFieldWrapper key={ingredient}>
                       <CheckboxField
                         name={ingredient}
@@ -65,7 +54,6 @@ const TabSection = ({
                       />
                     </CheckboxFieldWrapper>
                   )
-                )
               )}
             </TabWrapper>
           </Tab>
