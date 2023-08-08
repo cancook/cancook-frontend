@@ -41,7 +41,7 @@ const InputSection = ({ value, setValue }: InputSectionProps) => {
   };
 
   return (
-    <SearhcInputContainer>
+    <SearchInputContainer>
       {/* TODO: height 변경 */}
       <SearchInputWrapper>
         <SearchInput
@@ -54,14 +54,14 @@ const InputSection = ({ value, setValue }: InputSectionProps) => {
         />
         <Autocomplete isOpen={isFocus} keywords={autocompleteData} />
       </SearchInputWrapper>
-    </SearhcInputContainer>
+    </SearchInputContainer>
   );
 };
 
 export default InputSection;
 
 // Search Container
-const SearhcInputContainer = styled.div`
+const SearchInputContainer = styled.div`
   padding: 0 1rem 0.5rem;
 
   ${({ theme }) => theme.screen.tablet} {

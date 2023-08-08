@@ -18,7 +18,7 @@ const SearchModal = () => {
     setSelectedIngredients([]);
   };
 
-  const handleSumbitSearchModal = () => {
+  const handleSubmitSearchModal = () => {
     getYoutubeFromIngredient(selectedIngredients).then((res) => {
       console.log(
         '===선택된 ingredient들을 이용하여 youtube 검색을 진행합니다.==='
@@ -44,7 +44,7 @@ const SearchModal = () => {
         selectedOnly={selectedOnly}
         setSelectedOnly={setSelectedOnly}
         selectedIngredients={selectedIngredients}
-        onSubmit={handleSumbitSearchModal}
+        onSubmit={handleSubmitSearchModal}
       />
     </div>
   );
