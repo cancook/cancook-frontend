@@ -1,6 +1,8 @@
+import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
-import React from 'react';
 import SearchInput from '../SearchInput';
+import Autocomplete from '../Autocomplete';
+import { getIngredientData } from '@/apis/search/getIngredientData';
 
 type InputSectionProps = {
   value?: string;
@@ -8,17 +10,50 @@ type InputSectionProps = {
 };
 
 const InputSection = ({ value, setValue }: InputSectionProps) => {
+  const [isFocus, setIsFocus] = useState<boolean>(true);
+  const [autocompleteData, setAutocompleteData] = useState<string[]>([]);
+
+  const handleFocus = () => {
+    setIsFocus(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocus(false);
+  };
+
+  useEffect(() => {
+    const delay = 1000; // 디바운스 지연 시간 (밀리초)
+    const debounceId = setTimeout(async () => {
+      if (value) {
+        const { nameList } = await getIngredientData(value);
+
+        setAutocompleteData(nameList);
+      }
+    }, delay);
+
+    return () => {
+      clearTimeout(debounceId);
+    };
+  }, [value]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+
   return (
     <SearhcInputContainer>
       {/* TODO: height 변경 */}
-      <SearchInput
-        isFocus={false}
-        value={value}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setValue(e.target.value)
-        }
-        className="search-input"
-      />
+      <SearchInputWrapper>
+        <SearchInput
+          isFocus={isFocus}
+          handleFocus={handleFocus}
+          handleBlur={handleBlur}
+          value={value}
+          onChange={handleChange}
+          className="search-input"
+        />
+        <Autocomplete isOpen={isFocus} keywords={autocompleteData} />
+      </SearchInputWrapper>
     </SearhcInputContainer>
   );
 };
@@ -31,4 +66,8 @@ const SearhcInputContainer = styled.div`
 
   ${({ theme }) => theme.screen.tablet} {
   }
+`;
+
+const SearchInputWrapper = styled.div`
+  position: relative;
 `;

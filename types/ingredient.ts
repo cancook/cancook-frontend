@@ -6,3 +6,8 @@ type CategoryIngredient = {
   category_name: string;
   ingredientNameList: Ingredient[];
 };
+
+// 자동입력 데이터
+type AutocompleteIngredient = {
+  nameList: string[];
+};
