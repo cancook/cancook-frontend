@@ -1,32 +1,15 @@
 import styled from '@emotion/styled';
 import React from 'react';
-import YouTube from 'react-youtube';
 import Collapse from './Collapse';
 import useScreen from '@/hook/useScreen';
 import Accordion from '../common/Accordion';
 import CheckItem from '../common/CheckItem';
 import IngredientsTitle from './IngredientsTitle';
+import YouTube from 'react-youtube';
 
 // type YoutubeModalBodyProps = {
 //   isShow: boolean;
 // };
-
-const YouTubeVideo = styled(YouTube)`
-  position: relative;
-  width: 100%;
-  height: 0;
-  padding-bottom: 56.25%;
-  overflow: hidden;
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
-  > iframe {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-`;
 
 const YoutubeModalBody = () => {
   const screenSize = useScreen();
@@ -41,28 +24,6 @@ const YoutubeModalBody = () => {
           top: 0,
           left: 0
         }}
-        // onReady={(e) => {
-        //   const { width, height } = e.target.getSize();
-        //   console.log(width, height);
-        //   e.target.setSize(width, width * (9 / 16));
-        // }}
-        // className={{
-        //   position: 'relative',
-        //   width: '100%',
-        //   height: 0,
-        //   paddingBottom: '56.25%',
-        //   overflow: 'hidde',
-        //   marginBottom: '50px'
-        // }}
-        // style={{
-        //   position: 'relative',
-        //   width: '100%',
-        //   height: 0,
-        //   paddingBottom: '56.25%',
-        //   overflow: 'hidden',
-        //   borderTopLeftRadius: '1rem',
-        //   borderTopRightRadius: '1rem'
-        // }}
       />
       <Body>
         <Title>
@@ -133,6 +94,25 @@ const YoutubeModalBody = () => {
     </Container>
   );
 };
+const YouTubeVideo = styled(YouTube)`
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+  ${({ theme }) => theme.screen.tablet} {
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+  }
+
+  > iframe {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+`;
 
 const Box = styled.div`
   background-color: ${({ theme }) => theme.colors.gray[700]};
@@ -176,10 +156,10 @@ const Title = styled.div`
 
   > h1 {
     ${({ theme }) => theme.font.label.lg};
-    line-height: 2.125rem;
 
     ${({ theme }) => theme.screen.tablet} {
       ${({ theme }) => theme.font.title.lg};
+      line-height: 2.125rem;
     }
   }
 
