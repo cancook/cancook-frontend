@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import MainLogo from '@/public/svg/cancook_logo.svg';
 import React from 'react';
-import SearchInput from '../Search/SearchInput';
 import { useRouter } from 'next/router';
 
 const HeaderWrapper = styled.nav`
@@ -48,15 +47,6 @@ const Header = () => {
             cursor: 'pointer'
           }}
         />
-        {router.pathname !== '/search' && (
-          <SearchInputWrapper>
-            <SearchInput
-              isFocus={false}
-              onInputWrapperClick={() => router.push('/search')}
-              disabled
-            />
-          </SearchInputWrapper>
-        )}
       </HeaderWrapper>
     </StickyHeader>
   );
