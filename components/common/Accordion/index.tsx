@@ -32,7 +32,7 @@ const Accordion = ({ title, children }: AccordionProps) => {
 };
 
 const ArrowIcon = styled(CloseIcon)<{ isOpen: boolean }>`
-  transform: ${({ isOpen }) => (isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
+  transform: ${({ isOpen }) => (isOpen ? 'rotate(0deg)' : 'rotate(180deg)')};
   transition: transform 0.3s ease-in-out;
 `;
 
