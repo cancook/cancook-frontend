@@ -3,7 +3,7 @@ import React, { ReactNode, useEffect, useRef, useState } from 'react';
 import CloseIcon from '@/public/svg/arrow-up.svg';
 
 type AccordionProps = {
-  title: string;
+  title: string | ReactNode;
   children: ReactNode;
 };
 

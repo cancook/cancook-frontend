@@ -27,13 +27,13 @@ const ModalContainer = styled.div<Pick<ModalFullScreenContainer, 'show'>>`
   z-index: 99;
 
   ${({ theme }) => theme.screen.tablet} {
-    width: 50rem;
+    max-width: 50rem;
     top: calc(50% + 1.5rem);
     left: 50%;
     bottom: auto;
     border-top-left-radius: 1.5rem;
     border-top-right-radius: 1.5rem;
     transform: translate(-50%, -50%);
-    max-height: calc(100vh - 1.5rem);
+    height: 100%;
   }
 `;
