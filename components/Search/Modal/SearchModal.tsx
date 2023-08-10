@@ -7,7 +7,6 @@ import { getYoutubeFromIngredient } from '@/apis/search/getYoutubeFromIngredient
 import styled from '@emotion/styled';
 
 const SearchModal = () => {
-  const [value, setValue] = useState<string>();
   const [selectedOnly, setSelectedOnly] = useState<boolean>(false);
   const [selectedIngredients, setSelectedIngredients] = useState<string[]>([]);
 
@@ -32,7 +31,10 @@ const SearchModal = () => {
 
   return (
     <div>
-      <InputSection value={value} setValue={setValue} />
+      <InputSection
+        selectedIngredients={selectedIngredients}
+        setSelectedIngredients={setSelectedIngredients}
+      />
       <TabSection
         selectedIngredients={selectedIngredients}
         setSelectedIngredients={setSelectedIngredients}

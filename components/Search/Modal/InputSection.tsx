@@ -5,12 +5,16 @@ import Autocomplete from '../Autocomplete';
 import { getIngredientData } from '@/apis/search/getIngredientData';
 
 type InputSectionProps = {
-  value?: string;
-  setValue: React.Dispatch<React.SetStateAction<string | undefined>>;
+  selectedIngredients: string[];
+  setSelectedIngredients: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
-const InputSection = ({ value, setValue }: InputSectionProps) => {
+const InputSection = ({
+  selectedIngredients,
+  setSelectedIngredients
+}: InputSectionProps) => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
+  const [inputValue, setInputValue] = useState<string>();
   const [autocompleteData, setAutocompleteData] = useState<string[]>([]);
 
   const handleFocus = () => {
@@ -22,18 +26,26 @@ const InputSection = ({ value, setValue }: InputSectionProps) => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
+    setInputValue(e.target.value);
   };
 
   const handleReset = () => {
-    setValue('');
+    setInputValue('');
+    handleBlur();
+  };
+
+  // Autocomplete 에서 선택할시, 해당 item을 selected Ingredients에 추가한다.
+  const handleAutocompleteSelect = (autocompleteItem: string) => {
+    console.log(autocompleteItem);
+    setSelectedIngredients((prev) => [...prev, autocompleteItem]);
+    handleBlur();
   };
 
   useEffect(() => {
     const delay = 1000; // 디바운스 지연 시간 (밀리초)
     const debounceId = setTimeout(async () => {
-      if (value) {
-        const { nameList } = await getIngredientData(value);
+      if (inputValue) {
+        const { nameList } = await getIngredientData(inputValue);
 
         setAutocompleteData(nameList);
       }
@@ -42,7 +54,7 @@ const InputSection = ({ value, setValue }: InputSectionProps) => {
     return () => {
       clearTimeout(debounceId);
     };
-  }, [value]);
+  }, [inputValue]);
 
   return (
     <SearchInputContainer>
@@ -51,13 +63,18 @@ const InputSection = ({ value, setValue }: InputSectionProps) => {
         <SearchInput
           isFocus={isFocus}
           handleFocus={handleFocus}
-          handleBlur={handleBlur}
+          // handleBlur={handleBlur}
           handleReset={handleReset}
-          value={value}
+          value={inputValue}
           onChange={handleChange}
           className="search-input"
         />
-        <Autocomplete isOpen={isFocus} keywords={autocompleteData} />
+        <Autocomplete
+          isOpen={isFocus}
+          keywords={autocompleteData}
+          omit={selectedIngredients}
+          onItemClick={handleAutocompleteSelect}
+        />
       </SearchInputWrapper>
     </SearchInputContainer>
   );
