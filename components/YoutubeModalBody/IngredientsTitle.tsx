@@ -35,8 +35,10 @@ const Title = styled.div`
   }
 
   > div {
+    ${({ theme }) => theme.font.label.sm};
     margin-right: 0.5rem;
     ${({ theme }) => theme.screen.tablet} {
+      ${({ theme }) => theme.font.label.md};
       margin-right: 0;
     }
   }

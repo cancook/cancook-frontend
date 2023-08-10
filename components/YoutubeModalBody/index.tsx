@@ -12,7 +12,7 @@ import ShareIcon from '@/public/svg/share.svg';
 const YoutubeModalBody = () => {
   const screenSize = useScreen();
   return (
-    <Container>
+    <>
       {screenSize == 'phone' && (
         <Header>
           <ArrowMediumLeftIcon />
@@ -95,7 +95,7 @@ const YoutubeModalBody = () => {
           </>
         )}
       </Body>
-    </Container>
+    </>
   );
 };
 
@@ -131,17 +131,13 @@ const Box = styled.div`
   border-radius: 1rem;
 `;
 
-const Container = styled.div`
-  max-height: calc(100vh - 1.5rem);
-`;
-
 const Body = styled.section`
   width: 100%;
   padding: 0.75rem 1.25rem;
   color: ${({ theme }) => theme.colors.white[0]};
   max-height: calc(
-    100vh - (100vw * 0.5625)
-  ); // 전체 크기 - 동영상 크기 (16:9)사이즈 계산
+    100vh - 2.5rem - (100vw * 0.5625)
+  ); // 전체 크기 - header크기 - 동영상 크기 (16:9)사이즈 계산
   overflow: auto;
 
   -ms-overflow-style: none; /* IE and Edge */
@@ -155,6 +151,7 @@ const Body = styled.section`
     max-height: calc(
       100vh - 1.5rem - (50rem * 0.5625)
     ); // 100vh에서 modal 공백(2rem) 제외후 동영상 크기(800px의 16:9) 만큼 빼기
+    // TODO: 문제점) 800~768px 사이에서는 약간의 공백이 생겨버림
   }
 `;
 
@@ -183,7 +180,6 @@ const Title = styled.div`
       content: '|';
       margin: 0 0.5rem;
       color: ${({ theme }) => theme.colors.gray[600]};
-      width: 0.0625rem;
     }
 
     ${({ theme }) => theme.screen.tablet} {
