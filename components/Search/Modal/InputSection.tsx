@@ -40,6 +40,10 @@ const InputSection = ({ value, setValue }: InputSectionProps) => {
     setValue(e.target.value);
   };
 
+  const handleReset = () => {
+    setValue('');
+  };
+
   return (
     <SearchInputContainer>
       {/* TODO: height 변경 */}
@@ -48,6 +52,7 @@ const InputSection = ({ value, setValue }: InputSectionProps) => {
           isFocus={isFocus}
           handleFocus={handleFocus}
           handleBlur={handleBlur}
+          handleReset={handleReset}
           value={value}
           onChange={handleChange}
           className="search-input"

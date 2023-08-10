@@ -5,26 +5,29 @@ const AutocompleteWrapper = styled.ul<{ isOpen: boolean }>`
   display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
   position: absolute;
   width: 100%;
-  max-height: 23rem;
+  top: calc(100% + 0.25rem);
+  left: 0;
+  right: 0;
+  max-height: 15rem;
   border-radius: 1rem;
   overflow-x: hidden;
   overflow-y: auto;
-  background-color: ${({ theme }) => theme.colors.gray[900]};
-  ${({ theme }) => theme.screen.desktop} {
-    position: relative;
-    margin-top: 0.5rem;
+  background-color: ${({ theme }) => theme.colors.gray[600]};
+  z-index: 50;
+
+  ${({ theme }) => theme.screen.tablet} {
     padding: 0.5rem 0;
-    background-color: ${({ theme }) => theme.colors.gray[800]};
   }
 `;
 
 const AutocompleteItem = styled.li`
-  padding: 0.5rem 1.5rem;
-  color: ${({ theme }) => theme.colors.gray[300]};
-  ${({ theme }) => theme.font.title.sm}
+  padding: 0.5rem 1rem;
+  color: ${({ theme }) => theme.colors.gray[100]};
+  ${({ theme }) => theme.font.body.md}
   cursor: pointer;
-  ${({ theme }) => theme.screen.desktop} {
-    color: ${({ theme }) => theme.colors.gray[100]};
+
+  ${({ theme }) => theme.screen.tablet} {
+    ${({ theme }) => theme.font.label.lg};
     :hover {
       background-color: #ffc04319;
     }
