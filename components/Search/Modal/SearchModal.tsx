@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useCategoryIngredientList } from '@/apis/search/getCategoryIngredient';
+import { useCategoryIngredientList } from '@/hook/useCategoryIngredientList';
 import InputSection from './InputSection';
 import TabSection from './TabSection';
 import ButtonSection from './ButtonSection';

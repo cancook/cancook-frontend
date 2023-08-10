@@ -38,7 +38,7 @@ const TabSection = ({
     <TabsContainer>
       <Tabs>
         {categoryIngredientList.map((category: CategoryIngredient) => (
-          <Tab key={category.category_name} title={category.category_name}>
+          <Tab key={category.categoryName} title={category.categoryName}>
             <TabWrapper>
               {category.ingredientNameList.map(
                 (ingredient: Ingredient) =>
