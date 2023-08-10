@@ -18,16 +18,6 @@ const HeaderWrapper = styled.nav`
   }
 `;
 
-const SearchInputWrapper = styled.div`
-  width: 100%;
-  ${({ theme }) => theme.screen.desktop} {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-`;
-
 const StickyHeader = styled.header`
   position: sticky;
   top: 0;
