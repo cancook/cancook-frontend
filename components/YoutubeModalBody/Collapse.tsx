@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 import React, { ReactNode, useEffect, useRef, useState } from 'react';
+import Divider from '../common/Divider';
+import ArrowUpIcon from '@/public/svg/arrow-up.svg';
 
 type CollapseProps = {
   children: ReactNode;
@@ -22,7 +24,12 @@ const Collapse = ({ children }: CollapseProps) => {
         <div ref={bodyRef}>{children}</div>
       </Description>
       <SeeMore onClick={toggle}>
-        <span>더보기</span>
+        <Divider />
+        <div>
+          <span>{isOpen ? '접기' : '더보기'}</span>
+          <ArrowIcon isOpen={isOpen} />
+        </div>
+        <Divider />
       </SeeMore>
     </Container>
   );
@@ -46,4 +53,18 @@ const Description = styled.div<{ isOpen: boolean; height: number }>`
 
 const SeeMore = styled.div`
   cursor: pointer;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  > div {
+    display: flex;
+    align-items: center;
+  }
+`;
+
+const ArrowIcon = styled(ArrowUpIcon)<{ isOpen: boolean }>`
+  transform: ${({ isOpen }) => (isOpen ? 'rotate(0deg)' : 'rotate(180deg)')};
+  transition: transform 0.3s ease-in-out;
 `;
