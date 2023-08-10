@@ -116,5 +116,10 @@ const NavItem = styled.div<{ selected: boolean }>`
 /** Content Tab */
 const TabContent = styled.div`
   width: 100%;
+  height: 18rem;
   overflow: scroll;
+
+  ${({ theme }) => theme.screen.tablet} {
+    height: auto;
+  }
 `;

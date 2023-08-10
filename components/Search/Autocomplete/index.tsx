@@ -34,6 +34,17 @@ const AutocompleteItem = styled.li`
   }
 `;
 
+const EmptyAutocompleteItem = styled.li`
+  padding: 0.5rem 1rem;
+  color: ${({ theme }) => theme.colors.gray[100]};
+  ${({ theme }) => theme.font.body.md}
+  cursor: pointer;
+
+  ${({ theme }) => theme.screen.tablet} {
+    ${({ theme }) => theme.font.label.lg};
+  }
+`;
+
 type AutocompleteProps = {
   keywords: string[];
   isOpen: boolean;
@@ -42,11 +53,15 @@ type AutocompleteProps = {
 const Autocomplete = ({ keywords, isOpen }: AutocompleteProps) => {
   return (
     <AutocompleteWrapper isOpen={isOpen}>
-      {keywords.map((keyword, index) => (
-        <AutocompleteItem key={`autocomplete-keyword-${index}`}>
-          {keyword}
-        </AutocompleteItem>
-      ))}
+      {keywords.length > 0 ? (
+        keywords.map((keyword, index) => (
+          <AutocompleteItem key={`autocomplete-keyword-${index}`}>
+            {keyword}
+          </AutocompleteItem>
+        ))
+      ) : (
+        <EmptyAutocompleteItem>검색 결과가 없습니다.</EmptyAutocompleteItem>
+      )}
     </AutocompleteWrapper>
   );
 };

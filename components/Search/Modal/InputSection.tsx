@@ -10,7 +10,7 @@ type InputSectionProps = {
 };
 
 const InputSection = ({ value, setValue }: InputSectionProps) => {
-  const [isFocus, setIsFocus] = useState<boolean>(true);
+  const [isFocus, setIsFocus] = useState<boolean>(false);
   const [autocompleteData, setAutocompleteData] = useState<string[]>([]);
 
   const handleFocus = () => {
@@ -19,6 +19,14 @@ const InputSection = ({ value, setValue }: InputSectionProps) => {
 
   const handleBlur = () => {
     setIsFocus(false);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+
+  const handleReset = () => {
+    setValue('');
   };
 
   useEffect(() => {
@@ -35,14 +43,6 @@ const InputSection = ({ value, setValue }: InputSectionProps) => {
       clearTimeout(debounceId);
     };
   }, [value]);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-  };
-
-  const handleReset = () => {
-    setValue('');
-  };
 
   return (
     <SearchInputContainer>
