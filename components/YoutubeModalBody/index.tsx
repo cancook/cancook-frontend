@@ -6,6 +6,8 @@ import Accordion from '../common/Accordion';
 import CheckItem from '../common/CheckItem';
 import IngredientsTitle from './IngredientsTitle';
 import YouTube from 'react-youtube';
+import ArrowMediumLeftIcon from '@/public/svg/arrow-medium-left.svg';
+import ShareIcon from '@/public/svg/share.svg';
 
 // type YoutubeModalBodyProps = {
 //   isShow: boolean;
@@ -15,6 +17,12 @@ const YoutubeModalBody = () => {
   const screenSize = useScreen();
   return (
     <Container>
+      {screenSize == 'phone' && (
+        <Header>
+          <ArrowMediumLeftIcon />
+          <ShareIcon />
+        </Header>
+      )}
       <YouTubeVideo
         videoId="uSpZpduIFnA"
         opts={{
@@ -94,6 +102,13 @@ const YoutubeModalBody = () => {
     </Container>
   );
 };
+
+const Header = styled.header`
+  padding: 0.625rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+`;
+
 const YouTubeVideo = styled(YouTube)`
   position: relative;
   width: 100%;
@@ -124,7 +139,7 @@ const Container = styled.div`
   max-height: calc(100vh - 1.5rem);
 `;
 
-const Body = styled.div`
+const Body = styled.section`
   width: 100%;
   padding: 0.75rem 1.25rem;
   color: ${({ theme }) => theme.colors.white[0]};
@@ -185,6 +200,8 @@ const PhoneLayout = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  ${({ theme }) => theme.font.body.sm}
 `;
 
 export default YoutubeModalBody;
