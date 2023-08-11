@@ -9,11 +9,5 @@ export const useCategoryIngredientList = () => {
     getCategoryIngredientList
   );
 
-  // 우선 useMemo를 써서 memoization을 쓰긴 했는데, 꼭 필요한 부분인지는 고려 해봐야함.
-  const categoryIngredientList: CategoryIngredient[] = useMemo(
-    () => (data ? data : []),
-    [data]
-  );
-
-  return { list: categoryIngredientList, ...rest };
+  return { list: data, ...rest };
 };
