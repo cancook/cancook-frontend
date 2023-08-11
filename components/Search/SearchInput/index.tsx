@@ -1,15 +1,16 @@
 import styled from '@emotion/styled';
 import React from 'react';
-import SearchIcon from '@/public/svg/search.svg';
+import CloseSquareIcon from '@/public/svg/close-square.svg';
 import { useTheme } from '@emotion/react';
 
 const Input = styled.input<{ isFocus: boolean }>`
   width: 100%;
-  margin-left: 0.875rem;
   background-color: inherit;
-  color: ${({ theme }) => theme.colors.yellow[400]};
   border: none;
   outline: none;
+
+  ${({ theme }) => theme.font.label.lg};
+  color: ${({ theme }) => theme.colors.gray[100]};
 `;
 
 const InputWrapper = styled.div<{ isFocus: boolean }>`
@@ -19,11 +20,8 @@ const InputWrapper = styled.div<{ isFocus: boolean }>`
   height: 2.5rem;
   margin: auto;
   padding: 0.75rem 1rem;
-  border-radius: 1.5rem;
-  border: 0.0625rem solid
-    ${({ theme, isFocus }) =>
-      isFocus ? theme.colors.yellow[400] : theme.colors.gray[600]};
-  background-color: ${({ theme }) => theme.colors.gray[800]};
+  border-radius: 0.5rem;
+  background-color: ${({ theme }) => theme.colors.gray[600]};
   ${({ theme }) => theme.screen.desktop} {
     max-width: 50rem;
     height: 3rem;
@@ -41,16 +39,13 @@ const SearchInput = ({
   inputRef,
   handleFocus,
   handleBlur,
+  handleReset,
   onInputWrapperClick,
   ...props
 }: SearchInputProps) => {
   const theme = useTheme();
   return (
     <InputWrapper isFocus={isFocus} onClick={onInputWrapperClick}>
-      <SearchIcon
-        fill={isFocus ? theme.colors.yellow[400] : theme.colors.gray[600]}
-        style={{ cursor: 'pointer' }}
-      />
       <Input
         ref={inputRef}
         type="text"
@@ -60,6 +55,9 @@ const SearchInput = ({
         isFocus={isFocus}
         {...props}
       />
+      {handleReset && (
+        <CloseSquareIcon style={{ cursor: 'pointer' }} onClick={handleReset} />
+      )}
     </InputWrapper>
   );
 };

@@ -79,6 +79,7 @@ const NavContainer = styled.div`
   ${({ theme }) => theme.screen.tablet} {
     flex-direction: column;
     padding: 0 1.5rem;
+    flex: 0 0 8.3125rem;
 
     ::-webkit-scrollbar {
       height: 0px;
@@ -114,5 +115,11 @@ const NavItem = styled.div<{ selected: boolean }>`
 
 /** Content Tab */
 const TabContent = styled.div`
+  width: 100%;
+  height: 18rem;
   overflow: scroll;
+
+  ${({ theme }) => theme.screen.tablet} {
+    height: auto;
+  }
 `;
