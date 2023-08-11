@@ -20,6 +20,10 @@ const ButtonSection = ({
   selectedIngredients,
   onSubmit
 }: ButtonSectionProps) => {
+  const handleToggleChange = () => {
+    setSelectedOnly((prev) => !prev);
+  };
+
   return (
     <ButtonContainer>
       <OptionalButtonContainer>
@@ -28,17 +32,11 @@ const ButtonSection = ({
           <span className="optional-button-label">전체 초기화</span>
         </RefreshButton>
         <SelectedToggleWrapper
-          onClick={() => {
-            setSelectedOnly((prev) => !prev);
-          }}
+          onChange={handleToggleChange}
+          onClick={handleToggleChange}
         >
-          <span className="optional-button-label">선택 재료만</span>
-          <Toggle
-            checked={selectedOnly}
-            setValue={() => {
-              setSelectedOnly((prev) => !prev);
-            }}
-          />
+          <div className="optional-button-label">선택 재료만</div>
+          <Toggle checked={selectedOnly} />
         </SelectedToggleWrapper>
       </OptionalButtonContainer>
       <SubmitButtonContainer>
