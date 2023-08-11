@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import React, { ReactNode, useEffect, useRef, useState } from 'react';
-import Divider from '../common/Divider';
+import Divider from '../Divider';
 import ArrowUpIcon from '@/public/svg/arrow-up.svg';
 
 type CollapseProps = {

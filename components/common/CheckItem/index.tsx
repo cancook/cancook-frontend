@@ -21,7 +21,7 @@ const CheckIcon = styled(CheckSVGIcon)`
   margin-right: 0.25rem;
 `;
 
-const Layout = styled.div<{ isChecked: Boolean }>`
+const Layout = styled.div<{ isChecked: boolean }>`
   color: ${({ isChecked, theme }) =>
     isChecked ? theme.colors.yellow[400] : theme.colors.gray[200]};
 `;
