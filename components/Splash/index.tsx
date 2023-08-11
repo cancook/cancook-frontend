@@ -5,6 +5,8 @@ import ScrollToCategory from './ScrollToCategory';
 import theme from '@/styles/theme';
 import SearchIcon from '@/public/svg/search.svg';
 import Category from '../Category';
+import SearchModal from '../Search/Modal/SearchModal';
+import { showModal } from '@/provider/ModalState';
 
 const Splash = () => {
   const ingredientList = [
@@ -22,6 +24,14 @@ const Splash = () => {
     categoryRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handleSearchModalOpen = () => {
+    showModal({
+      show: true,
+      title: '재료 찾기',
+      body: <SearchModal />
+    });
+  };
+
   return (
     <SplashView>
       <SplashContainer ref={searchRef}>
@@ -30,7 +40,7 @@ const Splash = () => {
         </SplashHeader>
         <SplashHeader>어떤 요리를 만들어볼까?</SplashHeader>
         <SearchButtonContainer>
-          <SearchButton>
+          <SearchButton onClick={handleSearchModalOpen}>
             <SearchIcon fill={theme.colors.gray[300]} />
             <span className="button-text">냉장고에 있는 재료를 골라주세요</span>
           </SearchButton>

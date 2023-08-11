@@ -9,13 +9,18 @@ export type ToggleProps = {
   checked: boolean;
 
   /** Toggle 의 value 값을 변경하는 void 함수입니다. */
-  setValue: () => void;
+  setValue?: () => void;
 };
 
 const Toggle = (props: ToggleProps) => {
   return (
     <ToggleWrapper {...props}>
-      <ToggleInput type="checkbox" id="custom-toggle-input" />
+      <ToggleInput
+        type="checkbox"
+        id="custom-toggle-input"
+        checked={props.checked}
+        onChange={props.setValue}
+      />
       <ToggleLabel
         htmlFor="custom-toggle-input"
         id="custom-toggle-label"

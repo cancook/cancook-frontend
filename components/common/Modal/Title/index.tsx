@@ -16,7 +16,7 @@ const TitleContainer = ({ children }: TitleContainerProps) => {
       <TitleLineContiainer onClick={closeModal}></TitleLineContiainer>
       <TitleLine onClick={close}></TitleLine>
       <ModalTitle>{children}</ModalTitle>
-      <ModalCloseButton onClick={close}>
+      <ModalCloseButton onClick={closeModal}>
         <CloseButton />
       </ModalCloseButton>
     </ModalTitleContainer>
@@ -33,6 +33,7 @@ const ModalTitleContainer = styled.div`
 
   ${({ theme }) => theme.screen.tablet} {
     padding: 1.5rem;
+    height: auto;
   }
 `;
 
