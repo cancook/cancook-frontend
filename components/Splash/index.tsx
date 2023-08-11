@@ -1,11 +1,12 @@
 import styled from '@emotion/styled';
-import React from 'react';
+import React, { useRef } from 'react';
 import RotatingText from './RotatingText';
 import ScrollToCategory from './ScrollToCategory';
 import theme from '@/styles/theme';
 import SearchIcon from '@/public/svg/search.svg';
+import Category from '../Category';
+import SearchModal from '../Search/Modal/SearchModal';
 import { showModal } from '@/provider/ModalState';
-import SearchModal from '@/components/Search/Modal/SearchModal';
 
 const Splash = () => {
   const ingredientList = [
@@ -16,6 +17,13 @@ const Splash = () => {
     { img: 'Onion', name: '양파' }
   ];
 
+  const searchRef = useRef<HTMLDivElement>(null);
+  const categoryRef = useRef<HTMLDivElement>(null);
+
+  const handleScrollClick = () => {
+    categoryRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   const handleSearchModalOpen = () => {
     showModal({
       show: true,
@@ -25,35 +33,44 @@ const Splash = () => {
   };
 
   return (
-    <SplashContainer>
-      <SplashHeader>
-        오늘은 <RotatingText ingredientList={ingredientList} />로
-      </SplashHeader>
-      <SplashHeader>어떤 요리를 만들어볼까?</SplashHeader>
-      {/* <SearchInputConatiner>
-        <SearchInput isFocus={false} />
-      </SearchInputConatiner> */}
-      <SearchButtonContainer>
-        <SearchButton onClick={handleSearchModalOpen}>
-          <SearchIcon fill={theme.colors.gray[300]} />
-          <span className="button-text">냉장고에 있는 재료를 골라주세요</span>
-        </SearchButton>
-      </SearchButtonContainer>
-      <ScrollToCategory />
-    </SplashContainer>
+    <SplashView>
+      <SplashContainer ref={searchRef}>
+        <SplashHeader>
+          오늘은 <RotatingText ingredientList={ingredientList} />로
+        </SplashHeader>
+        <SplashHeader>어떤 요리를 만들어볼까?</SplashHeader>
+        <SearchButtonContainer>
+          <SearchButton onClick={handleSearchModalOpen}>
+            <SearchIcon fill={theme.colors.gray[300]} />
+            <span className="button-text">냉장고에 있는 재료를 골라주세요</span>
+          </SearchButton>
+        </SearchButtonContainer>
+        <ScrollToCategory onClick={handleScrollClick} />
+      </SplashContainer>
+      <CategoryContainer ref={categoryRef}>
+        <Category />
+      </CategoryContainer>
+    </SplashView>
   );
 };
 
 export default Splash;
 
+const SplashView = styled.div`
+  height: calc(100vh - 6rem);
+  scroll-snap-type: y mandatory;
+  overflow: auto;
+`;
+
 // Container
 const SplashContainer = styled.div`
   /* TODO: height 재설정 필요 100vh - header-height */
-  height: 80vh;
+  height: calc(100vh - 6rem);
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  scroll-snap-align: end;
 `;
 
 const SplashHeader = styled.h1`
@@ -121,4 +138,13 @@ const SearchButton = styled.button`
       letter-spacing: -0.0375rem;
     }
   }
+`;
+
+const CategoryContainer = styled.section`
+  /* Scroll to 버튼을 덮어쓰기 */
+  position: relative;
+  z-index: 1;
+
+  background-color: black;
+  scroll-snap-align: start;
 `;
