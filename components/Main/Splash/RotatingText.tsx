@@ -20,7 +20,7 @@ const RotatingText = ({
           <RotatingTextItem key={ingredient.name}>
             <EmojiWrapper>
               <Image
-                src={`/asset/emoji/${ingredient.img}.png`}
+                src={`/images/emoji/${ingredient.img}.png`}
                 alt={`Emoji ${ingredient.img}`}
                 fill
                 style={{ objectFit: 'contain' }}

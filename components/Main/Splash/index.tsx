@@ -5,7 +5,7 @@ import ScrollToCategory from './ScrollToCategory';
 import theme from '@/styles/theme';
 import SearchIcon from '@/public/svg/search.svg';
 import Category from '../Category';
-import SearchModal from '../Search/Modal/SearchModal';
+import SearchModal from '../../Search/Modal/SearchModal';
 import { showModal } from '@/provider/ModalState';
 
 const Splash = () => {

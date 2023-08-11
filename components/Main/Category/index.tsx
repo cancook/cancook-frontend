@@ -5,9 +5,9 @@ import {
 } from '@/constants/dummyData/youtube';
 import { BannerInformation } from '@/types/banner';
 import { YoutubeCategory, YoutubeRecommended } from '@/types/youtube';
-import Banner from '../Banner/Banner';
-import CardCarousel from '../Carousel/Card/CardCarouselContainer';
 import styled from '@emotion/styled';
+import CardCarousel from '@/components/common/Carousel/CardCarouselContainer';
+import Banner from '@/components/common/Banner/Banner';
 
 const Category = () => {
   const bannerData: BannerInformation[] = BANNER_DUMMY_DATA;

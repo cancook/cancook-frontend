@@ -1,9 +1,9 @@
 import { StoryFn } from '@storybook/react';
 import { ComponentProps } from 'react';
 import Header from './Header';
-import CardCarouselContainer from '../Carousel/Card/CardCarouselContainer';
 import { YOUTUBE_CATEGORY_DUMMY_DATA } from '@/constants/dummyData/youtube';
 import Layout from './Layout';
+import CardCarouselContainer from '@/components/common/Carousel/CardCarouselContainer';
 
 const HeaderComponent = {
   title: 'Component/Header',

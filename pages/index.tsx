@@ -5,9 +5,9 @@ import { YoutubeRecommended } from '@/types/youtube';
 import { YOUTUBE_BANNER_DUMMY_DATA } from '@/constants/dummyData/youtube';
 import { BannerInformation } from '@/types/banner';
 import { BANNER_DUMMY_DATA } from '@/constants/dummyData/banner';
-import { getCategoryList } from '@/apis/youtube';
 import { useQuery } from '@tanstack/react-query';
-import Splash from '@/components/Splash';
+import Splash from '@/components/Main/Splash';
+import { getCategoryList } from '@/apis/youtube/getCategoryList';
 
 export default function Home() {
   // const { data: recommendedData, isLoading: isRecommendedLoading } = useQuery(

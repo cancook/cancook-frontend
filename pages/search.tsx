@@ -1,4 +1,4 @@
-import Autocomplete from '@/components/Search/Autocomplete';
+import Autocomplete from '@/components/Search/SearchInput/Autocomplete';
 import EmptySearchResult from '@/components/Search/EmptySearchResult';
 import SearchInput from '@/components/Search/SearchInput';
 import styled from '@emotion/styled';
