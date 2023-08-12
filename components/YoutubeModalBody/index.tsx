@@ -7,7 +7,35 @@ import ShareIcon from '@/public/svg/share.svg';
 import PhoneScreen from './PhoneScreen';
 import DesktopScreen from './DesktopScreen';
 
-const YoutubeModalBody = () => {
+/**
+ * 
+{
+	title: STR
+	조회수: INT
+	CreatedAt: STR
+	Description: STR
+	ingredients(필터링이 된 데이터): [{
+    name: STR,
+    isChecked: BOOL
+  }]
+}
+ */
+
+type YoutubeModalBodyProps = {
+  title: string;
+  viewCount: number;
+  createAt: string;
+  description: string;
+  ingredients: string[];
+};
+
+const YoutubeModalBody = ({
+  title,
+  viewCount,
+  createAt,
+  description,
+  ingredients
+}: YoutubeModalBodyProps) => {
   const screenSize = useScreen();
   return (
     <>
@@ -29,14 +57,15 @@ const YoutubeModalBody = () => {
       />
       <Body>
         <Title>
-          <h1>
-            계란 2개로 폭신폭신 부드러운 수플레 팬케이크 만들기 🥞 | Souffle
-            Pancake
-          </h1>
-          <h6>조회수 8,435회</h6>
-          <h6>2023년 6월 3일</h6>
+          <h1>{title}</h1>
+          <h6>{viewCount}</h6>
+          <h6>{createAt}</h6>
         </Title>
-        {screenSize === 'phone' ? <PhoneScreen /> : <DesktopScreen />}
+        {screenSize === 'phone' ? (
+          <PhoneScreen description={description} ingredients={ingredients} />
+        ) : (
+          <DesktopScreen description={description} ingredients={ingredients} />
+        )}
       </Body>
     </>
   );
