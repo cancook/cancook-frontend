@@ -7,6 +7,7 @@ import ShareIcon from '@/public/svg/share.svg';
 import PhoneScreen from './PhoneScreen';
 import DesktopScreen from './DesktopScreen';
 import useYoutubeDetail from '@/hook/useYoutubeDetail';
+import dayjs from 'dayjs';
 
 /**
  * 
@@ -51,8 +52,8 @@ const YoutubeModalBody = ({ id }: YoutubeModalBodyProps) => {
       <Body>
         <Title>
           <h1>{data.title}</h1>
-          <h6>{data.views}</h6>
-          <h6>{data.createdAt}</h6>
+          <h6>조회수 {data.views.toLocaleString()}회</h6>
+          <h6>{dayjs(data.createdAt).format('YYYY년 MM월 DD일')}</h6>
         </Title>
         {screenSize === 'phone' ? (
           <PhoneScreen
