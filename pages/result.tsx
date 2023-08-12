@@ -5,11 +5,19 @@ import FoodContentCard from '@/components/FoodContentCard';
 import styled from '@emotion/styled';
 import { getYoutubeFromIngredient } from '@/apis/search/getYoutubeFromIngredient';
 import Chip from '@/components/common/Chip';
+import ArrowUpIcon from '@/public/svg/arrow-up.svg';
+import Autocomplete from '@/components/Search/SearchInput/Autocomplete';
 
 const ResultPage = () => {
   const router = useRouter();
   const ingredients = router.query.ingredients as string;
   const [resultData, setResultData] = useState<Video[]>([]);
+
+  //   Filter
+  const [filterOption, setFilterOption] = useState<
+    '최신순' | '인기순' | '조회순'
+  >('최신순');
+  const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
 
   useEffect(() => {
     if (ingredients)
@@ -29,24 +37,51 @@ const ResultPage = () => {
   return (
     <ResultPageContainer>
       <TitleWrapper>
-        <CategoryTitle>&apos;{ingredients}&apos; 레시피</CategoryTitle>
-        <Chip count={resultData.length} />
+        <ContentTitle>
+          <CategoryTitle>&apos;{ingredients}&apos; 레시피</CategoryTitle>
+          <Chip count={resultData.length} />
+        </ContentTitle>
+        <OptionWrapper>
+          <FilterOption
+            onClick={() => {
+              setIsFilterOpen((prev) => !prev);
+            }}
+          >
+            <ArrowIcon isOpen={isFilterOpen} />
+            <FilterSpan>{filterOption}</FilterSpan>
+          </FilterOption>
+          <Autocomplete
+            keywords={['최신순', '인기순', '조회순']}
+            isOpen={isFilterOpen}
+            onItemClick={(item) => {
+              setFilterOption(item as '최신순' | '인기순' | '조회순');
+              setIsFilterOpen(false);
+            }}
+          />
+        </OptionWrapper>
       </TitleWrapper>
       <VideoContainer>
-        {resultData.map((resultVideo: Video) => (
-          <FoodContentCard.Layout key={resultVideo.id}>
-            <div onClick={handleModalOpenForSmileyHaemin}>
-              <ImageWrapper>
-                <ImageScaleUp>
-                  <FoodContentCard.Thumbnail
-                    src={resultVideo.thumbnailURL}
-                    size="md"
-                  />
-                </ImageScaleUp>
-              </ImageWrapper>
-              <FoodContentCard.Body title={resultVideo.title} />
-            </div>
-            {/* <FoodContentCard.Footer
+        {resultData
+          .sort((video1, video2) => {
+            // TODO: 클릭수를 기반으로 인기순을 파악하긴 해야함...
+            if (filterOption === '인기순' || filterOption === '조회순')
+              return video1.views - video2.views;
+            else return +video1.id - +video2.id;
+          })
+          .map((resultVideo: Video) => (
+            <FoodContentCard.Layout key={resultVideo.id}>
+              <div onClick={handleModalOpenForSmileyHaemin}>
+                <ImageWrapper>
+                  <ImageScaleUp>
+                    <FoodContentCard.Thumbnail
+                      src={resultVideo.thumbnailURL}
+                      size="md"
+                    />
+                  </ImageScaleUp>
+                </ImageWrapper>
+                <FoodContentCard.Body title={resultVideo.title} />
+              </div>
+              {/* <FoodContentCard.Footer
             // src={card.creator.thumbnail}
             viewAndDates={`조회수 ${viewsFormatter(
               resultVideo.views
@@ -54,8 +89,8 @@ const ResultPage = () => {
           >
             {card.creator.name}
           </FoodContentCard.Footer> */}
-          </FoodContentCard.Layout>
-        ))}
+            </FoodContentCard.Layout>
+          ))}
       </VideoContainer>
     </ResultPageContainer>
   );
@@ -95,12 +130,18 @@ const TitleWrapper = styled.div`
   padding: 1.5rem 1.25rem 0.75rem;
   display: flex;
   align-items: center;
-
-  gap: 0.88rem;
+  justify-content: space-between;
 
   ${({ theme }) => theme.screen.desktop} {
     padding: 3rem 0 2rem;
   }
+`;
+
+const ContentTitle = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.88rem;
+  flex: 1;
 `;
 
 const CategoryTitle = styled.h2`
@@ -126,4 +167,28 @@ const VideoContainer = styled.div`
     grid-template-columns: repeat(4, 1fr);
     padding: 0;
   }
+`;
+
+const OptionWrapper = styled.div`
+  position: relative;
+  width: 4.75rem;
+`;
+
+const FilterOption = styled.div`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+`;
+
+const FilterSpan = styled.span`
+  ${({ theme }) => theme.font.body.md};
+  font-weight: 400;
+  color: ${({ theme }) => theme.colors.gray[300]};
+  align-self: flex-end;
+`;
+
+const ArrowIcon = styled(ArrowUpIcon)<{ isOpen: boolean }>`
+  transform: ${({ isOpen }) => (isOpen ? 'rotate(0deg)' : 'rotate(180deg)')};
+  transition: transform 0.3s ease-in-out;
 `;
