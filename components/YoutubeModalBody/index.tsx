@@ -6,6 +6,7 @@ import ArrowMediumIcon from '@/public/svg/arrow-medium.svg';
 import ShareIcon from '@/public/svg/share.svg';
 import PhoneScreen from './PhoneScreen';
 import DesktopScreen from './DesktopScreen';
+import useYoutubeDetail from '@/hook/useYoutubeDetail';
 
 /**
  * 
@@ -22,21 +23,13 @@ import DesktopScreen from './DesktopScreen';
  */
 
 type YoutubeModalBodyProps = {
-  title: string;
-  viewCount: number;
-  createAt: string;
-  description: string;
-  ingredients: string[];
+  id: string;
 };
 
-const YoutubeModalBody = ({
-  title,
-  viewCount,
-  createAt,
-  description,
-  ingredients
-}: YoutubeModalBodyProps) => {
+const YoutubeModalBody = ({ id }: YoutubeModalBodyProps) => {
   const screenSize = useScreen();
+  const { data } = useYoutubeDetail(id);
+  if (!data) return <></>;
   return (
     <>
       {screenSize == 'phone' && (
@@ -46,7 +39,7 @@ const YoutubeModalBody = ({
         </Header>
       )}
       <YouTubeVideo
-        videoId="uSpZpduIFnA"
+        videoId={data.urlPk}
         opts={{
           width: '100wh',
           height: '100%',
@@ -57,14 +50,20 @@ const YoutubeModalBody = ({
       />
       <Body>
         <Title>
-          <h1>{title}</h1>
-          <h6>{viewCount}</h6>
-          <h6>{createAt}</h6>
+          <h1>{data.title}</h1>
+          <h6>{data.views}</h6>
+          <h6>{data.createdAt}</h6>
         </Title>
         {screenSize === 'phone' ? (
-          <PhoneScreen description={description} ingredients={ingredients} />
+          <PhoneScreen
+            description={data.description}
+            ingredients={data.ingredients}
+          />
         ) : (
-          <DesktopScreen description={description} ingredients={ingredients} />
+          <DesktopScreen
+            description={data.description}
+            ingredients={data.ingredients}
+          />
         )}
       </Body>
     </>
