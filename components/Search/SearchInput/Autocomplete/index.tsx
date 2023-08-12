@@ -47,25 +47,24 @@ const EmptyAutocompleteItem = styled.li`
 
 type AutocompleteProps = {
   keywords: string[];
-  isOpen: boolean;
+  isOpen?: boolean;
   /**
    * 데이터 중, 필사 적으로 들어있으면 안되는 데이터들
    */
-  omit: string[];
+  omit?: string[];
 
-  onItemClick: (item: string) => void;
+  onItemClick?: (item: string) => void;
 };
 
 const Autocomplete = ({
   keywords,
-  isOpen,
+  isOpen = false,
   onItemClick,
   omit
 }: AutocompleteProps) => {
   const filteredKeywords = keywords.filter(
-    (keyword) => !omit.includes(keyword)
+    (keyword) => !omit?.includes(keyword)
   );
-
   return (
     <AutocompleteWrapper isOpen={isOpen}>
       {filteredKeywords.length > 0 ? (
@@ -73,7 +72,7 @@ const Autocomplete = ({
           <AutocompleteItem
             key={`autocomplete-keyword-${index}`}
             onClick={() => {
-              onItemClick(keyword);
+              onItemClick && onItemClick(keyword);
             }}
           >
             {keyword}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import SearchInput from '../SearchInput';
-import Autocomplete from '../Autocomplete';
+import Autocomplete from '../SearchInput/Autocomplete';
 import { getIngredientData } from '@/apis/search/getIngredientData';
 
 type InputSectionProps = {

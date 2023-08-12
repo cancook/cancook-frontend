@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import React, { ReactNode, useEffect, useRef, useState } from 'react';
-import CloseIcon from '@/public/svg/arrow-up.svg';
+import ArrowUpIcon from '@/public/svg/arrow-up.svg';
 
 type AccordionProps = {
   title: string | ReactNode;
@@ -31,7 +31,7 @@ const Accordion = ({ title, children }: AccordionProps) => {
   );
 };
 
-const ArrowIcon = styled(CloseIcon)<{ isOpen: boolean }>`
+const ArrowIcon = styled(ArrowUpIcon)<{ isOpen: boolean }>`
   transform: ${({ isOpen }) => (isOpen ? 'rotate(0deg)' : 'rotate(180deg)')};
   transition: transform 0.3s ease-in-out;
 `;

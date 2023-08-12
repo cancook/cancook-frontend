@@ -1,7 +1,7 @@
 import { StoryFn } from '@storybook/react';
 import { ComponentProps, useState } from 'react';
+import SearchInput from '..';
 import Autocomplete from '.';
-import SearchInput from '../SearchInput';
 
 const AutocompleteComponent = {
   title: 'Component/Search/Autocomplete',

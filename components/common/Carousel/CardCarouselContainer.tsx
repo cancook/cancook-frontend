@@ -2,8 +2,7 @@ import styled from '@emotion/styled';
 import React, { useRef } from 'react';
 import CardCarousel from './CardCarousel';
 
-import ArrowRight from '@/public/svg/arrow-right.svg';
-import ArrowLeft from '@/public/svg/arrow-left.svg';
+import TriangleArrow from '@/public/svg/triangle-arrow.svg';
 import { YoutubeCategory } from '@/types/youtube';
 export type CardCarouselContainerProps = {
   /**
@@ -22,10 +21,10 @@ const CardCarouselContainer = ({ contents }: CardCarouselContainerProps) => {
         <CategoryTitle>{contents.title}</CategoryTitle>
         <SwiperButtonWrapper>
           <ArrowButton ref={prevButtonRef}>
-            <ArrowLeft />
+            <TriangleArrowLeft />
           </ArrowButton>
           <ArrowButton ref={nextButtonRef}>
-            <ArrowRight />
+            <TriangleArrowRight />
           </ArrowButton>
         </SwiperButtonWrapper>
       </TitleWrapper>
@@ -102,4 +101,10 @@ const CategoryTitle = styled.h2`
   ${({ theme }) => theme.screen.desktop} {
     ${({ theme }) => theme.font.headLine.md};
   }
+`;
+
+const TriangleArrowLeft = styled(TriangleArrow)``;
+
+const TriangleArrowRight = styled(TriangleArrow)`
+  transform: scaleX(-1);
 `;

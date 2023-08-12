@@ -1,5 +1,5 @@
 import React from 'react';
-import VideoPlayIcon from '@/public/svg/video_play.svg';
+import VideoPlayIcon from '@/public/svg/play.svg';
 import styled from '@emotion/styled';
 
 export const PlayButton = styled.button`

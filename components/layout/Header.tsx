@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import MainLogo from '@/public/svg/cancook_logo.svg';
+import MainLogo from '@/public/svg/cancook-logo.svg';
 import React from 'react';
 import { useRouter } from 'next/router';
 

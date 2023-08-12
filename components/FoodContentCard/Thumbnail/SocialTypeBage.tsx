@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import YoutubeIcon from '@/public/svg/youtube_logo.svg';
-import NaverBlogIcon from '@/public/svg/naver_blog_logo.svg';
+import YoutubeIcon from '@/public/svg/youtube-logo.svg';
+import NaverBlogIcon from '@/public/svg/naver-blog-logo.svg';
 import styled from '@emotion/styled';
 import { SocialBadge } from '@/types/foodContentCard';
 
