@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import React from 'react';
 import useScreen from '@/hook/useScreen';
 import YouTube from 'react-youtube';
-import ArrowMediumLeftIcon from '@/public/svg/arrow-medium-left.svg';
+import ArrowMediumIcon from '@/public/svg/arrow-medium.svg';
 import ShareIcon from '@/public/svg/share.svg';
 import PhoneScreen from './PhoneScreen';
 import DesktopScreen from './DesktopScreen';
@@ -13,7 +13,7 @@ const YoutubeModalBody = () => {
     <>
       {screenSize == 'phone' && (
         <Header>
-          <ArrowMediumLeftIcon />
+          <ArrowMediumIcon />
           <ShareIcon />
         </Header>
       )}
