@@ -523,7 +523,6 @@ export const YOUTUBE_DETAIL: YoutubeDetail = {
     '물',
     '설탕',
     '고추',
-    '',
     '소주',
     '파'
   ],

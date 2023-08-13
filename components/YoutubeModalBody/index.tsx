@@ -9,20 +9,6 @@ import DesktopScreen from './DesktopScreen';
 import useYoutubeDetail from '@/hook/useYoutubeDetail';
 import dayjs from 'dayjs';
 
-/**
- * 
-{
-	title: STR
-	조회수: INT
-	CreatedAt: STR
-	Description: STR
-	ingredients(필터링이 된 데이터): [{
-    name: STR,
-    isChecked: BOOL
-  }]
-}
- */
-
 type YoutubeModalBodyProps = {
   id: string;
 };
