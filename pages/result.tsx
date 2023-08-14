@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import React, { useState } from 'react';
 import { Video } from '@/types/youtube';
 import FoodContentCard from '@/components/FoodContentCard';
 import styled from '@emotion/styled';
@@ -7,28 +6,17 @@ import { getYoutubeFromIngredient } from '@/apis/search/getYoutubeFromIngredient
 import Chip from '@/components/common/Chip';
 import ArrowUpIcon from '@/public/svg/arrow-up.svg';
 import Autocomplete from '@/components/Search/SearchInput/Autocomplete';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 
-const ResultPage = () => {
-  const router = useRouter();
-  const ingredients = router.query.ingredients as string;
-  const [resultData, setResultData] = useState<Video[]>([]);
-
+const ResultPage = ({
+  ingredients,
+  videos
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   //   Filter
   const [filterOption, setFilterOption] = useState<
     '최신순' | '인기순' | '조회순'
   >('최신순');
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (ingredients)
-      getYoutubeFromIngredient(ingredients.split(',')).then((res) => {
-        console.log('검색된 데이터', res);
-        // TODO: thumbnailURL에 JSON 형식으로 오는 아이들을 쳐낸다.
-        setResultData(
-          res.filter((item) => item.thumbnailURL.startsWith('https://')) ?? []
-        );
-      });
-  }, [ingredients]);
 
   const handleModalOpenForSmileyHaemin = () => {
     // 여따가 넣으면돼 해민아~~~
@@ -39,7 +27,7 @@ const ResultPage = () => {
       <TitleWrapper>
         <ContentTitle>
           <CategoryTitle>&apos;{ingredients}&apos; 레시피</CategoryTitle>
-          <Chip count={resultData.length} />
+          <Chip count={videos.length} />
         </ContentTitle>
         <OptionWrapper>
           <FilterOption
@@ -61,7 +49,7 @@ const ResultPage = () => {
         </OptionWrapper>
       </TitleWrapper>
       <VideoContainer>
-        {resultData
+        {videos
           .sort((video1, video2) => {
             // TODO: 클릭수를 기반으로 인기순을 파악하긴 해야함...
             if (filterOption === '인기순' || filterOption === '조회순')
@@ -94,6 +82,22 @@ const ResultPage = () => {
       </VideoContainer>
     </ResultPageContainer>
   );
+};
+
+export const getServerSideProps: GetServerSideProps<{
+  ingredients: string[];
+  videos: Video[];
+}> = async ({ query }) => {
+  const ingredients = query.ingredients as string;
+  console.log('query', ingredients);
+  const videos = await getYoutubeFromIngredient(ingredients.split(','));
+
+  return {
+    props: {
+      ingredients: ingredients.split(','),
+      videos: videos.filter((item) => item.thumbnailURL.startsWith('https://'))
+    }
+  };
 };
 
 export default ResultPage;
