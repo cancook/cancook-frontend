@@ -12,6 +12,9 @@ const nextConfig = withFonts({
       'yt3.googleusercontent.com'
     ]
   },
+  env: {
+    NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID
+  },
   webpack(config) {
     // NOTE: svg 파일을 react template 으로 변경
     const fileLoaderRule = config.module.rules.find((rule) =>
