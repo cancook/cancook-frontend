@@ -9,7 +9,8 @@ const nextConfig = withFonts({
       'i.ytimg.com',
       'placekitten.com',
       'yt3.ggpht.com',
-      'yt3.googleusercontent.com'
+      'yt3.googleusercontent.com',
+      'self-dining.shop'
     ]
   },
   env: {
