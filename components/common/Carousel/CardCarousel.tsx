@@ -13,6 +13,7 @@ import styled from '@emotion/styled';
 import ModalComponent from '../Modal';
 import YoutubeModalBody from '@/components/YoutubeModalBody';
 import { showModal } from '@/provider/ModalState';
+import { useRouter } from 'next/router';
 
 type Props = {
   /** thumbnail과 body를 받아서 카드 리스트를 만들고, 그 리스트로 carousel을 만들 수 있게끔 하는 data */
@@ -25,6 +26,7 @@ type Props = {
   next: React.RefObject<HTMLDivElement>;
 };
 const CardCarousel = ({ cards, prev, next }: Props) => {
+  const router = useRouter();
   return (
     <>
       <ModalComponent />
@@ -67,6 +69,9 @@ const CardCarousel = ({ cards, prev, next }: Props) => {
               fullScreen: true,
               show: true,
               body: <YoutubeModalBody id={card.video.id} />
+            });
+            router.push(`/`, `/youtube/${card.video.id}`, {
+              shallow: true
             });
           };
           return (
