@@ -12,6 +12,8 @@ export type ModalState = {
   fullScreen?: boolean;
   /** Content body in normal modal state*/
   body: React.ReactNode;
+
+  onClose?: () => void;
 };
 
 const initialState: ModalState = {
@@ -19,7 +21,8 @@ const initialState: ModalState = {
   show: false,
   title: undefined,
   body: <></>,
-  fullScreen: false
+  fullScreen: false,
+  onClose: () => {}
 };
 
 export const useModalStore = create(() => initialState);
@@ -29,6 +32,9 @@ export const resetModal = () => {
 };
 
 export const closeModal = () => {
+  const onCloseEvent = useModalStore.getState().onClose;
+  onCloseEvent && onCloseEvent();
+
   useModalStore.setState({ ...initialState, show: false });
 };
 
