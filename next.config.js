@@ -9,8 +9,12 @@ const nextConfig = withFonts({
       'i.ytimg.com',
       'placekitten.com',
       'yt3.ggpht.com',
-      'yt3.googleusercontent.com'
+      'yt3.googleusercontent.com',
+      'self-dining.shop'
     ]
+  },
+  env: {
+    NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID
   },
   webpack(config) {
     // NOTE: svg 파일을 react template 으로 변경
