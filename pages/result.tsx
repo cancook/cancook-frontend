@@ -89,7 +89,6 @@ export const getServerSideProps: GetServerSideProps<{
   videos: Video[];
 }> = async ({ query }) => {
   const ingredients = query.ingredients as string;
-  console.log('query', ingredients);
   const videos = await getYoutubeFromIngredient(ingredients.split(','));
 
   return {
