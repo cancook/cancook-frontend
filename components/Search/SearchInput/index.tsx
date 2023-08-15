@@ -4,6 +4,7 @@ import CloseSquareIcon from '@/public/svg/close-square.svg';
 import { useTheme } from '@emotion/react';
 
 const Input = styled.input<{ isFocus: boolean }>`
+  cursor: text;
   width: 100%;
   background-color: inherit;
   border: none;
@@ -14,6 +15,7 @@ const Input = styled.input<{ isFocus: boolean }>`
 `;
 
 const InputWrapper = styled.div<{ isFocus: boolean }>`
+  cursor: text;
   display: flex;
   align-items: center;
   width: 100%;
