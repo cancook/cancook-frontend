@@ -6,9 +6,17 @@ import ArrowMediumIcon from '@/public/svg/arrow-medium.svg';
 import ShareIcon from '@/public/svg/share.svg';
 import PhoneScreen from './PhoneScreen';
 import DesktopScreen from './DesktopScreen';
+import useYoutubeDetail from '@/hook/useYoutubeDetail';
+import dayjs from 'dayjs';
 
-const YoutubeModalBody = () => {
+type YoutubeModalBodyProps = {
+  id: string;
+};
+
+const YoutubeModalBody = ({ id }: YoutubeModalBodyProps) => {
   const screenSize = useScreen();
+  const { data } = useYoutubeDetail(id);
+  if (!data) return <></>;
   return (
     <>
       {screenSize == 'phone' && (
@@ -18,7 +26,7 @@ const YoutubeModalBody = () => {
         </Header>
       )}
       <YouTubeVideo
-        videoId="uSpZpduIFnA"
+        videoId={data.urlPk}
         opts={{
           width: '100wh',
           height: '100%',
@@ -29,14 +37,21 @@ const YoutubeModalBody = () => {
       />
       <Body>
         <Title>
-          <h1>
-            계란 2개로 폭신폭신 부드러운 수플레 팬케이크 만들기 🥞 | Souffle
-            Pancake
-          </h1>
-          <h6>조회수 8,435회</h6>
-          <h6>2023년 6월 3일</h6>
+          <h1>{data.title}</h1>
+          <h6>조회수 {data.views.toLocaleString()}회</h6>
+          <h6>{dayjs(data.createdAt).format('YYYY년 MM월 DD일')}</h6>
         </Title>
-        {screenSize === 'phone' ? <PhoneScreen /> : <DesktopScreen />}
+        {screenSize === 'phone' ? (
+          <PhoneScreen
+            description={data.description}
+            ingredients={data.ingredients}
+          />
+        ) : (
+          <DesktopScreen
+            description={data.description}
+            ingredients={data.ingredients}
+          />
+        )}
       </Body>
     </>
   );

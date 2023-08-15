@@ -1,11 +1,11 @@
 import axios, { AxiosError } from 'axios';
 
-// export const BASE_URL =
-//   process.env.NODE_ENV === 'production'
-//     ? 'https://self-dining.shop/api'
-//     : '/api';
+export const BASE_URL =
+  process.env.NODE_ENV === 'production'
+    ? 'https://self-dining.shop/api'
+    : '/api';
 
-const BASE_URL = 'https://self-dining.shop/api';
+// const BASE_URL = 'https://self-dining.shop/api';
 
 const axiosClient = (() => {
   const axiosInstance = axios.create({
