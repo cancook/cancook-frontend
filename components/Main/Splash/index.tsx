@@ -4,11 +4,14 @@ import RotatingText from './RotatingText';
 import ScrollToCategory from './ScrollToCategory';
 import theme from '@/styles/theme';
 import SearchIcon from '@/public/svg/search.svg';
-import Category from '../Category';
 import SearchModal from '../../Search/Modal/SearchModal';
 import { showModal } from '@/provider/ModalState';
 
-const Splash = () => {
+type SplashProps = {
+  scrollTargetRef?: React.RefObject<HTMLDivElement>;
+};
+
+const Splash = ({ scrollTargetRef }: SplashProps) => {
   const ingredientList = [
     // TODO: change img to image src
     { img: 'Egg', name: '달걀' },
@@ -18,10 +21,9 @@ const Splash = () => {
   ];
 
   const searchRef = useRef<HTMLDivElement>(null);
-  const categoryRef = useRef<HTMLDivElement>(null);
 
   const handleScrollClick = () => {
-    categoryRef.current?.scrollIntoView({ behavior: 'smooth' });
+    scrollTargetRef?.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const handleSearchModalOpen = () => {
@@ -47,9 +49,6 @@ const Splash = () => {
         </SearchButtonContainer>
         <ScrollToCategory onClick={handleScrollClick} />
       </SplashContainer>
-      <CategoryContainer ref={categoryRef}>
-        <Category />
-      </CategoryContainer>
     </SplashView>
   );
 };
@@ -138,13 +137,4 @@ const SearchButton = styled.button`
       letter-spacing: -0.0375rem;
     }
   }
-`;
-
-const CategoryContainer = styled.section`
-  /* Scroll to 버튼을 덮어쓰기 */
-  position: relative;
-  z-index: 1;
-
-  background-color: black;
-  scroll-snap-align: start;
 `;
