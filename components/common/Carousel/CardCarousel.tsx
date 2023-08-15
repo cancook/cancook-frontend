@@ -10,7 +10,6 @@ import { VideoInformation } from '@/types/youtube';
 import timeFormatter from '@/utils/timeFormatter';
 import viewsFormatter from '@/utils/viewsFormatter';
 import styled from '@emotion/styled';
-import ModalComponent from '../Modal';
 import YoutubeModalBody from '@/components/YoutubeModalBody';
 import { showModal } from '@/provider/ModalState';
 import { useRouter } from 'next/router';
@@ -29,7 +28,6 @@ const CardCarousel = ({ cards, prev, next }: Props) => {
   const router = useRouter();
   return (
     <>
-      <ModalComponent />
       <Swiper
         navigation={{
           prevEl: prev.current,
