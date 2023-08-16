@@ -8,12 +8,14 @@ import * as gtag from '@/lib/gtag';
 // Swiper
 import 'swiper/css';
 import Modal from '@/components/common/Modal';
-import Script from 'next/script';
 import { useRouter } from 'next/router';
+import Script from 'next/script';
 import { useEffect } from 'react';
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
+  // header에 검색 기능이 있는 route들
+  const SEARCHABLE_HEADER_PATH = ['/result'];
 
   useEffect(() => {
     const handleRouteChange = (url: URL) => {
@@ -50,7 +52,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <ThemeProvider theme={theme}>
           <Global styles={global(theme)} />
           <Modal />
-          <Layout>
+          <Layout searchable={SEARCHABLE_HEADER_PATH.includes(router.route)}>
             <Component {...pageProps} />
           </Layout>
         </ThemeProvider>

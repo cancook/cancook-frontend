@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import { Transition, TransitionGroup } from 'react-transition-group';
 
 import Header from './Header';
@@ -14,11 +14,16 @@ const getTransitionStyles = {
   unmounted: { opacity: 0 }
 } as const;
 
-const Layout = ({ children }: PropsWithChildren) => {
+type LayoutProps = {
+  children: React.ReactNode;
+  searchable?: boolean;
+};
+
+const Layout = ({ children, searchable }: LayoutProps) => {
   const router = useRouter();
   return (
     <>
-      <Header />
+      <Header searchable={searchable} />
       <TransitionGroup component={null}>
         <Transition key={router.pathname} timeout={TIMEOUT}>
           {(state) => {
