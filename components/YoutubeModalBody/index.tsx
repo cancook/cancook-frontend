@@ -113,10 +113,10 @@ const Body = styled.section`
 `;
 
 const Title = styled.div`
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.75rem;
 
   ${({ theme }) => theme.screen.tablet} {
-    margin-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
   }
 
   > h1 {
