@@ -21,7 +21,7 @@ const ChipContainer = styled.div`
 
   .chip-counter {
     ${({ theme }) => theme.font.label.sm};
-    color: var(--black-white-black, #000);
+    color: ${({ theme }) => theme.colors.black[0]};
   }
 
   ${({ theme }) => theme.screen.desktop} {
