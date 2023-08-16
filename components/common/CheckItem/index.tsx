@@ -19,13 +19,15 @@ const CheckItem = ({ isChecked, children }: CheckItemProps) => {
 const CheckIcon = styled(CheckSVGIcon, {
   shouldForwardProp: (prop) => prop !== 'isChecked'
 })`
-  color: ${({ theme, isChecked }) => isChecked && theme.colors.yellow[400]};
+  color: ${({ theme, isChecked }) =>
+    isChecked ? theme.colors.yellow[400] : theme.colors.gray[400]};
   margin-right: 0.25rem;
 `;
 
 const Layout = styled.div<{ isChecked: boolean }>`
   color: ${({ isChecked, theme }) =>
     isChecked ? theme.colors.yellow[400] : theme.colors.gray[200]};
+  margin-bottom: 0.25rem;
 `;
 
 export default CheckItem;
