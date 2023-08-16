@@ -60,12 +60,16 @@ export const getServerSideProps: GetServerSideProps<{
 
 const HomeContainer = styled.div`
   height: 100vh;
-  overflow: scroll;
+  overflow-y: scroll;
   scroll-snap-type: y mandatory;
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
+
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
 `;
 
 const CategoryContainer = styled.section`
