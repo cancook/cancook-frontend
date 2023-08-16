@@ -53,21 +53,16 @@ const Splash = ({ scrollTargetRef }: SplashProps) => {
 
 export default Splash;
 
-const SplashView = styled.div`
-  height: calc(100vh - 6rem);
-  scroll-snap-type: y mandatory;
-  overflow: auto;
-`;
-
 // Container
 const SplashContainer = styled.div`
   /* TODO: height 재설정 필요 100vh - header-height */
-  height: calc(100vh - 6rem);
+  height: 100vh;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   scroll-snap-align: end;
+  scroll-padding-top: 6rem;
 `;
 
 const SplashHeader = styled.h1`

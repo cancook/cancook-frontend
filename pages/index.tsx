@@ -59,9 +59,13 @@ export const getServerSideProps: GetServerSideProps<{
 };
 
 const HomeContainer = styled.div`
-  height: calc(100vh - 6rem);
+  height: 100vh;
+  overflow: scroll;
   scroll-snap-type: y mandatory;
-  overflow: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
 `;
 
 const CategoryContainer = styled.section`
@@ -73,6 +77,7 @@ const CategoryContainer = styled.section`
   scroll-snap-align: start;
 
   padding: 0;
+  padding-top: 6rem;
   padding-bottom: 2rem;
   overflow: hidden;
   display: flex;
