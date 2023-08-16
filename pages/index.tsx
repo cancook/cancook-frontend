@@ -36,11 +36,14 @@ export default function Home({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Splash scrollTargetRef={categoryRef} />
-      <CategoryContainer ref={categoryRef}>
-        <Banner banners={bannerData} isLoading={false} />
-        {categoryData && <Category data={categoryData} />}
-      </CategoryContainer>
+      <HomeContainer>
+        <Splash scrollTargetRef={categoryRef} />
+        <CategoryContainer ref={categoryRef}>
+          <Banner banners={bannerData} isLoading={false} />
+          {categoryData && <Category data={categoryData} />}
+        </CategoryContainer>
+        <Empty></Empty>
+      </HomeContainer>
     </>
   );
 }
@@ -54,6 +57,12 @@ export const getServerSideProps: GetServerSideProps<{
     }
   };
 };
+
+const HomeContainer = styled.div`
+  height: calc(100vh - 6rem);
+  scroll-snap-type: y mandatory;
+  overflow: auto;
+`;
 
 const CategoryContainer = styled.section`
   /* Scroll to 버튼을 덮어쓰기 */
@@ -86,4 +95,8 @@ export const MainContainer = styled.div`
   ${({ theme }) => theme.screen.desktop} {
     gap: 1.5rem;
   }
+`;
+
+const Empty = styled.div`
+  scroll-snap-align: start;
 `;

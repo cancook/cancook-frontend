@@ -35,21 +35,19 @@ const Splash = ({ scrollTargetRef }: SplashProps) => {
   };
 
   return (
-    <SplashView>
-      <SplashContainer ref={searchRef}>
-        <SplashHeader>
-          오늘은 <RotatingText ingredientList={ingredientList} />로
-        </SplashHeader>
-        <SplashHeader>어떤 요리를 만들어볼까?</SplashHeader>
-        <SearchButtonContainer>
-          <SearchButton onClick={handleSearchModalOpen}>
-            <SearchIcon fill={theme.colors.gray[300]} />
-            <span className="button-text">냉장고에 있는 재료를 골라주세요</span>
-          </SearchButton>
-        </SearchButtonContainer>
-        <ScrollToCategory onClick={handleScrollClick} />
-      </SplashContainer>
-    </SplashView>
+    <SplashContainer ref={searchRef}>
+      <SplashHeader>
+        오늘은 <RotatingText ingredientList={ingredientList} />로
+      </SplashHeader>
+      <SplashHeader>어떤 요리를 만들어볼까?</SplashHeader>
+      <SearchButtonContainer>
+        <SearchButton onClick={handleSearchModalOpen}>
+          <SearchIcon fill={theme.colors.gray[300]} />
+          <span className="button-text">냉장고에 있는 재료를 골라주세요</span>
+        </SearchButton>
+      </SearchButtonContainer>
+      <ScrollToCategory onClick={handleScrollClick} />
+    </SplashContainer>
   );
 };
 
