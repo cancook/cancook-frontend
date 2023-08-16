@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import styled from '@emotion/styled';
 
-import { useQuery } from '@tanstack/react-query';
+import { QueryClient, dehydrate, useQuery } from '@tanstack/react-query';
 import Splash from '@/components/Main/Splash';
 import { getCategoryList } from '@/apis/youtube/getCategoryList';
 import Category from '@/components/Main/Category';
@@ -9,18 +9,14 @@ import { BANNER_DUMMY_DATA } from '@/constants/dummyData/banner';
 import { BannerInformation } from '@/types/banner';
 import Banner from '@/components/common/Banner/Banner';
 import { useRef } from 'react';
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
-import { YoutubeCategory } from '@/types/youtube';
+import { GetServerSideProps } from 'next/types';
 
-export default function Home({
-  categoryInit
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Home() {
   const { data: categoryData, isLoading: isCategoryLoading } = useQuery(
     ['youtube', 'category'],
     getCategoryList,
     {
-      initialData: categoryInit,
-      enabled: !categoryInit
+      enabled: false
     }
   );
 
@@ -47,13 +43,12 @@ export default function Home({
     </>
   );
 }
-export const getServerSideProps: GetServerSideProps<{
-  categoryInit: YoutubeCategory[];
-}> = async ({ query }) => {
-  const categoryInit = await getCategoryList();
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery(['youtube', 'category'], getCategoryList);
   return {
     props: {
-      categoryInit
+      dehydratedState: dehydrate(queryClient)
     }
   };
 };
