@@ -130,7 +130,7 @@ const Title = styled.div`
 
   > h6 {
     ${({ theme }) => theme.font.body.sm};
-    color: ${({ theme }) => theme.colors.gray[100]};
+    color: ${({ theme }) => theme.colors.gray[200]};
     display: inline-block;
 
     &:first-of-type::after {
