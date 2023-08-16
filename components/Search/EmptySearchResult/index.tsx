@@ -1,7 +1,5 @@
 import styled from '@emotion/styled';
-import Image from 'next/image';
 import React from 'react';
-import emptyGIFPath from '@/public/gifs/stir-cook.gif';
 
 const Wrapper = styled.div`
   width: 11rem;
@@ -20,7 +18,7 @@ const Text = styled.p`
   }
 `;
 
-const EmptyResultImage = styled(Image)`
+const EmptyResultImage = styled.img`
   display: block;
   margin: auto;
   width: 5rem;
@@ -35,7 +33,7 @@ const EmptyResultImage = styled(Image)`
 const EmptySearchResult = () => {
   return (
     <Wrapper>
-      <EmptyResultImage src={emptyGIFPath} alt="empty search image" />
+      <EmptyResultImage src={'/gifs/stir-cook.gif'} alt="empty search image" />
       <Text>
         자고 있는 재료들을 깨워 <br />
         만들수 있는 레시피를 찾고 있어요.

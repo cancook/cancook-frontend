@@ -4,11 +4,14 @@ import RotatingText from './RotatingText';
 import ScrollToCategory from './ScrollToCategory';
 import theme from '@/styles/theme';
 import SearchIcon from '@/public/svg/search.svg';
-import Category from '../Category';
 import SearchModal from '../../Search/Modal/SearchModal';
 import { showModal } from '@/provider/ModalState';
 
-const Splash = () => {
+type SplashProps = {
+  scrollTargetRef?: React.RefObject<HTMLDivElement>;
+};
+
+const Splash = ({ scrollTargetRef }: SplashProps) => {
   const ingredientList = [
     // TODO: change img to image src
     { img: 'Egg', name: '달걀' },
@@ -18,10 +21,9 @@ const Splash = () => {
   ];
 
   const searchRef = useRef<HTMLDivElement>(null);
-  const categoryRef = useRef<HTMLDivElement>(null);
 
   const handleScrollClick = () => {
-    categoryRef.current?.scrollIntoView({ behavior: 'smooth' });
+    scrollTargetRef?.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const handleSearchModalOpen = () => {
@@ -33,24 +35,19 @@ const Splash = () => {
   };
 
   return (
-    <SplashView>
-      <SplashContainer ref={searchRef}>
-        <SplashHeader>
-          오늘은 <RotatingText ingredientList={ingredientList} />로
-        </SplashHeader>
-        <SplashHeader>어떤 요리를 만들어볼까?</SplashHeader>
-        <SearchButtonContainer>
-          <SearchButton onClick={handleSearchModalOpen}>
-            <SearchIcon fill={theme.colors.gray[300]} />
-            <span className="button-text">냉장고에 있는 재료를 골라주세요</span>
-          </SearchButton>
-        </SearchButtonContainer>
-        <ScrollToCategory onClick={handleScrollClick} />
-      </SplashContainer>
-      <CategoryContainer ref={categoryRef}>
-        <Category />
-      </CategoryContainer>
-    </SplashView>
+    <SplashContainer ref={searchRef}>
+      <SplashHeader>
+        오늘은 <RotatingText ingredientList={ingredientList} />로
+      </SplashHeader>
+      <SplashHeader>어떤 요리를 만들어볼까?</SplashHeader>
+      <SearchButtonContainer>
+        <SearchButton onClick={handleSearchModalOpen}>
+          <SearchIcon fill={theme.colors.gray[300]} />
+          <span className="button-text">냉장고에 있는 재료를 골라주세요</span>
+        </SearchButton>
+      </SearchButtonContainer>
+      <ScrollToCategory onClick={handleScrollClick} />
+    </SplashContainer>
   );
 };
 
@@ -138,13 +135,4 @@ const SearchButton = styled.button`
       letter-spacing: -0.0375rem;
     }
   }
-`;
-
-const CategoryContainer = styled.section`
-  /* Scroll to 버튼을 덮어쓰기 */
-  position: relative;
-  z-index: 1;
-
-  background-color: black;
-  scroll-snap-align: start;
 `;

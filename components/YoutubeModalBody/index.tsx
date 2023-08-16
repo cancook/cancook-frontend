@@ -8,6 +8,7 @@ import PhoneScreen from './PhoneScreen';
 import DesktopScreen from './DesktopScreen';
 import useYoutubeDetail from '@/hook/useYoutubeDetail';
 import dayjs from 'dayjs';
+import { closeModal } from '@/provider/ModalState';
 
 type YoutubeModalBodyProps = {
   id: string;
@@ -21,7 +22,11 @@ const YoutubeModalBody = ({ id }: YoutubeModalBodyProps) => {
     <>
       {screenSize == 'phone' && (
         <Header>
-          <ArrowMediumIcon />
+          <ArrowMediumIcon
+            onClick={() => {
+              closeModal();
+            }}
+          />
           <ShareIcon />
         </Header>
       )}
