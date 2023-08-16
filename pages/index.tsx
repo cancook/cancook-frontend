@@ -9,11 +9,19 @@ import { BANNER_DUMMY_DATA } from '@/constants/dummyData/banner';
 import { BannerInformation } from '@/types/banner';
 import Banner from '@/components/common/Banner/Banner';
 import { useRef } from 'react';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
+import { YoutubeCategory } from '@/types/youtube';
 
-export default function Home() {
+export default function Home({
+  categoryInit
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { data: categoryData, isLoading: isCategoryLoading } = useQuery(
     ['youtube', 'category'],
-    getCategoryList
+    getCategoryList,
+    {
+      initialData: categoryInit,
+      enabled: !categoryInit
+    }
   );
 
   const bannerData: BannerInformation[] = BANNER_DUMMY_DATA;
@@ -57,18 +65,16 @@ const CategoryContainer = styled.section`
   }
 `;
 
-// export const getServerSideProps: GetServerSideProps<{
-//   ingredients: string[];
-//   videos: Video[];
-// }> = async ({ query }) => {
-//   const videos = await getYoutubeFromIngredient(ingredients.split(','));
-
-//   return {
-//     props: {
-
-//     }
-//   };
-// };
+export const getServerSideProps: GetServerSideProps<{
+  categoryInit: YoutubeCategory[];
+}> = async ({ query }) => {
+  const categoryInit = await getCategoryList();
+  return {
+    props: {
+      categoryInit
+    }
+  };
+};
 
 export const MainContainer = styled.div`
   padding: 0;
