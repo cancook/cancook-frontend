@@ -40,6 +40,7 @@ const AccordionWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.gray[700]};
   padding: 1rem;
   border-radius: 0.5rem;
+  white-space: pre-line;
 `;
 
 const Title = styled.span`
