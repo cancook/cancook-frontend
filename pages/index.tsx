@@ -44,6 +44,16 @@ export default function Home({
     </>
   );
 }
+export const getServerSideProps: GetServerSideProps<{
+  categoryInit: YoutubeCategory[];
+}> = async ({ query }) => {
+  const categoryInit = await getCategoryList();
+  return {
+    props: {
+      categoryInit
+    }
+  };
+};
 
 const CategoryContainer = styled.section`
   /* Scroll to 버튼을 덮어쓰기 */
@@ -64,17 +74,6 @@ const CategoryContainer = styled.section`
     gap: 1.5rem;
   }
 `;
-
-export const getServerSideProps: GetServerSideProps<{
-  categoryInit: YoutubeCategory[];
-}> = async ({ query }) => {
-  const categoryInit = await getCategoryList();
-  return {
-    props: {
-      categoryInit
-    }
-  };
-};
 
 export const MainContainer = styled.div`
   padding: 0;

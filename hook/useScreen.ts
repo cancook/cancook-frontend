@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 
 // type ScreenMode = 'phone' | 'tablet' | 'desktop';
 
 const useScreen = () => {
   const [screenSize, setScreenSize] = useState('');
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const handleResize = () => {
       const { innerWidth } = window;
       let currentScreenSize = '';
