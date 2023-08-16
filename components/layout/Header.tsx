@@ -2,6 +2,9 @@ import styled from '@emotion/styled';
 import MainLogo from '@/public/svg/cancook-logo.svg';
 import React from 'react';
 import { useRouter } from 'next/router';
+import { showModal } from '@/provider/ModalState';
+import SearchModal from '@/components/Search/Modal/SearchModal';
+import SearchInput from '@/components/Search/SearchInput';
 
 const HeaderWrapper = styled.nav`
   position: relative;
@@ -18,6 +21,19 @@ const HeaderWrapper = styled.nav`
   }
 `;
 
+const SearchInputWrapper = styled.div`
+  width: 100%;
+  max-width: calc(80rem - 2.5rem);
+  ${({ theme }) => theme.screen.desktop} {
+    width: 50rem;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+`;
+
 const StickyHeader = styled.header`
   position: sticky;
   top: 0;
@@ -25,8 +41,16 @@ const StickyHeader = styled.header`
   backdrop-filter: blur(20px);
 `;
 
-const Header = () => {
+const Header = ({ searchable }: { searchable?: boolean }) => {
   const router = useRouter();
+
+  const handleSearchModalOpen = () => {
+    showModal({
+      show: true,
+      title: '재료 찾기',
+      body: <SearchModal />
+    });
+  };
 
   return (
     <StickyHeader>
@@ -37,6 +61,15 @@ const Header = () => {
             cursor: 'pointer'
           }}
         />
+        {searchable && (
+          <SearchInputWrapper>
+            <SearchInput
+              isFocus={false}
+              onInputWrapperClick={handleSearchModalOpen}
+              disabled
+            />
+          </SearchInputWrapper>
+        )}
       </HeaderWrapper>
     </StickyHeader>
   );

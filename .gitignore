@@ -38,3 +38,5 @@ next-env.d.ts
 
 # storybook
 build-storybook.log
+# Local Netlify folder
+.netlify

@@ -31,7 +31,9 @@ const Accordion = ({ title, children }: AccordionProps) => {
   );
 };
 
-const ArrowIcon = styled(ArrowUpIcon)<{ isOpen: boolean }>`
+const ArrowIcon = styled(ArrowUpIcon, {
+  shouldForwardProp: (prop) => prop !== 'isOpen'
+})<{ isOpen: boolean }>`
   transform: ${({ isOpen }) => (isOpen ? 'rotate(0deg)' : 'rotate(180deg)')};
   transition: transform 0.3s ease-in-out;
 `;

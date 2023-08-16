@@ -3,12 +3,14 @@ import { useCategoryIngredientList } from '@/hook/useCategoryIngredientList';
 import InputSection from './InputSection';
 import TabSection from './TabSection';
 import ButtonSection from './ButtonSection';
-import { getYoutubeFromIngredient } from '@/apis/search/getYoutubeFromIngredient';
 import styled from '@emotion/styled';
+import { useRouter } from 'next/router';
+import { closeModal } from '@/provider/ModalState';
 
 const SearchModal = () => {
   const [selectedOnly, setSelectedOnly] = useState<boolean>(false);
   const [selectedIngredients, setSelectedIngredients] = useState<string[]>([]);
+  const router = useRouter();
 
   const { list: categoryIngredientList, isLoading } =
     useCategoryIngredientList();
@@ -19,12 +21,8 @@ const SearchModal = () => {
   };
 
   const handleSubmitSearchModal = () => {
-    getYoutubeFromIngredient(selectedIngredients).then((res) => {
-      console.log(
-        '===선택된 ingredient들을 이용하여 youtube 검색을 진행합니다.==='
-      );
-      console.log(res);
-    });
+    closeModal();
+    router.push(`/result?ingredients=${selectedIngredients.join(',')}`);
   };
 
   if (isLoading) return <SkeletonModal></SkeletonModal>;

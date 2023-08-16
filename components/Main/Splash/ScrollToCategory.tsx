@@ -12,7 +12,7 @@ const ScrollToCategory = ({ onClick }: ScrollToButtonProps) => {
       <ScrollToText>스크롤 해보세요!</ScrollToText>
       <SpringImage>
         <Image
-          src={'/asset/splash/icArrowSpin.png'}
+          src={'/images/splash/icArrowSpin.png'}
           alt="arrow-spin"
           fill
           style={{ objectFit: 'contain' }}

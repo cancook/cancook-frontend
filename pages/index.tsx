@@ -1,28 +1,32 @@
 import Head from 'next/head';
 import styled from '@emotion/styled';
 
-import { YoutubeRecommended } from '@/types/youtube';
-import { YOUTUBE_BANNER_DUMMY_DATA } from '@/constants/dummyData/youtube';
-import { BannerInformation } from '@/types/banner';
-import { BANNER_DUMMY_DATA } from '@/constants/dummyData/banner';
 import { useQuery } from '@tanstack/react-query';
 import Splash from '@/components/Main/Splash';
 import { getCategoryList } from '@/apis/youtube/getCategoryList';
+import Category from '@/components/Main/Category';
+import { BANNER_DUMMY_DATA } from '@/constants/dummyData/banner';
+import { BannerInformation } from '@/types/banner';
+import Banner from '@/components/common/Banner/Banner';
+import { useRef } from 'react';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next/types';
+import { YoutubeCategory } from '@/types/youtube';
 
-export default function Home() {
-  // const { data: recommendedData, isLoading: isRecommendedLoading } = useQuery(
-  //   ['youtube', 'recommended'],
-  //   getRecommendedList
-  // );
+export default function Home({
+  categoryInit
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { data: categoryData, isLoading: isCategoryLoading } = useQuery(
     ['youtube', 'category'],
-    getCategoryList
+    getCategoryList,
+    {
+      initialData: categoryInit,
+      enabled: !categoryInit
+    }
   );
 
-  // TODO: 테스트용
   const bannerData: BannerInformation[] = BANNER_DUMMY_DATA;
-  const recommendedData: YoutubeRecommended[] = YOUTUBE_BANNER_DUMMY_DATA;
-  // const categoryData: YoutubeCategory[] = YOUTUBE_CATEGORY_DUMMY_DATA;
+
+  const categoryRef = useRef<HTMLDivElement>(null);
 
   return (
     <>
@@ -32,24 +36,53 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* NOTE: 07-18 update
-                메인 페이지 진입시 처음 보이는 것은 검색창이며,
-                아래의 MainContainer 는 검색이 종료 된뒤 결과 페이지와 흡사합니다. */}
-
-      {/* <MainContainer>
-        <Banner banners={bannerData} isLoading={false} />
-        {categoryData?.map((category) => (
-          <CardCarousel
-            key={`category-${category.title}`}
-            contents={category}
-          />
-        ))}
-      </MainContainer> */}
-      <Splash />
-      {/* <Test /> */}
+      <HomeContainer>
+        <Splash scrollTargetRef={categoryRef} />
+        <CategoryContainer ref={categoryRef}>
+          <Banner banners={bannerData} isLoading={false} />
+          {categoryData && <Category data={categoryData} />}
+        </CategoryContainer>
+        <Empty></Empty>
+      </HomeContainer>
     </>
   );
 }
+export const getServerSideProps: GetServerSideProps<{
+  categoryInit: YoutubeCategory[];
+}> = async ({ query }) => {
+  const categoryInit = await getCategoryList();
+  return {
+    props: {
+      categoryInit
+    }
+  };
+};
+
+const HomeContainer = styled.div`
+  height: calc(100vh - 6rem);
+  scroll-snap-type: y mandatory;
+  overflow: auto;
+`;
+
+const CategoryContainer = styled.section`
+  /* Scroll to 버튼을 덮어쓰기 */
+  position: relative;
+  z-index: 1;
+
+  background-color: ${({ theme }) => theme.colors.gray[900]};
+  scroll-snap-align: start;
+
+  padding: 0;
+  padding-bottom: 2rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  ${({ theme }) => theme.screen.desktop} {
+    gap: 1.5rem;
+  }
+`;
 
 export const MainContainer = styled.div`
   padding: 0;
@@ -62,4 +95,8 @@ export const MainContainer = styled.div`
   ${({ theme }) => theme.screen.desktop} {
     gap: 1.5rem;
   }
+`;
+
+const Empty = styled.div`
+  scroll-snap-align: start;
 `;
