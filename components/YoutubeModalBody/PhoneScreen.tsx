@@ -12,7 +12,9 @@ export type screenProps = {
 const PhoneScreen = ({ description, ingredients }: screenProps) => {
   return (
     <PhoneLayout>
-      <Accordion title="더보기">{description}</Accordion>
+      <Accordion isOpenInit={true} title="더보기">
+        {description}
+      </Accordion>
       <Accordion title={<IngredientsTitle />}>
         {ingredients.map((ingredient, index) => {
           return (
