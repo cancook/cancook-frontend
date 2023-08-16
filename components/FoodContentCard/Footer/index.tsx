@@ -2,11 +2,18 @@ import styled from '@emotion/styled';
 import Image from 'next/image';
 import React, { ReactNode } from 'react';
 
+const ProfileLayout = styled.div`
+  display: flex;
+  margin-top: 0.625rem;
+  align-items: center;
+  color: ${({ theme }) => theme.colors.gray[200]};
+`;
 const ProfileImage = styled(Image)`
   border-radius: 50%;
 `;
 
 const UserName = styled.p`
+  flex: 1;
   margin-left: 0.5rem;
   ${({ theme }) => theme.font.label.md};
   overflow: hidden;
@@ -14,15 +21,8 @@ const UserName = styled.p`
   text-overflow: ellipsis;
 `;
 
-const ProfileLayout = styled.div`
-  display: flex;
-  margin-top: 0.625rem;
-  align-items: center;
-  color: ${({ theme }) => theme.colors.gray[200]};
-  white-space: nowrap;
-`;
-
 const ViewAndDates = styled.h5`
+  flex-grow: 1;
   margin-left: 0.5rem;
   ${({ theme }) => theme.font.body.sm};
   color: ${({ theme }) => theme.colors.gray[400]};

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Video } from '@/types/youtube';
+import { VideoInformation } from '@/types/youtube';
 import FoodContentCard from '@/components/FoodContentCard';
 import styled from '@emotion/styled';
 import { getYoutubeFromIngredient } from '@/apis/search/getYoutubeFromIngredient';
@@ -7,10 +7,12 @@ import Chip from '@/components/common/Chip';
 import ArrowUpIcon from '@/public/svg/arrow-up.svg';
 import Autocomplete from '@/components/Search/SearchInput/Autocomplete';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import viewsFormatter from '@/utils/viewsFormatter';
+import timeFormatter from '@/utils/timeFormatter';
 
 const ResultPage = ({
   ingredients,
-  videos
+  videoInformation
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   //   Filter
   const [filterOption, setFilterOption] = useState<
@@ -27,7 +29,7 @@ const ResultPage = ({
       <TitleWrapper>
         <ContentTitle>
           <CategoryTitle>&apos;{ingredients}&apos; 레시피</CategoryTitle>
-          <Chip count={videos.length} />
+          <Chip count={videoInformation.length} />
         </ContentTitle>
         <OptionWrapper>
           <FilterOption
@@ -49,36 +51,42 @@ const ResultPage = ({
         </OptionWrapper>
       </TitleWrapper>
       <VideoContainer>
-        {videos
-          .sort((video1, video2) => {
+        {videoInformation
+          .sort((videoInfo1, videoInfo2) => {
+            const video1 = videoInfo1.video;
+            const video2 = videoInfo2.video;
             // TODO: 클릭수를 기반으로 인기순을 파악하긴 해야함...
             if (filterOption === '인기순' || filterOption === '조회순')
               return video1.views - video2.views;
             else return +video1.id - +video2.id;
           })
-          .map((resultVideo: Video) => (
-            <FoodContentCard.Layout key={resultVideo.id}>
-              <div onClick={handleModalOpenForSmileyHaemin}>
-                <ImageWrapper>
-                  <ImageScaleUp>
-                    <FoodContentCard.Thumbnail
-                      src={resultVideo.thumbnailURL}
-                      size="md"
-                    />
-                  </ImageScaleUp>
-                </ImageWrapper>
-                <FoodContentCard.Body title={resultVideo.title} />
-              </div>
-              {/* <FoodContentCard.Footer
-            // src={card.creator.thumbnail}
-            viewAndDates={`조회수 ${viewsFormatter(
-              resultVideo.views
-            )}회 • ${timeFormatter(resultVideo.createdAt)}전`}
-          >
-            {card.creator.name}
-          </FoodContentCard.Footer> */}
-            </FoodContentCard.Layout>
-          ))}
+          .map((resultVideoInfo: VideoInformation) => {
+            const video = resultVideoInfo.video;
+            const creator = resultVideoInfo.creator;
+            return (
+              <FoodContentCard.Layout key={video.id}>
+                <div onClick={handleModalOpenForSmileyHaemin}>
+                  <ImageWrapper>
+                    <ImageScaleUp>
+                      <FoodContentCard.Thumbnail
+                        src={video.thumbnailURL}
+                        size="md"
+                      />
+                    </ImageScaleUp>
+                  </ImageWrapper>
+                  <FoodContentCard.Body title={video.title} />
+                </div>
+                <FoodContentCard.Footer
+                  src={creator.thumbnail}
+                  viewAndDates={`조회수 ${viewsFormatter(
+                    video.views
+                  )}회 • ${timeFormatter(video.createdAt)}전`}
+                >
+                  {creator.name}
+                </FoodContentCard.Footer>
+              </FoodContentCard.Layout>
+            );
+          })}
       </VideoContainer>
     </ResultPageContainer>
   );
@@ -86,15 +94,17 @@ const ResultPage = ({
 
 export const getServerSideProps: GetServerSideProps<{
   ingredients: string[];
-  videos: Video[];
+  videoInformation: VideoInformation[];
 }> = async ({ query }) => {
   const ingredients = query.ingredients as string;
-  const videos = await getYoutubeFromIngredient(ingredients.split(','));
+  const videoInformation = await getYoutubeFromIngredient(
+    ingredients.split(',')
+  );
 
   return {
     props: {
       ingredients: ingredients.split(','),
-      videos: videos.filter((item) => item.thumbnailURL.startsWith('https://'))
+      videoInformation
     }
   };
 };
