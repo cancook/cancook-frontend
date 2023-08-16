@@ -15,11 +15,12 @@ const Title = styled.h3`
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 
+  height: 2.75rem;
   ${({ theme }) => theme.font.label.lg}
-
   ${({ theme }) => theme.screen.desktop} {
     ${({ theme }) => theme.font.title.sm};
     font-size: 1rem;
+    height: 3.5rem;
   }
 `;
 
