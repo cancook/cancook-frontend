@@ -11,6 +11,7 @@ import Modal from '@/components/common/Modal';
 import Script from 'next/script';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { Hydrate } from '@tanstack/react-query';
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -47,13 +48,15 @@ export default function App({ Component, pageProps }: AppProps) {
         }}
       />
       <ReactQueryProvider>
-        <ThemeProvider theme={theme}>
-          <Global styles={global(theme)} />
-          <Modal />
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </ThemeProvider>
+        <Hydrate state={pageProps.dehydratedState}>
+          <ThemeProvider theme={theme}>
+            <Global styles={global(theme)} />
+            <Modal />
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </ThemeProvider>
+        </Hydrate>
       </ReactQueryProvider>
     </>
   );
