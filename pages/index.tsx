@@ -60,7 +60,7 @@ const CategoryContainer = styled.section`
   position: relative;
   z-index: 1;
 
-  background-color: black;
+  background-color: ${({ theme }) => theme.colors.gray[900]};
   scroll-snap-align: start;
 
   padding: 0;
