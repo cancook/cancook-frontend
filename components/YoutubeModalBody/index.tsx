@@ -9,6 +9,7 @@ import DesktopScreen from './DesktopScreen';
 import useYoutubeDetail from '@/hook/useYoutubeDetail';
 import dayjs from 'dayjs';
 import { closeModal } from '@/provider/ModalState';
+import legacyCopyClipboard from '@/utils/legacyCopyClipboard';
 
 type YoutubeModalBodyProps = {
   id: string;
@@ -18,6 +19,23 @@ const YoutubeModalBody = ({ id }: YoutubeModalBodyProps) => {
   const screenSize = useScreen();
   const { data } = useYoutubeDetail(id);
   if (!data) return <></>;
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      navigator.share({
+        title: data.title,
+        text: data.description,
+        url: window.location.href
+      });
+    } else {
+      try {
+        legacyCopyClipboard();
+        alert('url이 복사 되었습니다');
+      } catch (err) {
+        alert('url이 복사 실패');
+      }
+    }
+  };
   return (
     <>
       {screenSize == 'phone' && (
@@ -27,7 +45,7 @@ const YoutubeModalBody = ({ id }: YoutubeModalBodyProps) => {
               closeModal();
             }}
           />
-          <ShareIcon />
+          <ShareIcon onClick={handleShare} />
         </Header>
       )}
       <YouTubeVideo
