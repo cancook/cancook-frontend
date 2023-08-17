@@ -13,7 +13,6 @@ const ProfileImage = styled(Image)`
 `;
 
 const UserName = styled.p`
-  flex: 1;
   margin-left: 0.5rem;
   ${({ theme }) => theme.font.label.md};
   overflow: hidden;
@@ -22,7 +21,6 @@ const UserName = styled.p`
 `;
 
 const ViewAndDates = styled.h5`
-  flex-grow: 1;
   margin-left: 0.5rem;
   ${({ theme }) => theme.font.body.sm};
   color: ${({ theme }) => theme.colors.gray[400]};
