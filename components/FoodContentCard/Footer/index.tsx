@@ -4,8 +4,10 @@ import React, { ReactNode } from 'react';
 
 const ProfileLayout = styled.div`
   display: flex;
+  max-width: 17.875rem;
   margin-top: 0.625rem;
   align-items: center;
+  white-space: nowrap;
   color: ${({ theme }) => theme.colors.gray[200]};
 `;
 const ProfileImage = styled(Image)`
@@ -16,7 +18,6 @@ const UserName = styled.p`
   margin-left: 0.5rem;
   ${({ theme }) => theme.font.label.md};
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
 `;
 

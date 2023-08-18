@@ -173,7 +173,7 @@ const VideoContainer = styled.div`
   gap: 1.5rem;
 
   ${({ theme }) => theme.screen.tablet} {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   ${({ theme }) => theme.screen.desktop} {
