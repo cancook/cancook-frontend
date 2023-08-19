@@ -153,4 +153,20 @@ export const global = (theme: Theme) => css`
     background-color: ${theme.colors.gray[900]};
     /* background-color: #fcf4e4; */
   }
+
+  /* 스크롤바 설정 */
+  /* Webkit Browsers (Safari, Chrome) */
+  ::-webkit-scrollbar {
+    width: 0.625rem;
+    height: 100%;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #1a1a1a;
+    border-radius: calc(0.75rem / 2);
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: none;
+  }
 `;
