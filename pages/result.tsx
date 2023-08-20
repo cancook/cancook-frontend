@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { VideoInformation } from '@/types/youtube';
+import { VideoResultInformation } from '@/types/youtube';
 import FoodContentCard from '@/components/FoodContentCard';
 import styled from '@emotion/styled';
 import { getYoutubeFromIngredient } from '@/apis/search/getYoutubeFromIngredient';
@@ -60,9 +60,12 @@ const ResultPage = ({
               return video1.views - video2.views;
             else return +video1.id - +video2.id;
           })
-          .map((resultVideoInfo: VideoInformation) => {
+          .map((resultVideoInfo: VideoResultInformation) => {
             const video = resultVideoInfo.video;
             const creator = resultVideoInfo.creator;
+            const ingredientCount: number =
+              resultVideoInfo.ingredients &&
+              resultVideoInfo.ingredients.length - ingredients.length;
             return (
               <FoodContentCard.Layout key={video.id}>
                 <div onClick={handleModalOpenForSmileyHaemin}>
@@ -74,7 +77,10 @@ const ResultPage = ({
                       />
                     </ImageScaleUp>
                   </ImageWrapper>
-                  <FoodContentCard.Body title={video.title} />
+                  <FoodContentCard.Body
+                    title={video.title}
+                    ingredientCount={ingredientCount}
+                  />
                 </div>
                 <FoodContentCard.Footer
                   src={creator.thumbnail}
@@ -94,7 +100,7 @@ const ResultPage = ({
 
 export const getServerSideProps: GetServerSideProps<{
   ingredients: string[];
-  videoInformation: VideoInformation[];
+  videoInformation: VideoResultInformation[];
 }> = async ({ query }) => {
   const ingredients = query.ingredients as string;
   const videoInformation = await getYoutubeFromIngredient(

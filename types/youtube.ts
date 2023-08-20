@@ -31,6 +31,10 @@ export type VideoInformation = {
   creator: Creator;
 };
 
+export type VideoResultInformation = VideoInformation & {
+  ingredients: string[];
+};
+
 export type YoutubeDetail = {
   urlPk: string;
   title: string;
