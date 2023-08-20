@@ -13,7 +13,7 @@ import { useRouter } from 'next/router';
 
 type YoutubeModalBodyProps = {
   id: string;
-  haveIngredients: string[];
+  haveIngredients?: string[];
 };
 
 const YoutubeModalBody = ({ id, haveIngredients }: YoutubeModalBodyProps) => {
@@ -51,13 +51,13 @@ const YoutubeModalBody = ({ id, haveIngredients }: YoutubeModalBodyProps) => {
         </Title>
         {screenSize === 'phone' ? (
           <PhoneScreen
-            haveIngredients={haveIngredients}
+            haveIngredients={haveIngredients ?? []}
             description={data.description}
             ingredients={data.ingredients}
           />
         ) : (
           <DesktopScreen
-            haveIngredients={haveIngredients}
+            haveIngredients={haveIngredients ?? []}
             description={data.description}
             ingredients={data.ingredients}
           />

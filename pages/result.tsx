@@ -73,9 +73,11 @@ const ResultPage = ({
           .map((resultVideoInfo: VideoResultInformation) => {
             const video = resultVideoInfo.video;
             const creator = resultVideoInfo.creator;
-            const ingredientCount: number =
-              resultVideoInfo.ingredients &&
-              resultVideoInfo.ingredients.length - ingredients.length;
+            const ingredientCount =
+              resultVideoInfo.ingredients.length -
+              resultVideoInfo.ingredients.filter((item) =>
+                ingredientsArray.includes(item)
+              ).length;
             const handleModalClick = () => {
               showModal({
                 fullScreen: true,
