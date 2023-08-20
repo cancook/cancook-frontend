@@ -69,7 +69,7 @@ const InputSection = ({
           className="search-input"
         />
         <Autocomplete
-          isOpen={isFocus}
+          isOpen={isFocus && !!inputValue && inputValue.length > 0}
           keywords={autocompleteData}
           omit={selectedIngredients}
           onItemClick={handleAutocompleteSelect}
