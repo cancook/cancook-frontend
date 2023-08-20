@@ -23,6 +23,16 @@ const ResultPage = ({
   >('최신순');
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
   const router = useRouter();
+  const ingredientsQuery = router.query.ingredients ?? [];
+  let ingredientsArray: string[];
+  if (typeof ingredientsQuery === 'string') {
+    ingredientsArray = ingredientsQuery.split(',');
+  } else if (Array.isArray(ingredientsQuery)) {
+    ingredientsArray = ingredientsQuery.flatMap((item) => item.split(','));
+  } else {
+    ingredientsArray = [];
+  }
+  console.log(ingredientsArray);
 
   return (
     <ResultPageContainer>
@@ -70,7 +80,12 @@ const ResultPage = ({
               showModal({
                 fullScreen: true,
                 show: true,
-                body: <YoutubeModalBody id={video.id} />,
+                body: (
+                  <YoutubeModalBody
+                    id={video.id}
+                    haveIngredients={ingredientsArray}
+                  />
+                ),
                 onClose: () => {
                   router.push(router.asPath, router.asPath, {
                     shallow: true

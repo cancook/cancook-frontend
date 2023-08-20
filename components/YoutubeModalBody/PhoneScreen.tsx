@@ -5,15 +5,27 @@ import IngredientsTitle from './IngredientsTitle';
 import styled from '@emotion/styled';
 
 export type screenProps = {
+  haveIngredients: string[];
   description: string;
   ingredients: string[];
 };
 
-const PhoneScreen = ({ description, ingredients }: screenProps) => {
+const PhoneScreen = ({
+  haveIngredients,
+  description,
+  ingredients
+}: screenProps) => {
   return (
     <PhoneLayout>
       <Accordion title="더보기">{description}</Accordion>
-      <Accordion title={<IngredientsTitle />}>
+      <Accordion
+        title={
+          <IngredientsTitle
+            count={haveIngredients.length}
+            totalCount={ingredients.length}
+          />
+        }
+      >
         {ingredients.map((ingredient, index) => {
           return (
             <CheckItem isChecked={false} key={index}>

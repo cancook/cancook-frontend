@@ -5,12 +5,19 @@ import IngredientsTitle from './IngredientsTitle';
 import styled from '@emotion/styled';
 import { screenProps } from './PhoneScreen';
 
-const DesktopScreen = ({ description, ingredients }: screenProps) => {
+const DesktopScreen = ({
+  haveIngredients,
+  description,
+  ingredients
+}: screenProps) => {
   return (
     <>
       <Collapse>{description}</Collapse>
       <Box>
-        <IngredientsTitle />
+        <IngredientsTitle
+          count={haveIngredients.length}
+          totalCount={ingredients.length}
+        />
         {ingredients.map((ingredient, index) => {
           return (
             <CheckItem isChecked={false} key={index}>
