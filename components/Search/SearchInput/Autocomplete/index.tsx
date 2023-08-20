@@ -9,7 +9,7 @@ const AutocompleteWrapper = styled.ul<{ isOpen: boolean }>`
   left: 0;
   right: 0;
   max-height: 15rem;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   overflow-x: hidden;
   overflow-y: auto;
   background-color: ${({ theme }) => theme.colors.gray[600]};
