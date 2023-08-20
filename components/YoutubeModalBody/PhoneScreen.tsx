@@ -15,20 +15,23 @@ const PhoneScreen = ({
   description,
   ingredients
 }: screenProps) => {
+  const count = haveIngredients.filter((item) =>
+    ingredients.includes(item)
+  ).length;
   return (
     <PhoneLayout>
       <Accordion title="더보기">{description}</Accordion>
       <Accordion
         title={
-          <IngredientsTitle
-            count={haveIngredients.length}
-            totalCount={ingredients.length}
-          />
+          <IngredientsTitle count={count} totalCount={ingredients.length} />
         }
       >
         {ingredients.map((ingredient, index) => {
           return (
-            <CheckItem isChecked={false} key={index}>
+            <CheckItem
+              isChecked={haveIngredients.includes(ingredient)}
+              key={index}
+            >
               {ingredient}
             </CheckItem>
           );
