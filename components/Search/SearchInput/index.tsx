@@ -57,7 +57,7 @@ const SearchInput = ({
         isFocus={isFocus}
         {...props}
       />
-      {handleReset && (
+      {handleReset && props.value && props.value.length > 0 && (
         <CloseSquareIcon style={{ cursor: 'pointer' }} onClick={handleReset} />
       )}
     </InputWrapper>
