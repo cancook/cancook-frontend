@@ -9,6 +9,9 @@ import Autocomplete from '@/components/Search/SearchInput/Autocomplete';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import viewsFormatter from '@/utils/viewsFormatter';
 import timeFormatter from '@/utils/timeFormatter';
+import { showModal } from '@/provider/ModalState';
+import YoutubeModalBody from '@/components/YoutubeModalBody';
+import { useRouter } from 'next/router';
 
 const ResultPage = ({
   ingredients,
@@ -19,10 +22,7 @@ const ResultPage = ({
     '최신순' | '인기순' | '조회순'
   >('최신순');
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
-
-  const handleModalOpenForSmileyHaemin = () => {
-    // 여따가 넣으면돼 해민아~~~
-  };
+  const router = useRouter();
 
   return (
     <ResultPageContainer>
@@ -66,9 +66,24 @@ const ResultPage = ({
             const ingredientCount: number =
               resultVideoInfo.ingredients &&
               resultVideoInfo.ingredients.length - ingredients.length;
+            const handleModalClick = () => {
+              showModal({
+                fullScreen: true,
+                show: true,
+                body: <YoutubeModalBody id={video.id} />,
+                onClose: () => {
+                  router.push(router.asPath, router.asPath, {
+                    shallow: true
+                  });
+                }
+              });
+              router.push(router.asPath, `/youtube/${video.id}`, {
+                shallow: true
+              });
+            };
             return (
               <FoodContentCard.Layout key={video.id}>
-                <div onClick={handleModalOpenForSmileyHaemin}>
+                <div onClick={handleModalClick}>
                   <ImageWrapper>
                     <ImageScaleUp>
                       <FoodContentCard.Thumbnail
