@@ -9,15 +9,36 @@ import DesktopScreen from './DesktopScreen';
 import useYoutubeDetail from '@/hook/useYoutubeDetail';
 import dayjs from 'dayjs';
 import { closeModal } from '@/provider/ModalState';
+import { useRouter } from 'next/router';
+import legacyCopyClipboard from '@/utils/legacyCopyClipboard';
 
 type YoutubeModalBodyProps = {
   id: string;
+  haveIngredients?: string[];
 };
 
-const YoutubeModalBody = ({ id }: YoutubeModalBodyProps) => {
+const YoutubeModalBody = ({ id, haveIngredients }: YoutubeModalBodyProps) => {
   const screenSize = useScreen();
   const { data } = useYoutubeDetail(id);
+  const router = useRouter();
   if (!data) return <></>;
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      navigator.share({
+        title: data.title,
+        text: data.description,
+        url: window.location.href
+      });
+    } else {
+      try {
+        legacyCopyClipboard();
+        alert('url이 복사 되었습니다');
+      } catch (err) {
+        alert('url이 복사 실패');
+      }
+    }
+  };
   return (
     <>
       {screenSize == 'phone' && (
@@ -27,7 +48,7 @@ const YoutubeModalBody = ({ id }: YoutubeModalBodyProps) => {
               closeModal();
             }}
           />
-          <ShareIcon />
+          <ShareIcon onClick={handleShare} />
         </Header>
       )}
       <YouTubeVideo
@@ -48,11 +69,13 @@ const YoutubeModalBody = ({ id }: YoutubeModalBodyProps) => {
         </Title>
         {screenSize === 'phone' ? (
           <PhoneScreen
+            haveIngredients={haveIngredients ?? []}
             description={data.description}
             ingredients={data.ingredients}
           />
         ) : (
           <DesktopScreen
+            haveIngredients={haveIngredients ?? []}
             description={data.description}
             ingredients={data.ingredients}
           />
@@ -85,7 +108,6 @@ const YouTubeVideo = styled(YouTube)`
     position: absolute;
     top: 0;
     left: 0;
-  }
 `;
 
 const Body = styled.section`

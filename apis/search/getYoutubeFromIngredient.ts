@@ -1,14 +1,18 @@
+import { VideoResultInformation } from '@/types/youtube';
 import axiosClient from '../axios';
-import { Video } from '@/types/youtube';
 
+export type OrderingType = 'view_count' | 'published';
 /**
  * [GET]
  * category ingredients
  */
-export const getYoutubeFromIngredient = async (nameList: string[]) => {
-  const response = await axiosClient.get<Video[]>(
+export const getYoutubeFromIngredient = async (
+  ordering: OrderingType,
+  nameList: string[]
+) => {
+  const response = await axiosClient.get<VideoResultInformation[]>(
     '/search/get-youtube-from-ingredient',
-    { params: { nameList: nameList.join(',') } }
+    { params: { ordering, nameList: nameList.join(',') } }
   );
 
   return response.data;

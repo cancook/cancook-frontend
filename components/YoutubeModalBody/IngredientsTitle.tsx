@@ -1,13 +1,18 @@
 import styled from '@emotion/styled';
 import React from 'react';
 
-const IngredientsTitle = () => {
+type IngredientsTitleProps = {
+  count: number;
+  totalCount: number;
+};
+
+const IngredientsTitle = ({ count, totalCount }: IngredientsTitleProps) => {
   return (
     <Title>
       <h2>재료</h2>
       <div>
-        <span>2</span>
-        <span>7</span>
+        <span>{count}</span>
+        <span>{totalCount}</span>
       </div>
     </Title>
   );
