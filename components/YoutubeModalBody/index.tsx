@@ -10,6 +10,7 @@ import useYoutubeDetail from '@/hook/useYoutubeDetail';
 import dayjs from 'dayjs';
 import { closeModal } from '@/provider/ModalState';
 import { useRouter } from 'next/router';
+import legacyCopyClipboard from '@/utils/legacyCopyClipboard';
 
 type YoutubeModalBodyProps = {
   id: string;
@@ -21,6 +22,23 @@ const YoutubeModalBody = ({ id, haveIngredients }: YoutubeModalBodyProps) => {
   const { data } = useYoutubeDetail(id);
   const router = useRouter();
   if (!data) return <></>;
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      navigator.share({
+        title: data.title,
+        text: data.description,
+        url: window.location.href
+      });
+    } else {
+      try {
+        legacyCopyClipboard();
+        alert('url이 복사 되었습니다');
+      } catch (err) {
+        alert('url이 복사 실패');
+      }
+    }
+  };
   return (
     <>
       {screenSize == 'phone' && (
@@ -30,7 +48,7 @@ const YoutubeModalBody = ({ id, haveIngredients }: YoutubeModalBodyProps) => {
               closeModal();
             }}
           />
-          <ShareIcon />
+          <ShareIcon onClick={handleShare} />
         </Header>
       )}
       <YouTubeVideo
@@ -90,7 +108,6 @@ const YouTubeVideo = styled(YouTube)`
     position: absolute;
     top: 0;
     left: 0;
-  }
 `;
 
 const Body = styled.section`
