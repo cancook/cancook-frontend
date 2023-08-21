@@ -2,7 +2,7 @@ import axios, { AxiosError } from 'axios';
 
 export const BASE_URL =
   process.env.NODE_ENV === 'production'
-    ? 'https://self-dining.shop/api'
+    ? 'https://momokji.shop.shop/api'
     : 'http://localhost:3000/api';
 
 // const BASE_URL = 'https://self-dining.shop/api';

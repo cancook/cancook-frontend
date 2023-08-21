@@ -108,6 +108,7 @@ const YouTubeVideo = styled(YouTube)`
     position: absolute;
     top: 0;
     left: 0;
+  }
 `;
 
 const Body = styled.section`
