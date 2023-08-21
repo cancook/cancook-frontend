@@ -1,28 +1,59 @@
-import React, { useState } from 'react';
-import { VideoInformation } from '@/types/youtube';
+import React, { useEffect, useState } from 'react';
+import { VideoResultInformation } from '@/types/youtube';
 import FoodContentCard from '@/components/FoodContentCard';
 import styled from '@emotion/styled';
-import { getYoutubeFromIngredient } from '@/apis/search/getYoutubeFromIngredient';
+import {
+  OrderingType,
+  getYoutubeFromIngredient
+} from '@/apis/search/getYoutubeFromIngredient';
 import Chip from '@/components/common/Chip';
 import ArrowUpIcon from '@/public/svg/arrow-up.svg';
 import Autocomplete from '@/components/Search/SearchInput/Autocomplete';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import viewsFormatter from '@/utils/viewsFormatter';
 import timeFormatter from '@/utils/timeFormatter';
+import { showModal } from '@/provider/ModalState';
+import YoutubeModalBody from '@/components/YoutubeModalBody';
+import { useRouter } from 'next/router';
+import { QueryClient, dehydrate, useQuery } from '@tanstack/react-query';
+import Loading from '@/components/common/Loading';
 
 const ResultPage = ({
-  ingredients,
-  videoInformation
+  ingredients
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   //   Filter
-  const [filterOption, setFilterOption] = useState<
-    '최신순' | '인기순' | '조회순'
-  >('최신순');
-  const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
 
-  const handleModalOpenForSmileyHaemin = () => {
-    // 여따가 넣으면돼 해민아~~~
+  // 최신순, 조회순
+  const FILTER_OPTION: { [key: string]: OrderingType } = {
+    최신순: 'published',
+    조회순: 'view_count'
   };
+  const [filterOption, setFilterOption] = useState<OrderingType>('view_count');
+  const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
+  const router = useRouter();
+  const ingredientsQuery = router.query.ingredients ?? [];
+  let ingredientsArray: string[];
+  if (typeof ingredientsQuery === 'string') {
+    ingredientsArray = ingredientsQuery.split(',');
+  } else if (Array.isArray(ingredientsQuery)) {
+    ingredientsArray = ingredientsQuery.flatMap((item) => item.split(','));
+  } else {
+    ingredientsArray = [];
+  }
+
+  const { data: videoInformation, refetch } = useQuery(
+    ['getYoutubeFromIngredient', filterOption],
+    () => getYoutubeFromIngredient(filterOption, ingredients),
+    {
+      enabled: false
+    }
+  );
+
+  useEffect(() => {
+    refetch();
+  }, [filterOption]);
+
+  if (!videoInformation) return <Loading />;
 
   return (
     <ResultPageContainer>
@@ -38,73 +69,90 @@ const ResultPage = ({
             }}
           >
             <ArrowIcon isOpen={isFilterOpen} />
-            <FilterSpan>{filterOption}</FilterSpan>
+            <FilterSpan>{FILTER_OPTION[filterOption]}</FilterSpan>
           </FilterOption>
           <Autocomplete
-            keywords={['최신순', '인기순', '조회순']}
+            keywords={['최신순', '조회순']}
             isOpen={isFilterOpen}
             onItemClick={(item) => {
-              setFilterOption(item as '최신순' | '인기순' | '조회순');
+              setFilterOption(FILTER_OPTION[item] as OrderingType);
               setIsFilterOpen(false);
             }}
           />
         </OptionWrapper>
       </TitleWrapper>
       <VideoContainer>
-        {videoInformation
-          .sort((videoInfo1, videoInfo2) => {
-            const video1 = videoInfo1.video;
-            const video2 = videoInfo2.video;
-            // TODO: 클릭수를 기반으로 인기순을 파악하긴 해야함...
-            if (filterOption === '인기순' || filterOption === '조회순')
-              return video1.views - video2.views;
-            else return +video1.id - +video2.id;
-          })
-          .map((resultVideoInfo: VideoInformation) => {
-            const video = resultVideoInfo.video;
-            const creator = resultVideoInfo.creator;
-            return (
-              <FoodContentCard.Layout key={video.id}>
-                <div onClick={handleModalOpenForSmileyHaemin}>
-                  <ImageWrapper>
-                    <ImageScaleUp>
-                      <FoodContentCard.Thumbnail
-                        src={video.thumbnailURL}
-                        size="md"
-                      />
-                    </ImageScaleUp>
-                  </ImageWrapper>
-                  <FoodContentCard.Body title={video.title} />
-                </div>
-                <FoodContentCard.Footer
-                  src={creator.thumbnail}
-                  viewAndDates={`조회수 ${viewsFormatter(
-                    video.views
-                  )}회 • ${timeFormatter(video.createdAt)}전`}
-                >
-                  {creator.name}
-                </FoodContentCard.Footer>
-              </FoodContentCard.Layout>
-            );
-          })}
+        {videoInformation.map((resultVideoInfo: VideoResultInformation) => {
+          const video = resultVideoInfo.video;
+          const creator = resultVideoInfo.creator;
+          const ingredientCount =
+            resultVideoInfo.ingredients.length -
+            resultVideoInfo.ingredients.filter((item) =>
+              ingredientsArray.includes(item)
+            ).length;
+          const handleModalClick = () => {
+            showModal({
+              fullScreen: true,
+              show: true,
+              body: (
+                <YoutubeModalBody
+                  id={video.id}
+                  haveIngredients={ingredientsArray}
+                />
+              ),
+              onClose: () => {
+                router.push(router.asPath, router.asPath, {
+                  shallow: true
+                });
+              }
+            });
+            router.push(router.asPath, `/youtube/${video.id}`, {
+              shallow: true
+            });
+          };
+          return (
+            <FoodContentCard.Layout key={video.id}>
+              <div onClick={handleModalClick}>
+                <ImageWrapper>
+                  <ImageScaleUp>
+                    <FoodContentCard.Thumbnail
+                      src={video.thumbnailURL}
+                      size="md"
+                    />
+                  </ImageScaleUp>
+                </ImageWrapper>
+                <FoodContentCard.Body
+                  title={video.title}
+                  ingredientCount={ingredientCount}
+                />
+              </div>
+              <FoodContentCard.Footer
+                src={creator.thumbnail}
+                viewAndDates={`조회수 ${viewsFormatter(
+                  video.views
+                )}회 • ${timeFormatter(video.createdAt)}전`}
+              >
+                {creator.name}
+              </FoodContentCard.Footer>
+            </FoodContentCard.Layout>
+          );
+        })}
       </VideoContainer>
     </ResultPageContainer>
   );
 };
 
-export const getServerSideProps: GetServerSideProps<{
-  ingredients: string[];
-  videoInformation: VideoInformation[];
-}> = async ({ query }) => {
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const ingredients = query.ingredients as string;
-  const videoInformation = await getYoutubeFromIngredient(
-    ingredients.split(',')
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery(['getYoutubeFromIngredient'], () =>
+    getYoutubeFromIngredient('view_count', ingredients.split(','))
   );
 
   return {
     props: {
       ingredients: ingredients.split(','),
-      videoInformation
+      dehydratedState: dehydrate(queryClient)
     }
   };
 };

@@ -9,15 +9,18 @@ import DesktopScreen from './DesktopScreen';
 import useYoutubeDetail from '@/hook/useYoutubeDetail';
 import dayjs from 'dayjs';
 import { closeModal } from '@/provider/ModalState';
+import { useRouter } from 'next/router';
 import legacyCopyClipboard from '@/utils/legacyCopyClipboard';
 
 type YoutubeModalBodyProps = {
   id: string;
+  haveIngredients?: string[];
 };
 
-const YoutubeModalBody = ({ id }: YoutubeModalBodyProps) => {
+const YoutubeModalBody = ({ id, haveIngredients }: YoutubeModalBodyProps) => {
   const screenSize = useScreen();
   const { data } = useYoutubeDetail(id);
+  const router = useRouter();
   if (!data) return <></>;
 
   const handleShare = async () => {
@@ -66,11 +69,13 @@ const YoutubeModalBody = ({ id }: YoutubeModalBodyProps) => {
         </Title>
         {screenSize === 'phone' ? (
           <PhoneScreen
+            haveIngredients={haveIngredients ?? []}
             description={data.description}
             ingredients={data.ingredients}
           />
         ) : (
           <DesktopScreen
+            haveIngredients={haveIngredients ?? []}
             description={data.description}
             ingredients={data.ingredients}
           />
@@ -103,7 +108,6 @@ const YouTubeVideo = styled(YouTube)`
     position: absolute;
     top: 0;
     left: 0;
-  }
 `;
 
 const Body = styled.section`

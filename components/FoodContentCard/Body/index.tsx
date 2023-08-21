@@ -35,7 +35,7 @@ const AdditionalMark = styled.div`
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
   > span {
     ${({ theme }) => theme.font.label.sm};
     color: ${({ theme }) => theme.colors.yellow[400]};
