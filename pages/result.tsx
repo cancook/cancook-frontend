@@ -63,7 +63,7 @@ const ResultPage = ({
         <meta name="description" content="지금 바로 레시피를 확인해 보세요" />
         <meta
           property="og:image"
-          content="https://self-dining.shop/images/meta/recipe_meta_image.png"
+          content="https://momokji.shop/images/meta/recipe_meta_image.png"
         />
       </Head>
       <ResultPageContainer>

@@ -32,7 +32,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta
           property="og:image"
-          content="https://self-dining.shop/images/meta/index_meta_image.png"
+          content="https://momokji.shop/images/meta/index_meta_image.png"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
