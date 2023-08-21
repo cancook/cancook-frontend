@@ -36,7 +36,6 @@ const InputSection = ({
 
   // Autocomplete 에서 선택할시, 해당 item을 selected Ingredients에 추가한다.
   const handleAutocompleteSelect = (autocompleteItem: string) => {
-    console.log(autocompleteItem);
     setSelectedIngredients((prev) => [...prev, autocompleteItem]);
     handleBlur();
   };
@@ -70,7 +69,7 @@ const InputSection = ({
           className="search-input"
         />
         <Autocomplete
-          isOpen={isFocus}
+          isOpen={isFocus && !!inputValue && inputValue.length > 0}
           keywords={autocompleteData}
           omit={selectedIngredients}
           onItemClick={handleAutocompleteSelect}

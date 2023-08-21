@@ -10,7 +10,7 @@ const Line = styled.hr`
   margin: 0;
   border: 0.05rem solid;
   height: 0;
-  border-color: ${({ theme }) => theme.colors.gray[400]};
+  border-color: ${({ theme }) => theme.colors.gray[600]};
 `;
 
 export default Divider;

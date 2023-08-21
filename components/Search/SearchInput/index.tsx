@@ -12,6 +12,10 @@ const Input = styled.input<{ isFocus: boolean }>`
 
   ${({ theme }) => theme.font.label.lg};
   color: ${({ theme }) => theme.colors.gray[100]};
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.gray[300]};
+  }
 `;
 
 const InputWrapper = styled.div<{ isFocus: boolean }>`
@@ -57,7 +61,7 @@ const SearchInput = ({
         isFocus={isFocus}
         {...props}
       />
-      {handleReset && (
+      {handleReset && props.value && props.value.length > 0 && (
         <CloseSquareIcon style={{ cursor: 'pointer' }} onClick={handleReset} />
       )}
     </InputWrapper>

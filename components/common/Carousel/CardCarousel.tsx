@@ -111,6 +111,7 @@ const CardCarousel = ({ cards, prev, next }: Props) => {
 export default CardCarousel;
 
 const ImageWrapper = styled.div`
+  border-radius: 0.5rem;
   overflow: hidden;
 `;
 

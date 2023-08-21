@@ -23,7 +23,7 @@ const Button = styled.button<ButtonProps>`
   /* style */
   width: ${(props) => (props.width ? props.width : '100%')};
   height: ${(props) => (props.height ? props.height : '100%')};
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.black[0]};
   border-radius: 1rem;
   background-color: ${({ theme }) => theme.colors.yellow[400]};
   cursor: pointer;

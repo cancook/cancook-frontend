@@ -20,9 +20,9 @@ const PhoneScreen = ({
   ).length;
   return (
     <PhoneLayout>
-      <Accordion title="더보기">{description}</Accordion>
+      <Accordion isOpenInit={true} title="더보기">{description}</Accordion>
       <Accordion
-        title={
+        title={ 
           <IngredientsTitle count={count} totalCount={ingredients.length} />
         }
       >

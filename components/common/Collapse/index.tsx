@@ -45,6 +45,7 @@ const Description = styled.div<{ isOpen: boolean; height: number }>`
   ${({ theme }) => theme.font.body.lg};
   white-space: pre-line;
 
+  color: ${({ theme }) => theme.colors.gray[100]};
   height: 100%;
   max-height: ${({ isOpen, height }) => (isOpen ? `${height}px` : '5.25rem')};
   transition: max-height 0.5s ease-in-out;
@@ -57,6 +58,7 @@ const SeeMore = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+  color: ${({ theme }) => theme.colors.gray[400]};
 
   > div {
     display: flex;
@@ -69,4 +71,5 @@ const ArrowIcon = styled(ArrowUpIcon, {
 })<{ isOpen: boolean }>`
   transform: ${({ isOpen }) => (isOpen ? 'rotate(0deg)' : 'rotate(180deg)')};
   transition: transform 0.3s ease-in-out;
+  fill: ${({ theme }) => theme.colors.gray[400]};
 `;

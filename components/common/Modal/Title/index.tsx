@@ -14,7 +14,6 @@ const TitleContainer = ({ children }: TitleContainerProps) => {
   return (
     <ModalTitleContainer>
       <TitleLineContiainer onClick={closeModal}></TitleLineContiainer>
-      <TitleLine onClick={close}></TitleLine>
       <ModalTitle>{children}</ModalTitle>
       <ModalCloseButton onClick={closeModal}>
         <CloseButton />
@@ -52,23 +51,6 @@ const TitleLineContiainer = styled.div`
   display: block;
   width: 100%;
   height: 100%;
-
-  ${({ theme }) => theme.screen.tablet} {
-    display: none;
-  }
-`;
-
-const TitleLine = styled.span`
-  position: absolute;
-  top: 0.62rem;
-  left: 50%;
-
-  content: '';
-  width: 2.1875rem;
-  height: 0.25rem;
-  background-color: rgba(255, 255, 255, 0.5);
-  transform: translateX(-50%);
-  border-radius: 0.125rem;
 
   ${({ theme }) => theme.screen.tablet} {
     display: none;

@@ -3,12 +3,13 @@ import React, { ReactNode, useEffect, useRef, useState } from 'react';
 import ArrowUpIcon from '@/public/svg/arrow-up.svg';
 
 type AccordionProps = {
+  isOpenInit?: boolean;
   title: string | ReactNode;
   children: ReactNode;
 };
 
-const Accordion = ({ title, children }: AccordionProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+const Accordion = ({ isOpenInit, title, children }: AccordionProps) => {
+  const [isOpen, setIsOpen] = useState(isOpenInit ?? false);
   const [height, setHeight] = useState(0);
 
   const bodyRef = useRef<HTMLDivElement>(null);

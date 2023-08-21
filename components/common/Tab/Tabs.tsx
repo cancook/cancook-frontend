@@ -18,7 +18,7 @@ export const Tabs = ({ children }: TabsProps) => {
 
   if (children instanceof Array) {
     return (
-      <TabsContainer>
+      <TabsContainer className={'tabs-container'}>
         <NavContainer>
           {children.map((elem, idx) => (
             <NavItem
@@ -30,7 +30,9 @@ export const Tabs = ({ children }: TabsProps) => {
             </NavItem>
           ))}
         </NavContainer>
-        <TabContent>{children[currentTab].props.children}</TabContent>
+        <TabContent className={'tab-content'}>
+          {children[currentTab].props.children}
+        </TabContent>
       </TabsContainer>
     );
   }

@@ -94,7 +94,7 @@ const SearchButtonContainer = styled.div`
 `;
 
 const SearchButton = styled.button`
-  cursor: text;
+  cursor: pointer;
   width: 100%;
   max-width: 50rem;
   height: 2.75rem;

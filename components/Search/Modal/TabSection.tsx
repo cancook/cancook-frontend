@@ -67,18 +67,34 @@ export default TabSection;
 
 // Tab Container
 const TabsContainer = styled.div`
-  min-height: auto;
+  position: absolute;
+  top: 5rem;
+  right: 0;
+  left: 0;
+  bottom: 8rem;
+
   ${({ theme }) => theme.screen.tablet} {
     height: 20rem;
+  }
+
+  .tab-content {
+    height: 100%;
+  }
+
+  ${({ theme }) => theme.screen.tablet} {
+    position: relative;
+    top: 0;
+    bottom: 0;
   }
 `;
 
 const TabWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   overflow: scroll;
   width: 100%;
-  flex-direction: column;
 `;
+
 const CheckboxFieldWrapper = styled.div`
   width: 100%;
   padding: 0.62rem 1rem;

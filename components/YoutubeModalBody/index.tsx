@@ -135,10 +135,10 @@ const Body = styled.section`
 `;
 
 const Title = styled.div`
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.75rem;
 
   ${({ theme }) => theme.screen.tablet} {
-    margin-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
   }
 
   > h1 {
@@ -152,7 +152,7 @@ const Title = styled.div`
 
   > h6 {
     ${({ theme }) => theme.font.body.sm};
-    color: ${({ theme }) => theme.colors.gray[100]};
+    color: ${({ theme }) => theme.colors.gray[200]};
     display: inline-block;
 
     &:first-of-type::after {
