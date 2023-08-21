@@ -54,7 +54,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <ThemeProvider theme={theme}>
             <Global styles={global(theme)} />
             <Modal />
-            <Layout>
+            <Layout searchable={SEARCHABLE_HEADER_PATH.includes(router.route)}>
               <Component {...pageProps} />
             </Layout>
           </ThemeProvider>
