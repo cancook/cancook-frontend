@@ -59,7 +59,7 @@ const ResultPage = ({
   return (
     <>
       <Head>
-        <title>&apos;{ingredients}&apos; 레시피 추천</title>
+        <title>&apos;{ingredients.join(', ')}&apos; 레시피 추천</title>
         <meta name="description" content="지금 바로 레시피를 확인해 보세요" />
         <meta
           property="og:image"
@@ -69,7 +69,9 @@ const ResultPage = ({
       <ResultPageContainer>
         <TitleWrapper>
           <ContentTitle>
-            <CategoryTitle>&apos;{ingredients}&apos; 레시피</CategoryTitle>
+            <CategoryTitle>
+              &apos;{ingredients.join(', ')}&apos; 레시피
+            </CategoryTitle>
             <Chip count={videoInformation.length} />
           </ContentTitle>
           <OptionWrapper>
