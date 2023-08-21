@@ -17,6 +17,7 @@ import YoutubeModalBody from '@/components/YoutubeModalBody';
 import { useRouter } from 'next/router';
 import { QueryClient, dehydrate, useQuery } from '@tanstack/react-query';
 import Loading from '@/components/common/Loading';
+import Head from 'next/head';
 
 const ResultPage = ({
   ingredients
@@ -56,89 +57,99 @@ const ResultPage = ({
   if (!videoInformation) return <Loading />;
 
   return (
-    <ResultPageContainer>
-      <TitleWrapper>
-        <ContentTitle>
-          <CategoryTitle>&apos;{ingredients}&apos; 레시피</CategoryTitle>
-          <Chip count={videoInformation.length} />
-        </ContentTitle>
-        <OptionWrapper>
-          <FilterOption
-            onClick={() => {
-              setIsFilterOpen((prev) => !prev);
-            }}
-          >
-            <ArrowIcon isOpen={isFilterOpen} />
-            <FilterSpan>{FILTER_OPTION[filterOption]}</FilterSpan>
-          </FilterOption>
-          <Autocomplete
-            keywords={['최신순', '조회순']}
-            isOpen={isFilterOpen}
-            onItemClick={(item) => {
-              setFilterOption(FILTER_OPTION[item] as OrderingType);
-              setIsFilterOpen(false);
-            }}
-          />
-        </OptionWrapper>
-      </TitleWrapper>
-      <VideoContainer>
-        {videoInformation.map((resultVideoInfo: VideoResultInformation) => {
-          const video = resultVideoInfo.video;
-          const creator = resultVideoInfo.creator;
-          const ingredientCount =
-            resultVideoInfo.ingredients.length -
-            resultVideoInfo.ingredients.filter((item) =>
-              ingredientsArray.includes(item)
-            ).length;
-          const handleModalClick = () => {
-            showModal({
-              fullScreen: true,
-              show: true,
-              body: (
-                <YoutubeModalBody
-                  id={video.id}
-                  haveIngredients={ingredientsArray}
-                />
-              ),
-              onClose: () => {
-                router.push(router.asPath, router.asPath, {
-                  shallow: true
-                });
-              }
-            });
-            router.push(router.asPath, `/youtube/${video.id}`, {
-              shallow: true
-            });
-          };
-          return (
-            <FoodContentCard.Layout key={video.id}>
-              <div onClick={handleModalClick}>
-                <ImageWrapper>
-                  <ImageScaleUp>
-                    <FoodContentCard.Thumbnail
-                      src={video.thumbnailURL}
-                      size="md"
-                    />
-                  </ImageScaleUp>
-                </ImageWrapper>
-                <FoodContentCard.Body
-                  title={video.title}
-                  ingredientCount={ingredientCount}
-                />
-              </div>
-              <FoodContentCard.Footer
-                src={creator.thumbnail}
-                viewAndDates={`조회수 ${viewsFormatter(
-                  video.views
-                )}회 • ${timeFormatter(video.createdAt)}전`}
-              >
-                {creator.name}
-              </FoodContentCard.Footer>
-            </FoodContentCard.Layout>
-          );
-        })}
-      </VideoContainer>
-    </ResultPageContainer>
+    <>
+      <Head>
+        <title>&apos;{ingredients}&apos; 레시피 추천</title>
+        <meta name="description" content="지금 바로 레시피를 확인해 보세요" />
+        <meta
+          property="og:image"
+          content="https://self-dining.shop/images/meta/recipe_meta_image.png"
+        />
+      </Head>
+      <ResultPageContainer>
+        <TitleWrapper>
+          <ContentTitle>
+            <CategoryTitle>&apos;{ingredients}&apos; 레시피</CategoryTitle>
+            <Chip count={videoInformation.length} />
+          </ContentTitle>
+          <OptionWrapper>
+            <FilterOption
+              onClick={() => {
+                setIsFilterOpen((prev) => !prev);
+              }}
+            >
+              <ArrowIcon isOpen={isFilterOpen} />
+              <FilterSpan>{FILTER_OPTION[filterOption]}</FilterSpan>
+            </FilterOption>
+            <Autocomplete
+              keywords={['최신순', '조회순']}
+              isOpen={isFilterOpen}
+              onItemClick={(item) => {
+                setFilterOption(FILTER_OPTION[item] as OrderingType);
+                setIsFilterOpen(false);
+              }}
+            />
+          </OptionWrapper>
+        </TitleWrapper>
+        <VideoContainer>
+          {videoInformation.map((resultVideoInfo: VideoResultInformation) => {
+            const video = resultVideoInfo.video;
+            const creator = resultVideoInfo.creator;
+            const ingredientCount =
+              resultVideoInfo.ingredients.length -
+              resultVideoInfo.ingredients.filter((item) =>
+                ingredientsArray.includes(item)
+              ).length;
+            const handleModalClick = () => {
+              showModal({
+                fullScreen: true,
+                show: true,
+                body: (
+                  <YoutubeModalBody
+                    id={video.id}
+                    haveIngredients={ingredientsArray}
+                  />
+                ),
+                onClose: () => {
+                  router.push(router.asPath, router.asPath, {
+                    shallow: true
+                  });
+                }
+              });
+              router.push(router.asPath, `/youtube/${video.id}`, {
+                shallow: true
+              });
+            };
+            return (
+              <FoodContentCard.Layout key={video.id}>
+                <div onClick={handleModalClick}>
+                  <ImageWrapper>
+                    <ImageScaleUp>
+                      <FoodContentCard.Thumbnail
+                        src={video.thumbnailURL}
+                        size="md"
+                      />
+                    </ImageScaleUp>
+                  </ImageWrapper>
+                  <FoodContentCard.Body
+                    title={video.title}
+                    ingredientCount={ingredientCount}
+                  />
+                </div>
+                <FoodContentCard.Footer
+                  src={creator.thumbnail}
+                  viewAndDates={`조회수 ${viewsFormatter(
+                    video.views
+                  )}회 • ${timeFormatter(video.createdAt)}전`}
+                >
+                  {creator.name}
+                </FoodContentCard.Footer>
+              </FoodContentCard.Layout>
+            );
+          })}
+        </VideoContainer>
+      </ResultPageContainer>
+    </>
   );
 };
 
