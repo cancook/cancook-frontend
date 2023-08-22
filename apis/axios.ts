@@ -2,10 +2,8 @@ import axios, { AxiosError } from 'axios';
 
 export const BASE_URL =
   process.env.NODE_ENV === 'production'
-    ? 'https://momokji.shop.shop/api'
+    ? 'https://momokji.shop/api'
     : 'http://localhost:3000/api';
-
-// const BASE_URL = 'https://self-dining.shop/api';
 
 const axiosClient = (() => {
   const axiosInstance = axios.create({
