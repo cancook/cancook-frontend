@@ -59,7 +59,7 @@ const NavContainer = styled.div`
   gap: 0.44rem;
   overflow: scroll;
   padding: 0.75rem 1rem 0;
-
+  flex-basis: 4rem;
   // scroll bar
   ::-webkit-scrollbar {
     width: 0px;
@@ -119,6 +119,7 @@ const NavItem = styled.div<{ selected: boolean }>`
 const TabContent = styled.div`
   width: 100%;
   height: 18rem;
+  flex: 1;
   overflow: scroll;
 
   ${({ theme }) => theme.screen.tablet} {
