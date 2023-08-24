@@ -29,6 +29,10 @@ const ResultPage = ({
     최신순: 'published',
     조회순: 'view_count'
   };
+  const FILTER_NAME: { [key: string]: string } = {
+    published: '최신순',
+    view_count: '조회순'
+  };
   const [filterOption, setFilterOption] = useState<OrderingType>('view_count');
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
   const router = useRouter();
@@ -81,7 +85,7 @@ const ResultPage = ({
               }}
             >
               <ArrowIcon isOpen={isFilterOpen} />
-              <FilterSpan>{FILTER_OPTION[filterOption]}</FilterSpan>
+              <FilterSpan>{FILTER_NAME[filterOption]}</FilterSpan>
             </FilterOption>
             <Autocomplete
               keywords={['최신순', '조회순']}
@@ -265,4 +269,5 @@ const FilterSpan = styled.span`
 const ArrowIcon = styled(ArrowUpIcon)<{ isOpen: boolean }>`
   transform: ${({ isOpen }) => (isOpen ? 'rotate(0deg)' : 'rotate(180deg)')};
   transition: transform 0.3s ease-in-out;
+  fill: ${({ theme }) => theme.colors.gray[300]};
 `;
