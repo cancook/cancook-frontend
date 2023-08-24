@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { VideoResultInformation } from '@/types/youtube';
 import FoodContentCard from '@/components/FoodContentCard';
 import styled from '@emotion/styled';
@@ -48,16 +48,12 @@ const ResultPage = ({
   }
 
   const { data: videoInformation, refetch } = useQuery(
-    ['getYoutubeFromIngredient', filterOption],
+    ['getYoutubeFromIngredient', ingredientsQuery, filterOption],
     () => getYoutubeFromIngredient(filterOption, ingredients),
     {
       enabled: false
     }
   );
-
-  useEffect(() => {
-    refetch();
-  }, [ingredients]);
 
   if (!videoInformation)
     return (
