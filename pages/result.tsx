@@ -59,7 +59,14 @@ const ResultPage = ({
     refetch();
   }, [filterOption]);
 
-  if (!videoInformation) return <Loading />;
+  if (!videoInformation)
+    return (
+      <Layout>
+        <LoadingWrapper>
+          <Loading />
+        </LoadingWrapper>
+      </Layout>
+    );
 
   return (
     <>
@@ -273,4 +280,16 @@ const ArrowIcon = styled(ArrowUpIcon)<{ isOpen: boolean }>`
   transform: ${({ isOpen }) => (isOpen ? 'rotate(0deg)' : 'rotate(180deg)')};
   transition: transform 0.3s ease-in-out;
   fill: ${({ theme }) => theme.colors.gray[300]};
+`;
+
+const LoadingWrapper = styled.div`
+  width: 100%;
+  height: calc(100vh - 9rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  ${({ theme }) => theme.screen.desktop} {
+    height: calc(100vh - 6rem);
+  }
 `;
