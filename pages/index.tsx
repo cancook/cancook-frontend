@@ -8,8 +8,9 @@ import Category from '@/components/Main/Category';
 import { BANNER_DUMMY_DATA } from '@/constants/dummyData/banner';
 import { BannerInformation } from '@/types/banner';
 import Banner from '@/components/common/Banner/Banner';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { GetServerSideProps } from 'next/types';
+import Layout from '@/components/layout/Layout';
 
 export default function Home() {
   const { data: categoryData, isLoading: isCategoryLoading } = useQuery(
@@ -21,8 +22,25 @@ export default function Home() {
   );
 
   const bannerData: BannerInformation[] = BANNER_DUMMY_DATA;
-
   const categoryRef = useRef<HTMLDivElement>(null);
+  const [categoryTop, setCategoryTop] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (categoryRef.current) {
+        const rect = categoryRef.current.getBoundingClientRect();
+        const isTop = rect.top <= 0; // 요소가 스크린 맨 위에 닿았는지 여부를 판단
+
+        setCategoryTop(isTop);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, true);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll, true);
+    };
+  }, [categoryRef]);
 
   return (
     <>
@@ -36,14 +54,16 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <HomeContainer>
-        <Splash scrollTargetRef={categoryRef} />
-        <CategoryContainer ref={categoryRef}>
-          <Banner banners={bannerData} isLoading={false} />
-          {categoryData && <Category data={categoryData} />}
-        </CategoryContainer>
-        <Empty></Empty>
-      </HomeContainer>
+      <Layout searchable={categoryTop}>
+        <HomeContainer>
+          <Splash scrollTargetRef={categoryRef} />
+          <CategoryContainer ref={categoryRef}>
+            <Banner banners={bannerData} isLoading={false} />
+            {categoryData && <Category data={categoryData} />}
+          </CategoryContainer>
+          <Empty></Empty>
+        </HomeContainer>
+      </Layout>
     </>
   );
 }
