@@ -1,7 +1,7 @@
 import { VideoResultInformation } from '@/types/youtube';
 import axiosClient from '../axios';
 
-export type OrderingType = 'view_count' | 'published';
+export type OrderingType = '-view_count' | '-published';
 /**
  * [GET]
  * category ingredients

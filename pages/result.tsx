@@ -27,14 +27,14 @@ const ResultPage = ({
 
   // 최신순, 조회순
   const FILTER_OPTION: { [key: string]: OrderingType } = {
-    최신순: 'published',
-    조회순: 'view_count'
+    최신순: '-published',
+    조회순: '-view_count'
   };
   const FILTER_NAME: { [key: string]: string } = {
-    published: '최신순',
-    view_count: '조회순'
+    '-published': '최신순',
+    '-view_count': '조회순'
   };
-  const [filterOption, setFilterOption] = useState<OrderingType>('view_count');
+  const [filterOption, setFilterOption] = useState<OrderingType>('-view_count');
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
   const router = useRouter();
   const ingredientsQuery = router.query.ingredients ?? [];
@@ -173,7 +173,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const ingredients = query.ingredients as string;
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(['getYoutubeFromIngredient'], () =>
-    getYoutubeFromIngredient('view_count', ingredients.split(','))
+    getYoutubeFromIngredient('-view_count', ingredients.split(','))
   );
 
   return {
