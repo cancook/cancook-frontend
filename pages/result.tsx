@@ -57,7 +57,7 @@ const ResultPage = ({
 
   useEffect(() => {
     refetch();
-  }, [filterOption]);
+  }, [ingredients]);
 
   if (!videoInformation)
     return (
