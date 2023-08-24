@@ -100,7 +100,7 @@ const CategoryContainer = styled.section`
   scroll-snap-align: start;
 
   padding: 0;
-  padding-top: 6rem;
+  padding-top: 9rem;
   padding-bottom: 2rem;
   overflow: hidden;
   display: flex;
@@ -108,6 +108,7 @@ const CategoryContainer = styled.section`
   gap: 0;
 
   ${({ theme }) => theme.screen.desktop} {
+    padding-top: 6rem;
     gap: 1.5rem;
   }
 `;
