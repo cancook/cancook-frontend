@@ -47,7 +47,11 @@ const ResultPage = ({
     ingredientsArray = [];
   }
 
-  const { data: videoInformation, refetch } = useQuery(
+  const {
+    data: videoInformation,
+    refetch,
+    isLoading
+  } = useQuery(
     ['getYoutubeFromIngredient', ingredientsQuery, filterOption],
     () => getYoutubeFromIngredient(filterOption, ingredients),
     {
@@ -55,7 +59,7 @@ const ResultPage = ({
     }
   );
 
-  if (!videoInformation)
+  if (isLoading)
     return (
       <Layout>
         <LoadingWrapper>
