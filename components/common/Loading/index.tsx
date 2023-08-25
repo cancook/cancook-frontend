@@ -15,32 +15,42 @@ const Loading = ({
   color = '#ff6937'
 }) => {
   return (
-    <Spinner
-      width={width}
-      height={height}
-      strokeWidth={strokeWidth}
-      color={color}
-    />
+    <Wrapper>
+      <PreparingImage
+        src={'/gifs/preparing.gif'}
+        alt="loading for cooking data"
+      />
+      <Text>열심히 레시피를 찾고 있어요.</Text>
+    </Wrapper>
   );
 };
 
 export default Loading;
 
-const Spinner = styled.div<SpinnerProps>`
-  width: ${({ width }) => width}px;
-  height: ${({ height }) => height}px;
-  border: ${({ strokeWidth }) => strokeWidth}px solid #f3f3f3;
-  border-top: ${({ strokeWidth }) => strokeWidth}px solid
-    ${({ color }) => color};
-  border-radius: 50%;
-  animation: spin 1s cubic-bezier(0.5, 0.1, 0.5, 0.9) infinite;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
+const PreparingImage = styled.img`
+  display: block;
+  margin: auto;
+  width: 7.5rem;
+  height: 7.5rem;
+
+  ${({ theme }) => theme.screen.desktop} {
+    width: 10rem;
+    height: 10rem;
+  }
+`;
+
+const Text = styled.p`
+  color: ${({ theme }) => theme.colors.gray[400]};
+  text-align: center;
+  ${({ theme }) => theme.font.body.md};
+  ${({ theme }) => theme.screen.desktop} {
+    ${({ theme }) => theme.font.title.sm};
   }
 `;

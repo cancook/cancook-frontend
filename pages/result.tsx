@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { VideoResultInformation } from '@/types/youtube';
 import FoodContentCard from '@/components/FoodContentCard';
 import styled from '@emotion/styled';
@@ -18,6 +18,7 @@ import { useRouter } from 'next/router';
 import { QueryClient, dehydrate, useQuery } from '@tanstack/react-query';
 import Loading from '@/components/common/Loading';
 import Head from 'next/head';
+import Layout from '@/components/layout/Layout';
 
 const ResultPage = ({
   ingredients
@@ -26,35 +27,37 @@ const ResultPage = ({
 
   // 최신순, 조회순
   const FILTER_OPTION: { [key: string]: OrderingType } = {
-    최신순: 'published',
-    조회순: 'view_count'
+    최신순: '-published',
+    조회순: '-view_count'
   };
-  const [filterOption, setFilterOption] = useState<OrderingType>('view_count');
+  const FILTER_NAME: { [key: string]: string } = {
+    '-published': '최신순',
+    '-view_count': '조회순'
+  };
+  const [filterOption, setFilterOption] = useState<OrderingType>('-view_count');
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
   const router = useRouter();
-  const ingredientsQuery = router.query.ingredients ?? [];
-  let ingredientsArray: string[];
-  if (typeof ingredientsQuery === 'string') {
-    ingredientsArray = ingredientsQuery.split(',');
-  } else if (Array.isArray(ingredientsQuery)) {
-    ingredientsArray = ingredientsQuery.flatMap((item) => item.split(','));
-  } else {
-    ingredientsArray = [];
-  }
 
-  const { data: videoInformation, refetch } = useQuery(
-    ['getYoutubeFromIngredient', filterOption],
+  const {
+    data: videoInformation,
+    refetch,
+    isLoading
+  } = useQuery(
+    ['getYoutubeFromIngredient', ingredients, filterOption],
     () => getYoutubeFromIngredient(filterOption, ingredients),
     {
-      enabled: false
+      enabled: true
     }
   );
 
-  useEffect(() => {
-    refetch();
-  }, [filterOption]);
-
-  if (!videoInformation) return <Loading />;
+  if (isLoading)
+    return (
+      <Layout>
+        <LoadingWrapper>
+          <Loading />
+        </LoadingWrapper>
+      </Layout>
+    );
 
   return (
     <>
@@ -66,91 +69,95 @@ const ResultPage = ({
           content="https://momokji.shop/images/meta/recipe_meta_image.png"
         />
       </Head>
-      <ResultPageContainer>
-        <TitleWrapper>
-          <ContentTitle>
-            <CategoryTitle>
-              &apos;{ingredients.join(', ')}&apos; 레시피
-            </CategoryTitle>
-            <Chip count={videoInformation.length} />
-          </ContentTitle>
-          <OptionWrapper>
-            <FilterOption
-              onClick={() => {
-                setIsFilterOpen((prev) => !prev);
-              }}
-            >
-              <ArrowIcon isOpen={isFilterOpen} />
-              <FilterSpan>{FILTER_OPTION[filterOption]}</FilterSpan>
-            </FilterOption>
-            <Autocomplete
-              keywords={['최신순', '조회순']}
-              isOpen={isFilterOpen}
-              onItemClick={(item) => {
-                setFilterOption(FILTER_OPTION[item] as OrderingType);
-                setIsFilterOpen(false);
-              }}
-            />
-          </OptionWrapper>
-        </TitleWrapper>
-        <VideoContainer>
-          {videoInformation.map((resultVideoInfo: VideoResultInformation) => {
-            const video = resultVideoInfo.video;
-            const creator = resultVideoInfo.creator;
-            const ingredientCount =
-              resultVideoInfo.ingredients.length -
-              resultVideoInfo.ingredients.filter((item) =>
-                ingredientsArray.includes(item)
-              ).length;
-            const handleModalClick = () => {
-              showModal({
-                fullScreen: true,
-                show: true,
-                body: (
-                  <YoutubeModalBody
-                    id={video.id}
-                    haveIngredients={ingredientsArray}
-                  />
-                ),
-                onClose: () => {
-                  router.push(router.asPath, router.asPath, {
+      <Layout searchable>
+        <ResultPageContainer>
+          <TitleWrapper>
+            <ContentTitle>
+              <CategoryTitle>
+                &apos;{ingredients.join(', ')}&apos; 레시피
+              </CategoryTitle>
+              <Chip count={videoInformation?.length ?? 0} />
+            </ContentTitle>
+            <OptionWrapper>
+              <FilterOption
+                onClick={() => {
+                  setIsFilterOpen((prev) => !prev);
+                }}
+              >
+                <ArrowIcon isOpen={isFilterOpen} />
+                <FilterSpan>{FILTER_NAME[filterOption]}</FilterSpan>
+              </FilterOption>
+              <Autocomplete
+                keywords={['최신순', '조회순']}
+                isOpen={isFilterOpen}
+                onItemClick={(item) => {
+                  setFilterOption(FILTER_OPTION[item] as OrderingType);
+                  setIsFilterOpen(false);
+                }}
+              />
+            </OptionWrapper>
+          </TitleWrapper>
+          <VideoContainer>
+            {videoInformation?.map(
+              (resultVideoInfo: VideoResultInformation) => {
+                const video = resultVideoInfo.video;
+                const creator = resultVideoInfo.creator;
+                const ingredientCount =
+                  resultVideoInfo.ingredients.length -
+                  resultVideoInfo.ingredients.filter((item) =>
+                    ingredients.includes(item)
+                  ).length;
+                const handleModalClick = () => {
+                  showModal({
+                    fullScreen: true,
+                    show: true,
+                    body: (
+                      <YoutubeModalBody
+                        id={video.id}
+                        haveIngredients={ingredients}
+                      />
+                    ),
+                    onClose: () => {
+                      router.push(router.asPath, router.asPath, {
+                        shallow: true
+                      });
+                    }
+                  });
+                  router.push(router.asPath, `/youtube/${video.id}`, {
                     shallow: true
                   });
-                }
-              });
-              router.push(router.asPath, `/youtube/${video.id}`, {
-                shallow: true
-              });
-            };
-            return (
-              <FoodContentCard.Layout key={video.id}>
-                <div onClick={handleModalClick}>
-                  <ImageWrapper>
-                    <ImageScaleUp>
-                      <FoodContentCard.Thumbnail
-                        src={video.thumbnailURL}
-                        size="md"
+                };
+                return (
+                  <FoodContentCard.Layout key={video.id}>
+                    <div onClick={handleModalClick}>
+                      <ImageWrapper>
+                        <ImageScaleUp>
+                          <FoodContentCard.Thumbnail
+                            src={video.thumbnailURL}
+                            size="md"
+                          />
+                        </ImageScaleUp>
+                      </ImageWrapper>
+                      <FoodContentCard.Body
+                        title={video.title}
+                        ingredientCount={ingredientCount}
                       />
-                    </ImageScaleUp>
-                  </ImageWrapper>
-                  <FoodContentCard.Body
-                    title={video.title}
-                    ingredientCount={ingredientCount}
-                  />
-                </div>
-                <FoodContentCard.Footer
-                  src={creator.thumbnail}
-                  viewAndDates={`조회수 ${viewsFormatter(
-                    video.views
-                  )}회 • ${timeFormatter(video.createdAt)}전`}
-                >
-                  {creator.name}
-                </FoodContentCard.Footer>
-              </FoodContentCard.Layout>
-            );
-          })}
-        </VideoContainer>
-      </ResultPageContainer>
+                    </div>
+                    <FoodContentCard.Footer
+                      src={creator.thumbnail}
+                      viewAndDates={`조회수 ${viewsFormatter(
+                        video.views
+                      )}회 • ${timeFormatter(video.createdAt)}전`}
+                    >
+                      {creator.name}
+                    </FoodContentCard.Footer>
+                  </FoodContentCard.Layout>
+                );
+              }
+            )}
+          </VideoContainer>
+        </ResultPageContainer>
+      </Layout>
     </>
   );
 };
@@ -158,8 +165,9 @@ const ResultPage = ({
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const ingredients = query.ingredients as string;
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(['getYoutubeFromIngredient'], () =>
-    getYoutubeFromIngredient('view_count', ingredients.split(','))
+  await queryClient.prefetchQuery(
+    ['getYoutubeFromIngredient', ingredients, '-view_count'],
+    () => getYoutubeFromIngredient('-view_count', ingredients.split(','))
   );
 
   return {
@@ -265,4 +273,17 @@ const FilterSpan = styled.span`
 const ArrowIcon = styled(ArrowUpIcon)<{ isOpen: boolean }>`
   transform: ${({ isOpen }) => (isOpen ? 'rotate(0deg)' : 'rotate(180deg)')};
   transition: transform 0.3s ease-in-out;
+  fill: ${({ theme }) => theme.colors.gray[300]};
+`;
+
+const LoadingWrapper = styled.div`
+  width: 100%;
+  height: calc(100vh - 9rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  ${({ theme }) => theme.screen.desktop} {
+    height: calc(100vh - 6rem);
+  }
 `;

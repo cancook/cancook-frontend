@@ -3,6 +3,7 @@ import EmptySearchResult from '@/components/Search/EmptySearchResult';
 import SearchInput from '@/components/Search/SearchInput';
 import styled from '@emotion/styled';
 import React, { useEffect, useRef, useState } from 'react';
+import Layout from '@/components/layout/Layout';
 
 const SearchBox = styled.div`
   position: relative;
@@ -55,7 +56,7 @@ const SearchPage = () => {
     inputFocus.current?.focus();
   }, []);
   return (
-    <>
+    <Layout searchable>
       <SearchBox>
         <Title>오늘은 어떤 재료로 요리할까?</Title>
         <SearchInput
@@ -71,7 +72,7 @@ const SearchPage = () => {
       <SearchResultWrapper>
         <EmptySearchResult />
       </SearchResultWrapper>
-    </>
+    </Layout>
   );
 };
 

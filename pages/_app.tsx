@@ -3,7 +3,6 @@ import { Global, ThemeProvider } from '@emotion/react';
 import type { AppProps } from 'next/app';
 import { global } from '@/styles/Global';
 import ReactQueryProvider from '@/provider/ReactQueryProvider';
-import Layout from '@/components/layout/Layout';
 import * as gtag from '@/lib/gtag';
 // Swiper
 import 'swiper/css';
@@ -15,8 +14,6 @@ import { Hydrate } from '@tanstack/react-query';
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  // header에 검색 기능이 있는 route들
-  const SEARCHABLE_HEADER_PATH = ['/result'];
 
   useEffect(() => {
     const handleRouteChange = (url: URL) => {
@@ -29,6 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
       router.events.off('hashChangeComplete', handleRouteChange);
     };
   }, [router.events]);
+
   return (
     <>
       <Script
@@ -54,9 +52,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <ThemeProvider theme={theme}>
             <Global styles={global(theme)} />
             <Modal />
-            <Layout searchable={SEARCHABLE_HEADER_PATH.includes(router.route)}>
-              <Component {...pageProps} />
-            </Layout>
+            <Component {...pageProps} />
           </ThemeProvider>
         </Hydrate>
       </ReactQueryProvider>

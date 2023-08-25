@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from '@emotion/styled';
 
 import { ModalState, closeModal, useModalStore } from '@/provider/ModalState';
 import { Modal } from './Modal';
+import { useRouter } from 'next/router';
 
 function ModalComponent() {
   const store = useModalStore();
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!router.asPath.startsWith('/youtube/')) {
+      useModalStore.setState((pre) => {
+        return { ...pre, show: false };
+      });
+    }
+  }, [router.asPath]);
 
   return (
     <>

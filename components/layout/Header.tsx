@@ -21,9 +21,15 @@ const HeaderWrapper = styled.nav`
   }
 `;
 
-const SearchInputWrapper = styled.div`
+const SearchInputWrapper = styled.div<{ $searchable?: boolean }>`
+  visibility: ${({ $searchable }) => ($searchable ? 'visible' : 'hidden')};
+  opacity: ${({ $searchable }) => ($searchable ? '1' : '0')};
+
   width: 100%;
   max-width: calc(80rem - 2.5rem);
+  transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  z-index: 99;
+
   ${({ theme }) => theme.screen.desktop} {
     width: 50rem;
     padding: 0;
@@ -61,15 +67,13 @@ const Header = ({ searchable }: { searchable?: boolean }) => {
             cursor: 'pointer'
           }}
         />
-        {searchable && (
-          <SearchInputWrapper>
-            <SearchInput
-              isFocus={false}
-              onInputWrapperClick={handleSearchModalOpen}
-              disabled
-            />
-          </SearchInputWrapper>
-        )}
+        <SearchInputWrapper $searchable={searchable}>
+          <SearchInput
+            isFocus={false}
+            onInputWrapperClick={handleSearchModalOpen}
+            // disabled
+          />
+        </SearchInputWrapper>
       </HeaderWrapper>
     </StickyHeader>
   );
