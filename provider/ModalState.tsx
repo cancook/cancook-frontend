@@ -33,6 +33,7 @@ export const resetModal = () => {
 
 export const closeModal = () => {
   const onCloseEvent = useModalStore.getState().onClose;
+  document.body.style.overflow = 'auto';
   onCloseEvent && onCloseEvent();
 
   useModalStore.setState({ ...initialState, show: false });
@@ -40,6 +41,7 @@ export const closeModal = () => {
 
 export const showModal = (args: ModalState) => {
   const { show, ...rest } = args;
+  document.body.style.overflow = 'hidden';
 
   useModalStore.setState({
     ...initialState,
