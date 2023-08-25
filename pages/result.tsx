@@ -51,7 +51,7 @@ const ResultPage = ({
     ['getYoutubeFromIngredient', ingredientsQuery, filterOption],
     () => getYoutubeFromIngredient(filterOption, ingredients),
     {
-      enabled: false
+      enabled: true
     }
   );
 
