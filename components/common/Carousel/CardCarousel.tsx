@@ -68,12 +68,10 @@ const CardCarousel = ({ cards, prev, next }: Props) => {
               show: true,
               body: <YoutubeModalBody id={card.video.id} />,
               onClose: () => {
-                router.push(`/`, `/`, {
-                  shallow: true
-                });
+                router.replace(router.asPath, router.asPath, { shallow: true });
               }
             });
-            router.push(`/`, `/youtube/${card.video.id}`, {
+            router.replace(router.asPath, `/youtube/${card.video.id}`, {
               shallow: true
             });
           };
