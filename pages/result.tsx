@@ -165,8 +165,9 @@ const ResultPage = ({
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const ingredients = query.ingredients as string;
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(['getYoutubeFromIngredient'], () =>
-    getYoutubeFromIngredient('-view_count', ingredients.split(','))
+  await queryClient.prefetchQuery(
+    ['getYoutubeFromIngredient', ingredients, '-view_count'],
+    () => getYoutubeFromIngredient('-view_count', ingredients.split(','))
   );
 
   return {
